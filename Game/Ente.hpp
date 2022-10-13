@@ -1,4 +1,7 @@
 #pragma once
+
+#include <iostream>
+#include <string>
 #include "SFML/Graphics.hpp"
 #include "Coordenada.hpp"
 
@@ -12,13 +15,25 @@ protected:
 	Coordenada<float> posicao;
 	Coordenada<float> tamanho;
 	sf::Texture texture;
-	sf::Sprite sprite;
 public:
+	sf::Sprite sprite;
 	Ente()
+		: texture(),
+		sprite()
 	{
 		id = -1;
 		// id não imprementado ainda
 	}
+	void setTexture(std::string filePath)
+	{
+		if (!texture.loadFromFile(filePath))
+		{
+			std::cout << "Erro ao carregar imagem" << std::endl;
+			return;
+		}
+		sprite.setTexture(texture);
+	}
+	
 };
 
 

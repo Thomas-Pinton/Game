@@ -27,8 +27,9 @@ int main()
 
 	// Load a sprite to display
 
-	Jogador player1;
+	
 
+	/* // Sprite and texture in main class
 	sf::Texture texture;
 	if (!texture.loadFromFile("../Assets/Main Characters/Ninja Frog/Idle (32x32).png"))
 		return EXIT_FAILURE;
@@ -43,6 +44,18 @@ int main()
 
 	// scale
 	sprite.setScale(sf::Vector2f(4.f, 4.f)); // absolute scale factor
+	*/
+
+	// sprite and texture in player class
+	Jogador player1; 
+	player1.setTexture("../Assets/Main Characters/Ninja Frog/Idle (32x32).png");
+
+	player1.sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+
+	player1.sprite.setOrigin(sf::Vector2f(16.f, 16.f)); // setting the origin to center
+
+	// scale
+	player1.sprite.setScale(sf::Vector2f(4.f, 4.f)); // absolute scale factor
 
 	int position = 0;
 	const int ammount_images = 11;
@@ -66,7 +79,7 @@ int main()
 			if (position == ammount_images - 1)
 				position = 0;
 
-			sprite.setTextureRect(sf::IntRect(32 * position, 0, 32, 32)); // Player animation
+			player1.sprite.setTextureRect(sf::IntRect(32 * position, 0, 32, 32)); // Player animation
 			position++;
 
 			total_time = 0;
@@ -79,7 +92,7 @@ int main()
 		// Clear screen
 		window.clear();
 		// Draw the sprite
-		window.draw(sprite);
+		window.draw(player1.sprite);
 		// Update the window
 		window.display();
 

@@ -11,4 +11,5 @@ void Entidade::atualizaPosicao()
 {
 	velocidade += aceleracao;
 	posicao += velocidade;
+	sprite.setPosition(sf::Vector2f(posicao.x, posicao.y));
 }
