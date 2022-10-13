@@ -140,11 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ente.cpp" />
+    <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ente.h" />
+    <ClInclude Include="Ente.hpp" />
+    <ClInclude Include="Entidade.hpp" />
+    <ClInclude Include="Personagem.hpp" />
     <ClInclude Include="Tile.hpp" />
     <ClInclude Include="Coordenada.hpp" />
   </ItemGroup>

@@ -1,0 +1,1 @@
+#include "Entidade.hpp"

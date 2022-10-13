@@ -15,6 +15,7 @@ public:
 	Coordenada<T> operator+ (Coordenada<T> vector2);
 	void operator- (Coordenada<T> vector2);
 	void operator= (Coordenada<T> vector2);
+	void operator+= (Coordenada<T> vector2);
 	//Coordenada<TYPE> operator* (TYPE number);
 	//Coordenada<TYPE> operator/ (TYPE number);
 };
@@ -55,6 +56,13 @@ void Coordenada<T>::operator= (Coordenada<T> vector2)
 {
 	x = vector2.x;
 	y = vector2.y;
+}
+
+template<class T>
+void Coordenada<T>::operator+= (Coordenada<T> vector2)
+{
+	x += vector2.x;
+	y += vector2.y;
 }
 /*
 Coordenada <class TYPE> Coordenada<class TYPE>::operator* (TYPE number)
