@@ -1,14 +1,15 @@
 #include <iostream>
 
-#include "SFML/Graphics.hpp"
-#include "Coordenada.hpp"
+#include "Principal.hpp"
 
 /*
 
 // Problemas //
 
-	- Construtor Coordenada não funcionando (vazio e "preenchido")
-	- Erro classe coordenada
+
+// To Do's //
+
+ - Set textures and sprites to player1 object
 
 */
 
@@ -19,27 +20,15 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Test");
 	sf::Event e;
 
-	///*
-	Coordenada<int> pos1;
-	pos1.x = 2, pos1.y = 3;
-	std::cout << pos1.x << pos1.y << std::endl;
-
-	Coordenada<int> pos2;
-	pos2.x = 3, pos2.y = 4;
-	Coordenada<int> pos3;
-	//*/
-	std::cout << pos1.x << pos1.y << std::endl;
-
-	pos3 = pos1 + pos2;
-
-	std::cout << pos3.x << pos3.y << std::endl;
-
 	/*
 	Texture - Image
 	Sprite - Image with a form (rectangle, usually)
 	*/
 
 	// Load a sprite to display
+
+	Jogador player1;
+
 	sf::Texture texture;
 	if (!texture.loadFromFile("../Assets/Main Characters/Ninja Frog/Idle (32x32).png"))
 		return EXIT_FAILURE;
@@ -60,6 +49,7 @@ int main()
 	int switch_time = 100;
 	int total_time = 0;
 
+	
 	while (window.isOpen())
 	{
 		while (window.pollEvent(e))
@@ -83,6 +73,8 @@ int main()
 
 		}
 
+		player1.checkKeys();
+		player1.atualizaPosicao();
 
 		// Clear screen
 		window.clear();

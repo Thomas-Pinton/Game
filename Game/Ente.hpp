@@ -14,6 +14,12 @@ protected:
 	sf::Texture texture;
 	sf::Sprite sprite;
 public:
-	Ente();
+	Ente()
+	{
+		id = -1;
+		// id não imprementado ainda
+	}
 };
+
+
 
