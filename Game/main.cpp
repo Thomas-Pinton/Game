@@ -27,28 +27,9 @@ int main()
 
 	// Load a sprite to display
 
-	
-
-	/* // Sprite and texture in main class
-	sf::Texture texture;
-	if (!texture.loadFromFile("../Assets/Main Characters/Ninja Frog/Idle (32x32).png"))
-		return EXIT_FAILURE;
-
-	sf::Sprite sprite(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
-
-	sprite.setOrigin(sf::Vector2f(16.f, 16.f)); // setting the origin to center
-
-	// position
-	sprite.setPosition(sf::Vector2f(750.0f, 400.0f)); // absolute position
-
-	// scale
-	sprite.setScale(sf::Vector2f(4.f, 4.f)); // absolute scale factor
-	*/
-
 	// sprite and texture in player class
 	Jogador player1; 
-	player1.setTexture("../Assets/Main Characters/Ninja Frog/Idle (32x32).png");
+	player1.setTexture("../Assets/Main Characters/Pink Man/Idle (32x32).png");
 
 	player1.sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
 
@@ -62,7 +43,10 @@ int main()
 	int switch_time = 100;
 	int total_time = 0;
 
-	
+
+	sf::Clock clock;
+	float deltaTime;
+
 	while (window.isOpen())
 	{
 		while (window.pollEvent(e))
@@ -70,8 +54,13 @@ int main()
 			if (e.type == sf::Event::Closed)
 				window.close();
 		}
-		///*
 
+		deltaTime = (float) clock.restart().asSeconds();
+
+		if (deltaTime > 0.15f)
+			deltaTime = 0.15f;
+		
+		/*
 		total_time++;
 
 		if (total_time == switch_time)
@@ -85,9 +74,9 @@ int main()
 			total_time = 0;
 
 		}
-
+		*/
 		player1.checkKeys();
-		player1.atualizaPosicao();
+		player1.atualizaPosicao(deltaTime);
 
 		// Clear screen
 		window.clear();
@@ -96,7 +85,7 @@ int main()
 		// Update the window
 		window.display();
 
-		//*/
+		
 
 	}
 

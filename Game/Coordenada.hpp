@@ -10,12 +10,13 @@ public:
 	T y;
 public:
 	Coordenada();
-	//Coordenada(TYPE xc, TYPE yc);
+	Coordenada(T xc, T yc);
 	~Coordenada() { };
 	Coordenada<T> operator+ (Coordenada<T> vector2);
 	void operator- (Coordenada<T> vector2);
 	void operator= (Coordenada<T> vector2);
 	void operator+= (Coordenada<T> vector2);
+	Coordenada<T> operator* (T escalar);
 	//Coordenada<TYPE> operator* (TYPE number);
 	//Coordenada<TYPE> operator/ (TYPE number);
 };
@@ -26,13 +27,13 @@ Coordenada<T>::Coordenada()
 	x = 0;
 	y = 0;
 }
-/*
-Coordenada<class TYPE>::Coordenada(TYPE xc, TYPE yc)
+
+template<class T>
+Coordenada<T>::Coordenada(T xc, T yc) // x coordenada e y coordenada
 {
 	x = xc;
 	y = yc;
 }
-*/
 
 template<class T>
 Coordenada<T> Coordenada<T>::operator+ (Coordenada<T> vector2)
@@ -64,15 +65,10 @@ void Coordenada<T>::operator+= (Coordenada<T> vector2)
 	x += vector2.x;
 	y += vector2.y;
 }
-/*
-Coordenada <class TYPE> Coordenada<class TYPE>::operator* (TYPE number)
+
+template<class T>
+Coordenada<T> Coordenada<T>::operator* (T escalar)
 {
-	x *= number;
-	y *= number;
+	Coordenada<T> coord(x *= escalar, y *= escalar);
+	return coord;
 }
-Coordenada <class TYPE> Coordenada<class TYPE>::operator/ (TYPE number)
-{
-	x /= number;
-	y /= number;
-}
-*/
