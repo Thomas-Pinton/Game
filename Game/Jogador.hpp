@@ -30,7 +30,7 @@ public:
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 			velocidade.x = vel;
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) && podePular)
-			velocidade.y = -sqrtf(2 * 750 * 200); podePular = false;
+			velocidade.y = -sqrtf(2 * 1000 * 200); podePular = false;
 			// 2 * gravidade * altura do pulo
 	}
 	void setPular(bool p)

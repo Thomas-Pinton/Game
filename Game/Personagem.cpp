@@ -5,7 +5,7 @@ Personagem::Personagem()
 {
 	vida = 100;
 	// Todo personagem, por padrão, sofre efeito da gravidade
-	aceleracao.y = 750;
+	aceleracao.y = 1000;
 }
 
 const int Personagem::getVida()

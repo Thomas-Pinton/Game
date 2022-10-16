@@ -18,7 +18,7 @@ void GerenciadorColisoes::checaColisoes(const int WIDTH, const int HEIGHT)
 
 	for (k = players.begin(); k != players.end(); k++)
 	{
-		(*k)->aceleracao = { 0.0f, 650.0 };
+		(*k)->aceleracao = { 0.0f, 1000.0 };
 		for (i = staticEntities.begin(); i != staticEntities.end(); i++)
 		{
 			Coordenada<float> ajuste = checaColisao(*k, *i);
@@ -32,6 +32,7 @@ void GerenciadorColisoes::checaColisoes(const int WIDTH, const int HEIGHT)
 				// será que esse comportamento é desejável?
 
 				(*k)->aceleracao = { 0.0f, 0.0f };
+				(*k)->velocidade.y = 0.0f;
 				(*k)->atualizaPosicao(ajuste);
 			}
 		}
