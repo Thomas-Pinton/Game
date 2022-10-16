@@ -16,9 +16,8 @@ public:
 	void operator- (Coordenada<T> vector2);
 	void operator= (Coordenada<T> vector2);
 	void operator+= (Coordenada<T> vector2);
-	Coordenada<T> operator* (T escalar);
-	//Coordenada<TYPE> operator* (TYPE number);
-	//Coordenada<TYPE> operator/ (TYPE number);
+	Coordenada<T> operator* (T escalar);;
+	Coordenada<T> operator/ (T escalar);
 };
 
 template<class T>
@@ -69,6 +68,13 @@ void Coordenada<T>::operator+= (Coordenada<T> vector2)
 template<class T>
 Coordenada<T> Coordenada<T>::operator* (T escalar)
 {
-	Coordenada<T> coord(x *= escalar, y *= escalar);
+	Coordenada<T> coord(x * escalar, y * escalar);
+	return coord;
+}
+
+template<class T>
+Coordenada<T> Coordenada<T>::operator/ (T escalar)
+{
+	Coordenada<T> coord(x /= escalar, y /= escalar);
 	return coord;
 }

@@ -16,14 +16,17 @@ protected:
 	Coordenada<float> tamanho;
 	sf::Texture texture;
 public:
+	sf::RectangleShape rectangle; // temporário
 	sf::Sprite sprite;
+
 	Ente()
-		: texture(),
-		sprite()
+		: sprite(),
+		rectangle() //temporário
 	{
 		id = -1;
 		// id não imprementado ainda
 	}
+
 	void setTexture(std::string filePath)
 	{
 		if (!texture.loadFromFile(filePath))
@@ -32,6 +35,28 @@ public:
 			return;
 		}
 		sprite.setTexture(texture);
+	}
+
+	void setTamanho(Coordenada<float> t) {
+		tamanho = t;
+		rectangle.setSize(sf::Vector2f(t.x, t.y));
+		rectangle.setOrigin(sf::Vector2f(t.x / 2, t.y / 2));
+		// mudar para sprite
+	}
+
+	void setPosicao(Coordenada<float> p)
+	{
+		posicao = p;
+		rectangle.setPosition(sf::Vector2f(p.x, p.y));
+		// mudar para sprite
+	}
+
+	const Coordenada<float> getTamanho() const {
+		return tamanho;
+	}
+
+	const Coordenada<float> getPosicao() const {
+		return posicao;
 	}
 	
 };

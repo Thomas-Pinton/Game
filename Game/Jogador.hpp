@@ -1,27 +1,40 @@
 #pragma once
 
 #include "Personagem.hpp"
+#include "math.h"
 
 class Jogador : public Personagem
 {
+private:
+	bool podePular;
 public:
 	Jogador() : Personagem() 
 	{
-		posicao.x = 750.0;
-		posicao.x = 400.0;
+		posicao.x = 0.0;
+		posicao.y = 0.0;
+		podePular = false;
 		// Posicão inicial
 	}
 	void checkKeys()
 	{
 		float vel = 3.0 * 100;
-		velocidade.x = 0; velocidade.y = 0; // padrão, caso nenhuma tecla esteja sendo apertada
+
+		velocidade.x = 0; // padrão, caso nenhuma tecla esteja sendo apertada
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 			velocidade.x = -vel;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || 
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 			velocidade.y = vel;
+		// Para baixo não faz nada (por enquanto)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 			velocidade.x = vel;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-			velocidade.y = -vel;
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) && podePular)
+			velocidade.y = -sqrtf(2 * 750 * 200); podePular = false;
+			// 2 * gravidade * altura do pulo
+	}
+	void setPular(bool p)
+	{
+		podePular = p;
 	}
 };

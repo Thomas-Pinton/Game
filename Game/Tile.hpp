@@ -1,9 +1,12 @@
 #pragma once
-#include "SFML/Graphics.hpp"
 
-class Tile
+#include "SFML/Graphics.hpp"
+#include "Entidade.hpp"
+
+class Tile : public Entidade
 {
 private:
 public:
 };
+
 
