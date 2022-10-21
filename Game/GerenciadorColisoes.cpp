@@ -8,8 +8,11 @@ se os objetos dentro de cada espaço estão colidindo
 */
 
 
-void GerenciadorColisoes::checaColisoes(const int WIDTH, const int HEIGHT)
+void GerenciadorColisoes::checaColisoes(Janela* window)
 {
+	const int WIDTH = window->getWIDTH();
+	const int HEIGHT = window->getHEIGHT();
+
 	std::list<Entidade*>::iterator i;
 	std::list<Entidade*>::iterator j;
 	std::list<Jogador*>::iterator k;
@@ -32,7 +35,7 @@ void GerenciadorColisoes::checaColisoes(const int WIDTH, const int HEIGHT)
 				// será que esse comportamento é desejável?
 
 				(*k)->aceleracao = { 0.0f, 0.0f };
-				(*k)->velocidade.y = 0.0f;
+				(*k)->velocidade.y = 0.0;
 				(*k)->atualizaPosicao(ajuste);
 			}
 		}

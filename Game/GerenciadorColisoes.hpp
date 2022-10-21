@@ -2,6 +2,7 @@
 
 #include "Coordenada.hpp"
 #include "Jogador.hpp"
+#include "Janela.hpp"
 #include <list>
 
 /*
@@ -25,6 +26,7 @@ public:
 		movingEntities()
 	{}
 
+	// posso ter uma função genérica addEntity que tem sobrecarga de parâmetros (a depender do tipo de entidade)
 	void addStaticEntity(Entidade* pE) {
 		staticEntities.push_back(pE);
 	}
@@ -35,7 +37,7 @@ public:
 		players.push_back(pP);
 	}
 
-	void checaColisoes(const int WIDTH, const int HEIGHT);
+	void checaColisoes(Janela* janela);
 	Coordenada<float> checaColisao(Entidade* e1, Entidade* e2);
 };
 

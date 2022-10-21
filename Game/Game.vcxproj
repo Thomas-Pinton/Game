@@ -145,13 +145,15 @@
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elemento.hpp" />
     <ClInclude Include="GerenciadorColisoes.hpp" />
+    <ClInclude Include="Janela.hpp" />
     <ClInclude Include="lista.hpp" />
-    <ClInclude Include="Principal.hpp" />
+    <ClInclude Include="Jogo.hpp" />
     <ClInclude Include="Ente.hpp" />
     <ClInclude Include="Entidade.hpp" />
     <ClInclude Include="Jogador.hpp" />
