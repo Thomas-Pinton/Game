@@ -22,6 +22,17 @@ void GerenciadorGrafico::imprime()
 	window->config.display();
 }
 
+// posso criar uma lista minha, com template, que tem uma função imprime lista
+
+void GerenciadorGrafico::imprimeLista(std::list<Ente*> l)
+{
+	std::list <Ente*>::iterator i;
+
+	for (i = l.begin(); i != l.end(); i++) {
+		window->config.draw((*i)->rectangle);
+	}
+}
+
 void GerenciadorGrafico::imprimeLista(std::list<Entidade*> l)
 {
 	std::list <Entidade*>::iterator i;

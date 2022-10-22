@@ -11,6 +11,7 @@ public:
 	void setJanela(Janela* pW);
 	GerenciadorGrafico();
 	void imprime();
+	void imprimeLista(std::list<Ente*> l);
 	void imprimeLista(std::list<Entidade*> l);
 	void imprimeLista(std::list<Jogador*> l);
 };

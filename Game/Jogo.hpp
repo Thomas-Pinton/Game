@@ -17,7 +17,6 @@ private:
 	Gerenciador ger;
 	GerenciadorColisoes gerCol;
 	GerenciadorGrafico gerGraf;
-	Jogador player1;
 public:
 	Jogo();
 	void executar();

@@ -14,7 +14,7 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 	const int HEIGHT = window->getHEIGHT();
 
 	std::list<Entidade*>::iterator i;
-	std::list<Entidade*>::iterator j;
+	std::list<Ente*>::iterator j;
 	std::list<Jogador*>::iterator k;
 
 	// player com resto
@@ -22,9 +22,9 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 	for (k = players.begin(); k != players.end(); k++)
 	{
 		(*k)->aceleracao = { 0.0f, 1000.0 };
-		for (i = staticEntities.begin(); i != staticEntities.end(); i++)
+		for (j = staticEntities.begin(); j != staticEntities.end(); j++)
 		{
-			Coordenada<float> ajuste = checaColisao(*k, *i);
+			Coordenada<float> ajuste = checaColisao(*k, *j);
 			if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
 				ajuste.y > 0.1 || ajuste.y < -0.1) // houve colisão, checando tanto para positivos como negativos
 			{
@@ -45,7 +45,7 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 				ajuste.y > 0.1f || ajuste.y < -0.1f) // houve colisão, checando tanto para positivos como negativos
 			{
-				(*k)->atualizaPosicao(ajuste);
+				(*k)->atualizaPosicao(ajuste); 
 			}
 		}
 
@@ -77,7 +77,6 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 
 	for (i = movingEntities.begin(); i != movingEntities.end(); i++)
 	{
-		int k = 0;
 		for (j = staticEntities.begin()++; j != staticEntities.end(); j++)
 		{
 			Coordenada<float> tam1 = (*i)->getTamanho(); Coordenada<float> pos1 = (*i)->getPosicao();
@@ -129,7 +128,7 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 
 
 // checa colisão e retorna o quanto deve ser ajustado
-Coordenada<float> GerenciadorColisoes::checaColisao(Entidade* e1, Entidade* e2)
+Coordenada<float> GerenciadorColisoes::checaColisao(Ente* e1, Ente* e2)
 {
 	Coordenada<float> tam1 = (e1)->getTamanho(); Coordenada<float> pos1 = (e1)->getPosicao();
 	Coordenada<float> tam2 = (e2)->getTamanho(); Coordenada<float> pos2 = (e2)->getPosicao();

@@ -16,15 +16,13 @@ realizar um sistema de colisões que divide o espaço e compara elementos dentro d
 class GerenciadorColisoes : public Gerenciador
 {
 public:
-	GerenciadorColisoes() // :
-		//staticEntities(),
-		//movingEntities()
+	GerenciadorColisoes() 
 	{
 	}
 
 	// posso ter uma função genérica addEntity que tem sobrecarga de parâmetros (a depender do tipo de entidade)
 
 	void checaColisoes(Janela* janela);
-	Coordenada<float> checaColisao(Entidade* e1, Entidade* e2);
+	Coordenada<float> checaColisao(Ente* e1, Ente* e2);
 };
 
