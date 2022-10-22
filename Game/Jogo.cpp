@@ -1,12 +1,17 @@
 #include "Jogo.hpp"
 
+std::list<Entidade*> Gerenciador::staticEntities;
+std::list<Entidade*> Gerenciador::movingEntities;
+std::list<Jogador*> Gerenciador::players;
+
 Jogo::Jogo() :
 // criar elementos do jogo
 window(800, 1500),
-gerCol(),
+ger(),
 player1()
 {
-	gerCol.addPlayer(&player1);
+	ger.addPlayer(&player1);
+	gerGraf.setJanela(&window);
 	
 	// criar tambem os outros gerenciadores, que ainda não foram implementados
 }
@@ -30,7 +35,7 @@ void Jogo::executar()
 		t->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
 		t->setTamanho({ 100, 100 });
 		t->setPosicao({ (float)(i * 100) + 50, (float)window.getHEIGHT() / 2 + 200 });
-		gerCol.addStaticEntity((Entidade*)t);
+		ger.addStaticEntity((Entidade*)t);
 		tiles.push_back(t);
 	}
 
@@ -75,21 +80,10 @@ void Jogo::executar()
 
 		std::cout << "acel.y " << player1.aceleracao.y << std::endl;
 
+		gerGraf.imprime();
 
 		//Tudo isso aqui vai ter que ser feito no gerenciador gráfico
 	
-		// Clear screen
-		window.config.clear();
-		// Draw the sprite
-		//window.draw(player1.sprite);
-		window.config.draw(player1.rectangle);
-		for (i = tiles.begin(); i != tiles.end(); i++) {
-			window.config.draw((*i)->rectangle);
-		}
-		// Update the window
-		window.config.display();
-
-
 
 	}
 }

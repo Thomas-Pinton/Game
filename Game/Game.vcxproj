@@ -144,13 +144,16 @@
     <ClCompile Include="GerenciadorColisoes.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="GerenciadorGrafico.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elemento.hpp" />
+    <ClInclude Include="Gerenciador.hpp" />
     <ClInclude Include="GerenciadorColisoes.hpp" />
+    <ClInclude Include="GerenciadorGrafico.hpp" />
     <ClInclude Include="Janela.hpp" />
     <ClInclude Include="lista.hpp" />
     <ClInclude Include="Jogo.hpp" />

@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Coordenada.hpp"
-#include "Jogador.hpp"
+#include "Gerenciador.hpp"
 #include "Janela.hpp"
-#include <list>
 
 /*
 
@@ -14,28 +13,16 @@ realizar um sistema de colisões que divide o espaço e compara elementos dentro d
 
 */
 
-class GerenciadorColisoes
+class GerenciadorColisoes : public Gerenciador
 {
-private:
-	std::list<Entidade*> staticEntities;
-	std::list<Entidade*> movingEntities;
-	std::list<Jogador*> players;
 public:
-	GerenciadorColisoes() :
-		staticEntities(),
-		movingEntities()
-	{}
+	GerenciadorColisoes() // :
+		//staticEntities(),
+		//movingEntities()
+	{
+	}
 
 	// posso ter uma função genérica addEntity que tem sobrecarga de parâmetros (a depender do tipo de entidade)
-	void addStaticEntity(Entidade* pE) {
-		staticEntities.push_back(pE);
-	}
-	void addMovingEntity(Entidade* pE) {
-		movingEntities.push_back(pE);
-	}
-	void addPlayer(Jogador* pP) {
-		players.push_back(pP);
-	}
 
 	void checaColisoes(Janela* janela);
 	Coordenada<float> checaColisao(Entidade* e1, Entidade* e2);
