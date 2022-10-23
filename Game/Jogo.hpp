@@ -7,6 +7,7 @@
 #include "GerenciadorGrafico.hpp"
 #include "Tile.hpp"
 #include "Janela.hpp"
+#include "Inimigo.hpp"
 
 #include <iostream>
 

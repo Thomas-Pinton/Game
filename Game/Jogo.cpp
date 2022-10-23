@@ -4,6 +4,8 @@ std::list<Ente*> Gerenciador::staticEntities;
 std::list<Entidade*> Gerenciador::movingEntities;
 std::list<Jogador*> Gerenciador::players;
 
+int Ente::id_count = 0;
+
 Jogo::Jogo() :
 // criar elementos do jogo
 window(800, 1500),
@@ -19,8 +21,15 @@ void Jogo::executar()
 	sf::Event e;
 	sf::Clock clock;
 	float deltaTime;
+	float tempoCriarInimigo = 0;
+
+	srand((unsigned)time(NULL));
 
 	// por enquanto está na main, mas vai ser colocado no gerenciador de colisões
+
+	Inimigo* inimigo;
+	std::list<Entidade*>::iterator i;
+
 
 	while (window.config.isOpen()) // game loop
 	{
@@ -33,6 +42,8 @@ void Jogo::executar()
 		
 		// colocar essa parte no gerenciador gráfico
 		deltaTime = (float)clock.restart().asSeconds();
+
+		tempoCriarInimigo += deltaTime;
 
 		if (deltaTime > 0.15f)
 			deltaTime = 0.15f;
@@ -53,13 +64,31 @@ void Jogo::executar()
 		}
 		*/
 
+		if (tempoCriarInimigo > 3)
+		{
+			//ger.movingEntities.remove(inimigo);
+			std::cout << "Criando inimigo" << std::endl;
+			tempoCriarInimigo -= 3;
+			inimigo = new Inimigo;
+			inimigo->setPosicao({ (float)(window.getWIDTH() + 250 + (rand() % 3)), (float)window.getHEIGHT() / 2 + 100 });
+			inimigo->setTamanho({ 100.0f, 100.0f });
+			inimigo->velocidade = { -250.0f + 50 * (rand() % 3), 0.0f};
+			ger.addMovingEntity(inimigo);
+		}
+	
+
+
+
 		// Deve estar no gerenciador de movimento
 		ger.players.front()->checkKeys();
 		ger.players.front()->atualizaPosicao(deltaTime);
+		
+		for (i = ger.movingEntities.begin(); i != ger.movingEntities.end(); i++)
+		{
+			(*i)->atualizaPosicao(deltaTime);
+		}
 
 		gerCol.checaColisoes(&window);
-
-		std::cout << "acel.y " << ger.players.front()->aceleracao.y << std::endl;
 
 		gerGraf.imprime();
 

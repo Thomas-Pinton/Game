@@ -11,6 +11,7 @@
 class Ente
 {
 protected:
+	static int id_count;
 	int id;
 	Coordenada<float> posicao;
 	Coordenada<float> tamanho;
@@ -20,10 +21,11 @@ public:
 	sf::Sprite sprite;
 
 	Ente()
-		: sprite(),
+		: //sprite(),
 		rectangle() //temporário
 	{
-		id = -1;
+		id = id_count;
+		id_count++;
 		// id não imprementado ainda
 	}
 
@@ -59,6 +61,9 @@ public:
 		return posicao;
 	}
 	
+	const int getId() const {
+		return id;
+	}
 };
 
 

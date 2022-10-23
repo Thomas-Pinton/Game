@@ -28,7 +28,6 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 			if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
 				ajuste.y > 0.1 || ajuste.y < -0.1) // houve colisão, checando tanto para positivos como negativos
 			{
-				std::cout << "Colisao" << "ajuste: x = " << ajuste.x << " y = " << ajuste.y << std::endl;
 				if (ajuste.y < 0.01f) // colisão com o chão
 					(*k)->setPular(true);
 				// isso faz com que o personagem possa encostar no chão, cair e conseguir pular  no ar enquanto está caindo,
@@ -39,13 +38,28 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 				(*k)->atualizaPosicao(ajuste);
 			}
 		}
+
+		// considerando que todas as moving entities são inimigos
 		for (i = movingEntities.begin(); i != movingEntities.end(); i++)
 		{
-			Coordenada<float> ajuste = checaColisao(*i, *k);
-			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+			Coordenada<float> ajuste = checaColisao(*k, *i);
+
+			if (ajuste.y < -0.1f)
+				// se bateu na cabeça do inimgo ele morreu
+			{
+				std::cout << "Matei o inimigo" << std::endl;
+				(*k)->atualizaPosicao(ajuste);
+
+				movingEntities.erase(i);
+				delete *i;
+
+			} else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 				ajuste.y > 0.1f || ajuste.y < -0.1f) // houve colisão, checando tanto para positivos como negativos
 			{
+				std::cout << "Morri" << std::endl;
 				(*k)->atualizaPosicao(ajuste); 
+				// perdeu
+				window->config.close();
 			}
 		}
 
@@ -79,16 +93,17 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 	{
 		for (j = staticEntities.begin()++; j != staticEntities.end(); j++)
 		{
-			Coordenada<float> tam1 = (*i)->getTamanho(); Coordenada<float> pos1 = (*i)->getPosicao();
-			Coordenada<float> tam2 = (*j)->getTamanho(); Coordenada<float> pos2 = (*j)->getPosicao();
+			Coordenada<float> ajuste = checaColisao(*i, *j);
 
-			Coordenada<float> somaTamanhos = (tam1 + tam2) / 2; //soma da metade dos dois tamanhos
+			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+				ajuste.y > 0.1f || ajuste.y < -0.1f)
+			{
+				(*i)->aceleracao.y = 0.0f;
+				(*i)->velocidade.y = 0.0;
+				(*i)->atualizaPosicao(ajuste);
+			}
+			/* // antigo checador de colisões
 
-			float dx = pos1.x - pos2.x > 0 ? pos1.x - pos2.x : pos2.x - pos1.x;
-			float dy = pos1.y - pos2.y > 0 ? pos1.y - pos2.y : pos2.y - pos1.y;
-
-			// pegar dx e dy em módulo, pois pode ser negativo
-			float dif_x = somaTamanhos.x - dx, dif_y = somaTamanhos.y - dy;
 			if (somaTamanhos.x > dx && somaTamanhos.y > dy) // colidiu
 			{
 				if (dif_x < dif_y)
@@ -120,6 +135,8 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 				}
 					
 			}
+
+			*/
 		}
 	}
 

@@ -18,6 +18,7 @@ public:
 	void operator+= (Coordenada<T> vector2);
 	Coordenada<T> operator* (T escalar);;
 	Coordenada<T> operator/ (T escalar);
+	//std::ostream& operator<<(std::ostream& COUT, Coordenada<T>& c);
 };
 
 template<class T>
@@ -77,4 +78,11 @@ Coordenada<T> Coordenada<T>::operator/ (T escalar)
 {
 	Coordenada<T> coord(x /= escalar, y /= escalar);
 	return coord;
+}
+
+template<class T>
+std::ostream& operator<<(std::ostream& COUT, Coordenada<T>& c)
+{
+	COUT << "x: " << c.x << " y: " << c.y << std::endl;
+	return COUT;
 }

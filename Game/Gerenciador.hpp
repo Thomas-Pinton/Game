@@ -10,11 +10,12 @@ class Gerenciador
 {
 protected:
 	static std::list<Ente*> staticEntities;
-	static std::list<Entidade*> movingEntities;
+	
 	
 public:
 	// momentâneo
 	static std::list<Jogador*> players;
+	static std::list<Entidade*> movingEntities;
 	Gerenciador()
 	{
 	}
@@ -34,7 +35,7 @@ public:
 
 		std::list<Tile*> tiles; // temporário
 
-		for (int i = 0; i * 100 + 50 < window->getWIDTH(); i++) // will need to work with memory managent later
+		for (int i = 0; i * 100 + 50 < window->getWIDTH() + 300; i++) // will need to work with memory managent later
 		{
 			t = new Tile;
 			t->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
