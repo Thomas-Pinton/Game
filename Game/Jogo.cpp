@@ -10,7 +10,8 @@ Jogo::Jogo() :
 // criar elementos do jogo
 window(800, 1500),
 ger(&window),
-gerCol()
+gerCol(),
+gerMov()
 {
 	gerGraf.setJanela(&window);
 	// criar tambem os outros gerenciadores, que ainda não foram implementados
@@ -25,11 +26,8 @@ void Jogo::executar()
 
 	srand((unsigned)time(NULL));
 
-	// por enquanto está na main, mas vai ser colocado no gerenciador de colisões
-
 	Inimigo* inimigo;
 	std::list<Entidade*>::iterator i;
-
 
 	while (window.config.isOpen()) // game loop
 	{
@@ -40,7 +38,7 @@ void Jogo::executar()
 		}
 
 		
-		// colocar essa parte no gerenciador gráfico
+		// colocar essa parte no gerenciador de movimento
 		deltaTime = (float)clock.restart().asSeconds();
 
 		tempoCriarInimigo += deltaTime;
@@ -80,14 +78,8 @@ void Jogo::executar()
 
 
 		// Deve estar no gerenciador de movimento
-		ger.players.front()->checkKeys();
-		ger.players.front()->atualizaPosicao(deltaTime);
+		gerMov.atualizaPosicoes(deltaTime);
 		
-		for (i = ger.movingEntities.begin(); i != ger.movingEntities.end(); i++)
-		{
-			(*i)->atualizaPosicao(deltaTime);
-		}
-
 		gerCol.checaColisoes(&window);
 
 		gerGraf.imprime();

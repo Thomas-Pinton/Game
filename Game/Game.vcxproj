@@ -143,6 +143,7 @@
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Gerenciador.cpp" />
     <ClCompile Include="GerenciadorColisoes.cpp" />
+    <ClCompile Include="GerenciadorMovimento.cpp" />
     <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Janela.cpp" />
     <ClCompile Include="Jogador.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Gerenciador.hpp" />
     <ClInclude Include="GerenciadorColisoes.hpp" />
     <ClInclude Include="GerenciadorGrafico.hpp" />
+    <ClInclude Include="GerenciadorMovimento.hpp" />
     <ClInclude Include="Inimigo.hpp" />
     <ClInclude Include="Janela.hpp" />
     <ClInclude Include="lista.hpp" />
