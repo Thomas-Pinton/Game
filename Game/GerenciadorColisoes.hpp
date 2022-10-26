@@ -16,9 +16,7 @@ realizar um sistema de colisões que divide o espaço e compara elementos dentro d
 class GerenciadorColisoes : public Gerenciador
 {
 public:
-	GerenciadorColisoes() 
-	{
-	}
+	GerenciadorColisoes();
 
 	// posso ter uma função genérica addEntity que tem sobrecarga de parâmetros (a depender do tipo de entidade)
 

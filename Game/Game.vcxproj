@@ -141,8 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Gerenciador.cpp" />
     <ClCompile Include="GerenciadorColisoes.cpp" />
     <ClCompile Include="Inimigo.cpp" />
+    <ClCompile Include="Janela.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />

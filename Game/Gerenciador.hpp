@@ -16,43 +16,15 @@ public:
 	// momentâneo
 	static std::list<Jogador*> players;
 	static std::list<Entidade*> movingEntities;
-	Gerenciador()
-	{
-	}
-	Gerenciador(Janela* window) 
-	{
-		// criar entes
-		Jogador* player1 = new Jogador();
 
-		player1->setTamanho({ 100, 100 });
-		player1->setPosicao({ 50.0f, 50.0f });
+	Gerenciador();
 
-		addPlayer(player1);
+	Gerenciador(Janela* window);
 
-		Tile* t = NULL;
+	void addStaticEntity(Ente* pE);
 
-		std::list<Tile*>::iterator i;
+	void addMovingEntity(Entidade* pE);
 
-		std::list<Tile*> tiles; // temporário
+	void addPlayer(Jogador* pP);
 
-		for (int i = 0; i * 100 + 50 < window->getWIDTH() + 300; i++) // will need to work with memory managent later
-		{
-			t = new Tile;
-			t->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
-			t->setTamanho({ 100, 100 });
-			t->setPosicao({ (float)(i * 100) + 50, (float)window->getHEIGHT() / 2 + 200 });
-			addStaticEntity((Entidade*) t);
-			tiles.push_back(t);
-		}
-
-	}
-	void addStaticEntity(Ente* pE) {
-		staticEntities.push_back(pE);
-	}
-	void addMovingEntity(Entidade* pE) {
-		movingEntities.push_back(pE);
-	}
-	void addPlayer(Jogador* pP) {
-		players.push_back(pP);
-	}
 };

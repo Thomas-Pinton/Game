@@ -7,6 +7,9 @@ Outra maneira de fazer as colisões seria dividindo o espaço em n pedaços e verif
 se os objetos dentro de cada espaço estão colidindo
 */
 
+GerenciadorColisoes::GerenciadorColisoes()
+{
+}
 
 void GerenciadorColisoes::checaColisoes(Janela* window)
 {

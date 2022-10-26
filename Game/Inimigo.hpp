@@ -6,9 +6,6 @@ class Inimigo :
     public Personagem
 {
 public:
-    Inimigo() :
-        Personagem()
-    {
-    }
+    Inimigo();
 };
 
