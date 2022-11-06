@@ -1,16 +1,16 @@
 #include "Game.hpp"
 
-int Ente::id_count = 0;
+int Being::id_count = 0;
 
-Jogo::Jogo() :
+Game::Game() :
 // criar elementos do jogo
 window(800, 1500),
 level1(&window)
 {
-	// criar tambem os outros gerenciadores, que ainda não foram implementados
+	// criar tambem os outros gerenciadores, que ainda nï¿½o foram implementados
 }
 
-void Jogo::executar()
+void Game::execute()
 {
-	level1.executar(&window);
+	level1.execute(&window);
 }

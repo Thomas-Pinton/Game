@@ -9,17 +9,17 @@
 #include "Tile.hpp"
 #include "Enemy.hpp"
 
-class Level : public Ente
+class Level : public Being
 {
 private:
 	EntitiesList entities;
-	GerenciadorColisoes gerCol;
-	GerenciadorGrafico gerGraf;
+	ColisionManager colMan;
+	GraphicManager grafMan;
 public:
-	Level(Janela* window);
+	Level(Window* window);
 	~Level();
-	void create(Janela* window);
-	virtual void executar(Janela* w);
-	void gerenciarColisoes(Janela* window);
+	void create(Window* window);
+	virtual void execute(Window* w);
+	void manageColisions(Window* window);
 };
 

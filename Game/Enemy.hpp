@@ -2,10 +2,10 @@
 
 #include "Character.hpp"
 
-class Inimigo :
-    public Personagem
+class Enemy :
+    public Character
 {
 public:
-    Inimigo();
+    Enemy();
 };
 

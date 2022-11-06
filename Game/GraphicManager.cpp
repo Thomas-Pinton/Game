@@ -1,21 +1,21 @@
 #include "GraphicManager.hpp"
 
-GerenciadorGrafico::GerenciadorGrafico()
+GraphicManager::GraphicManager()
 {
 	window = NULL;
 }
 
-void GerenciadorGrafico::setJanela(Janela* pW)
+void GraphicManager::setWindow(Window* pW)
 {
 	window = pW;
 }
 
-void GerenciadorGrafico::imprimeEnte(Ente* pE)
+void GraphicManager::printBeing(Being* pE)
 {
 	window->config.draw(pE->rectangle);
 }
 /*
-void GerenciadorGrafico::imprime() 
+void GraphicManager::print() 
 {
 	// Clear screen
 	window->config.clear();
@@ -27,40 +27,40 @@ void GerenciadorGrafico::imprime()
 	window->config.display();
 }
 
-// posso criar uma lista minha, com template, que tem uma função imprime lista
+// posso criar uma lista minha, com template, que tem uma funï¿½ï¿½o print lista
 
-void GerenciadorGrafico::imprimeLista(std::list<Ente*> l)
+void GraphicManager::imprimeLista(std::list<Being*> l)
 {
-	std::list <Ente*>::iterator i;
+	std::list <Being*>::iterator i;
 
 	for (i = l.begin(); i != l.end(); i++) {
 		window->config.draw((*i)->rectangle);
 	}
 }
 
-void GerenciadorGrafico::imprimeLista(std::list<Entidade*> l)
+void GraphicManager::imprimeLista(std::list<Entity*> l)
 {
-	std::list <Entidade*>::iterator i;
+	std::list <Entity*>::iterator i;
 
 	for (i = l.begin(); i != l.end(); i++) {
 		window->config.draw((*i)->rectangle);
 	}
 }
 
-void GerenciadorGrafico::imprimeLista(std::list<Jogador*> l)
+void GraphicManager::imprimeLista(std::list<Player*> l)
 {
-	std::list <Jogador*>::iterator i;
+	std::list <Player*>::iterator i;
 
 	for (i = l.begin(); i != l.end(); i++) {
 		window->config.draw((*i)->rectangle);
 	}
 }
 */
-void GerenciadorGrafico::clear()
+void GraphicManager::clear()
 {
 	window->config.clear();
 }
-void GerenciadorGrafico::display()
+void GraphicManager::display()
 {
 	window->config.display();
 }

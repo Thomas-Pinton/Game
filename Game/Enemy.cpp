@@ -1,7 +1,7 @@
 #include "Enemy.hpp"
 
 
-Inimigo::Inimigo() :
-    Personagem()
+Enemy::Enemy() :
+    Character()
 {
 }

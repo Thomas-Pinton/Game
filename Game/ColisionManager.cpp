@@ -2,47 +2,47 @@
 #include <iostream>
 
 /*
-Essa maneira de colisão não é a mais efetiva.
-Outra maneira de fazer as colisões seria dividindo o espaço em n pedaços e verificar
-se os objetos dentro de cada espaço estão colidindo
+Essa maneira de colisï¿½o nï¿½o ï¿½ a mais efetiva.
+Outra maneira de fazer as colisï¿½es seria dividindo o espaï¿½o em n pedaï¿½os e verificar
+se os objetos dentro de cada espaï¿½o estï¿½o colidindo
 */
 
-GerenciadorColisoes::GerenciadorColisoes()
+ColisionManager::ColisionManager()
 {
 }
 
-void GerenciadorColisoes::checaColisoes(Janela* window)
+void ColisionManager::checkColisions(Window* window)
 {
 	const int WIDTH = window->getWIDTH();
 	const int HEIGHT = window->getHEIGHT();
 
-	std::list<Entidade*>::iterator i;
-	std::list<Entidade*>::iterator j;
-	std::list<Jogador*>::iterator k;
+	std::list<Entity*>::iterator i;
+	std::list<Entity*>::iterator j;
+	std::list<Player*>::iterator k;
 
 	// player com resto
 
 	for (k = players.begin(); k != players.end(); k++)
 	{
-		(*k)->aceleracao = { 0.0f, 1000.0 };
+		(*k)->acceleration = { 0.0f, 1000.0 };
 		for (j = staticEntities.begin(); j != staticEntities.end(); j++)
 		{
-			Coordenada<float> ajuste = checaColisao(*k, *j);
+			Coordinate<float> ajuste = checkColision(*k, *j);
 			if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
-				ajuste.y > 0.1 || ajuste.y < -0.1) // houve colisão, checando tanto para positivos como negativos
+				ajuste.y > 0.1 || ajuste.y < -0.1) // houve colisï¿½o, checando tanto para positivos como negativos
 			{
-				if (ajuste.y < 0.01f) // colisão com o chão
-					(*k)->setPular(true);
-				// isso faz com que o personagem possa encostar no chão, cair e conseguir pular  no ar enquanto está caindo,
-				// será que esse comportamento é desejável?
+				if (ajuste.y < 0.01f) // colisï¿½o com o chï¿½o
+					(*k)->setJump(true);
+				// isso faz com que o personagem possa encostar no chï¿½o, cair e conseguir pular  no ar enquanto estï¿½ caindo,
+				// serï¿½ que esse comportamento ï¿½ desejï¿½vel?
 
-				(*k)->aceleracao = { 0.0f, 0.0f };
-				(*k)->velocidade.y = 0.0;
-				(*k)->atualizaPosicao(ajuste);
+				(*k)->acceleration = { 0.0f, 0.0f };
+				(*k)->speed.y = 0.0;
+				(*k)->updatePosition(ajuste);
 			}
 		}
 
-		// considerando que todas as moving entities são inimigos
+		// considerando que todas as moving entities sï¿½o inimigos
 		for (i = movingEntities.begin(); i != movingEntities.end(); i++)
 		{
 			while ((*i)->alive == false)
@@ -51,13 +51,13 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 				std::cout << "Morto" << std::endl;
 			}
 				
-			Coordenada<float> ajuste = checaColisao(*k, *i);
+			Coordinate<float> ajuste = checkColision(*k, *i);
 
 			if (ajuste.y < -0.1f)
-				// se bateu na cabeça do inimgo ele morreu
+				// se bateu na cabeï¿½a do inimgo ele morreu
 			{
 				std::cout << "Matei o inimigo" << std::endl;
-				(*k)->atualizaPosicao(ajuste);
+				(*k)->updatePosition(ajuste);
 
 				//movingEntities.erase(i);
 				(*i)->alive = false;
@@ -65,10 +65,10 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 				//delete *i;
 
 			} else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-				ajuste.y > 0.1f || ajuste.y < -0.1f) // houve colisão, checando tanto para positivos como negativos
+				ajuste.y > 0.1f || ajuste.y < -0.1f) // houve colisï¿½o, checando tanto para positivos como negativos
 			{
 				std::cout << "Morri" << std::endl;
-				(*k)->atualizaPosicao(ajuste); 
+				(*k)->updatePosition(ajuste); 
 				// perdeu
 				window->config.close();
 			}
@@ -80,19 +80,19 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 
 	for (k = players.begin(); k != players.end(); k++)
 	{
-		float tamanho = (*k)->getTamanho().x / 2, posicao = (*k)->getPosicao().x;
+		float tamanho = (*k)->getSize().x / 2, posicao = (*k)->getPosition().x;
 
-		//poderia criar uma função setPosicao, que colocaria a posicao exata (0 e WIDTH - tamanho, respectivamente)
-		if (tamanho > posicao) // se está indo para fora pela esquerda
+		//poderia criar uma funï¿½ï¿½o setPosition, que colocaria a posicao exata (0 e WIDTH - tamanho, respectivamente)
+		if (tamanho > posicao) // se estï¿½ indo para fora pela esquerda
 		{
-			Coordenada<float> coord(tamanho - posicao, 0);
-			(*k)->atualizaPosicao(coord);
+			Coordinate<float> coord(tamanho - posicao, 0);
+			(*k)->updatePosition(coord);
 		}
 
-		if (posicao + tamanho > WIDTH) // se está indo para fora pela direita
+		if (posicao + tamanho > WIDTH) // se estï¿½ indo para fora pela direita
 		{
-			Coordenada<float> coord(-1 * (posicao + tamanho - WIDTH), 0);
-			(*k)->atualizaPosicao(coord);
+			Coordinate<float> coord(-1 * (posicao + tamanho - WIDTH), 0);
+			(*k)->updatePosition(coord);
 		}
 
 	}
@@ -109,16 +109,16 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 		for (j = staticEntities.begin()++; j != staticEntities.end(); j++)
 		{
 
-			Coordenada<float> ajuste = checaColisao(*i, *j);
+			Coordinate<float> ajuste = checkColision(*i, *j);
 
 			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 				ajuste.y > 0.1f || ajuste.y < -0.1f)
 			{
-				(*i)->aceleracao.y = 0.0f;
-				(*i)->velocidade.y = 0.0;
-				(*i)->atualizaPosicao(ajuste);
+				(*i)->acceleration.y = 0.0f;
+				(*i)->speed.y = 0.0;
+				(*i)->updatePosition(ajuste);
 			}
-			/* // antigo checador de colisões
+			/* // antigo checador de colisï¿½es
 
 			if (somaTamanhos.x > dx && somaTamanhos.y > dy) // colidiu
 			{
@@ -126,27 +126,27 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 				{
 					if (pos1.x > pos2.x)
 					{
-						Coordenada<float> coord(dif_x, 0);
-						(*i)->atualizaPosicao(coord);
+						Coordinate<float> coord(dif_x, 0);
+						(*i)->updatePosition(coord);
 					}
 					else 
 					{
-						Coordenada<float> coord(-1 * dif_x, 0);
-						(*i)->atualizaPosicao(coord);
+						Coordinate<float> coord(-1 * dif_x, 0);
+						(*i)->updatePosition(coord);
 					}	
 				}
 				else
 				{
 					if (pos1.y > pos2.y)
 					{
-						Coordenada<float> coord(0, dif_y);
-						(*i)->atualizaPosicao(coord);
+						Coordinate<float> coord(0, dif_y);
+						(*i)->updatePosition(coord);
 					}
 					else
 					{
-						//colidiu com o chão, se for o player pode pular novamente
-						Coordenada<float> coord(0, -1 * dif_y);
-						(*i)->atualizaPosicao(coord);
+						//colidiu com o chï¿½o, se for o player pode pular novamente
+						Coordinate<float> coord(0, -1 * dif_y);
+						(*i)->updatePosition(coord);
 					}
 				}
 					
@@ -160,18 +160,18 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 }
 
 
-// checa colisão e retorna o quanto deve ser ajustado
-Coordenada<float> GerenciadorColisoes::checaColisao(Ente* e1, Ente* e2)
+// checa colisï¿½o e retorna o quanto deve ser ajustado
+Coordinate<float> ColisionManager::checkColision(Being* e1, Being* e2)
 {
-	Coordenada<float> tam1 = (e1)->getTamanho(); Coordenada<float> pos1 = (e1)->getPosicao();
-	Coordenada<float> tam2 = (e2)->getTamanho(); Coordenada<float> pos2 = (e2)->getPosicao();
+	Coordinate<float> tam1 = (e1)->getSize(); Coordinate<float> pos1 = (e1)->getPosition();
+	Coordinate<float> tam2 = (e2)->getSize(); Coordinate<float> pos2 = (e2)->getPosition();
 
-	Coordenada<float> somaTamanhos = (tam1 + tam2) / 2; //soma da metade dos dois tamanhos
+	Coordinate<float> somaTamanhos = (tam1 + tam2) / 2; //soma da metade dos dois tamanhos
 
 	float dx = pos1.x - pos2.x > 0 ? pos1.x - pos2.x : pos2.x - pos1.x;
 	float dy = pos1.y - pos2.y > 0 ? pos1.y - pos2.y : pos2.y - pos1.y;
 
-	// pegar dx e dy em módulo, pois pode ser negativo
+	// pegar dx e dy em mï¿½dulo, pois pode ser negativo
 	float dif_x = somaTamanhos.x - dx, dif_y = somaTamanhos.y - dy;
 	if (somaTamanhos.x > dx && somaTamanhos.y > dy) // colidiu
 	{
@@ -203,18 +203,18 @@ Coordenada<float> GerenciadorColisoes::checaColisao(Ente* e1, Ente* e2)
 
 
 /*
-Coordenada<float> GerenciadorColisoes::checaColisao(Entidade* e1, Entidade* e2)
+Coordinate<float> ColisionManager::checkColision(Entity* e1, Entity* e2)
 {
-	Coordenada<float> tam1 = e1->getTamanho(); Coordenada<float> pos1 = e1->getPosicao();
-	Coordenada<float> tam2 = e2->getTamanho(); Coordenada<float> pos2 = e2->getPosicao();
+	Coordinate<float> tam1 = e1->getSize(); Coordinate<float> pos1 = e1->getPosition();
+	Coordinate<float> tam2 = e2->getSize(); Coordinate<float> pos2 = e2->getPosition();
 	
-	Coordenada<float> distTamanhos = (tam1 + tam2) / 2;
+	Coordinate<float> distTamanhos = (tam1 + tam2) / 2;
 
 	float dx = pos1.x - pos2.x > 0 ? pos1.x - pos2.x : pos2.x - pos1.x;
 	float dy = pos1.y - pos2.y > 0 ? pos1.y - pos2.y : pos2.y - pos1.y;
 	
-	// pegar dx em módulo, pois pode ser negativo
-	if (distTamanhos.x > dx && distTamanhos.y > dy) // tem que passar tanto em x quanto em y para haver colisão
+	// pegar dx em mï¿½dulo, pois pode ser negativo
+	if (distTamanhos.x > dx && distTamanhos.y > dy) // tem que passar tanto em x quanto em y para haver colisï¿½o
 		return true;
 
 	return 0;

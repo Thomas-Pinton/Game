@@ -1,26 +1,26 @@
 #include "Level.hpp"
 
 
-Level::Level(Janela* window)
+Level::Level(Window* window)
 	: entities(),
-	gerCol(),
-	gerGraf()
+	colMan(),
+	grafMan()
 {
-	gerGraf.setJanela(window);
-	Jogador* player1 = new Jogador;
+	grafMan.setWindow(window);
+	Player* player1 = new Player;
 
-	player1->setTamanho({ 100, 100 });
-	player1->setPosicao({ 50, 50 });
+	player1->setSize({ 100, 100 });
+	player1->setPosition({ 50, 50 });
 
 	entities.addEntity(player1);
-	gerCol.players.push_back(player1);
+	colMan.players.push_back(player1);
 }
 
 Level::~Level()
 {
 }
 
-void Level::create(Janela* window) // criando coisas que vão estar em toda a fase
+void Level::create(Window* window) // criando coisas que vï¿½o estar em toda a fase
 {
 	Tile* tile = NULL;
 
@@ -30,14 +30,14 @@ void Level::create(Janela* window) // criando coisas que vão estar em toda a fas
 	{
 		tile = new Tile;
 		tile->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
-		tile->setTamanho({ 100, 100 });
-		tile->setPosicao({ (float)(i * 100) + 50, (float)window->getHEIGHT() / 2 + 200 });
-		gerCol.staticEntities.push_back((Entidade*)tile);
+		tile->setSize({ 100, 100 });
+		tile->setPosition({ (float)(i * 100) + 50, (float)window->getHEIGHT() / 2 + 200 });
+		colMan.staticEntities.push_back((Entity*)tile);
 		entities.addEntity(tile);
 	}
 }
 
-void Level::executar(Janela* window)
+void Level::execute(Window* window)
 {
 	
 	sf::Event e;
@@ -47,7 +47,7 @@ void Level::executar(Janela* window)
 
 	srand((unsigned)time(NULL));
 
-	Inimigo* inimigo;
+	Enemy* inimigo;
 
 	create(window);
 
@@ -74,29 +74,29 @@ void Level::executar(Janela* window)
 			//ger.movingEntities.remove(inimigo);
 			std::cout << "Criando inimigo" << std::endl;
 			tempoCriarInimigo -= 3;
-			inimigo = new Inimigo;
-			gerCol.movingEntities.push_back(inimigo);
-			inimigo->setPosicao({ (float)(window->getWIDTH() + 250 + (rand() % 3)), (float)window->getHEIGHT() / 2 + 100 });
-			inimigo->setTamanho({ 100.0f, 100.0f });
-			inimigo->velocidade = { -250.0f + 50 * (rand() % 3), 0.0f };
+			inimigo = new Enemy;
+			colMan.movingEntities.push_back(inimigo);
+			inimigo->setPosition({ (float)(window->getWIDTH() + 250 + (rand() % 3)), (float)window->getHEIGHT() / 2 + 100 });
+			inimigo->setSize({ 100.0f, 100.0f });
+			inimigo->speed = { -250.0f + 50 * (rand() % 3), 0.0f };
 			entities.addEntity(inimigo);
 		}
 
 		//executando cada entidade
 		entities.executeEntities(deltaTime);
 
-		gerenciarColisoes(window);
+		manageColisions(window);
 
-		gerGraf.clear();
+		grafMan.clear();
 
-		entities.printEntities(&gerGraf);
+		entities.printEntities(&grafMan);
 
-		gerGraf.display();
+		grafMan.display();
 
 	}
 	
 }
-void Level::gerenciarColisoes(Janela* window)
+void Level::manageColisions(Window* window)
 {
-	gerCol.checaColisoes(window);
+	colMan.checkColisions(window);
 }

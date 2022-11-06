@@ -9,25 +9,25 @@
 
 /*
 
-Implementando o tipo de colisão padrão (comparar todos os elemento 1 a 1)
+Implementando o tipo de colisï¿½o padrï¿½o (comparar todos os elemento 1 a 1)
 
-É possível, no futuro, para otimizar o jogo, 
-realizar um sistema de colisões que divide o espaço e compara elementos dentro daque espaço
+ï¿½ possï¿½vel, no futuro, para otimizar o jogo, 
+realizar um sistema de colisï¿½es que divide o espaï¿½o e compara elementos dentro daque espaï¿½o
 
 */
 
-class GerenciadorColisoes
+class ColisionManager
 {
 public:
-	std::list<Entidade*> staticEntities;
-	std::list<Jogador*> players;
-	std::list<Entidade*> movingEntities;
+	std::list<Entity*> staticEntities;
+	std::list<Player*> players;
+	std::list<Entity*> movingEntities;
 public:
-	GerenciadorColisoes();
+	ColisionManager();
 
-	// posso ter uma função genérica addEntity que tem sobrecarga de parâmetros (a depender do tipo de entidade)
+	// posso ter uma funï¿½ï¿½o genï¿½rica addEntity que tem sobrecarga de parï¿½metros (a depender do tipo de entidade)
 
-	void checaColisoes(Janela* janela);
-	Coordenada<float> checaColisao(Ente* e1, Ente* e2);
+	void checkColisions(Window* janela);
+	Coordinate<float> checkColision(Being* e1, Being* e2);
 };
 

@@ -3,19 +3,19 @@
 #include "Window.hpp"
 #include "Being.hpp"
 
-class GerenciadorGrafico
+class GraphicManager
 {
 private:
-	Janela* window;
+	Window* window;
 public:
-	void setJanela(Janela* pW);
-	GerenciadorGrafico();
+	void setWindow(Window* pW);
+	GraphicManager();
 
-	//void imprime();
-	void imprimeEnte(Ente* pE);
-	//void imprimeLista(std::list<Ente*> l);
-	//void imprimeLista(std::list<Entidade*> l);
-	//void imprimeLista(std::list<Jogador*> l);
+	//void print();
+	void printBeing(Being* pE);
+	//void imprimeLista(std::list<Being*> l);
+	//void imprimeLista(std::list<Entity*> l);
+	//void imprimeLista(std::list<Player*> l);
 
 	void clear();
 	void display();

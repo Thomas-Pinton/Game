@@ -5,36 +5,36 @@
 #include "SFML/Graphics.hpp"
 #include "Coordinate.hpp"
 
-class GerenciadorGrafico;
+class GraphicManager;
 
-// Tudo aquilo que tem representação gráfica
-// Ex.: Personagem, blocos, menu, backgrounds, etc
+// Tudo aquilo que tem representaï¿½ï¿½o grï¿½fica
+// Ex.: Character, blocos, menu, backgrounds, etc
 
-class Ente
+class Being
 {
 protected:
 	static int id_count;
 	int id;
-	Coordenada<float> posicao;
-	Coordenada<float> tamanho;
+	Coordinate<float> position;
+	Coordinate<float> size;
 	sf::Texture texture;
 public:
-	sf::RectangleShape rectangle; // temporário
+	sf::RectangleShape rectangle; // temporï¿½rio
 	sf::Sprite sprite;
 
-	Ente();
+	Being();
 
 	void setTexture(std::string filePath);
 
-	void setTamanho(Coordenada<float> t);
+	void setSize(Coordinate<float> t);
 
-	void setPosicao(Coordenada<float> p);
+	void setPosition(Coordinate<float> p);
 
-	void imprimir(GerenciadorGrafico* pGerenciadorGrafico);
+	void print(GraphicManager* pGerenciadorGrafico);
 
-	const Coordenada<float> getTamanho() const;
+	const Coordinate<float> getSize() const;
 
-	const Coordenada<float> getPosicao() const;
+	const Coordinate<float> getPosition() const;
 
 	const int getId() const;
 

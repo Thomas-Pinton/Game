@@ -8,91 +8,91 @@ template <class TIPO>
 class Lista
 {
 private:
-    Elemento<TIPO>* pPrimeiro;
-    Elemento<TIPO>* pUltimo;
+    Element<TIPO>* pFirst;
+    Element<TIPO>* pLast;
     int size;
 public:
     Lista() {
-        pPrimeiro = NULL;
-        pUltimo = NULL;
+        pFirst = NULL;
+        pLast = NULL;
         size = 0;
     }
     ~Lista() { // Desalocando memória
         // Destrutora da lista desaloca todos os elementos
-        Elemento<TIPO>* pAtual = pPrimeiro;
-        Elemento<TIPO>* pProximo = pPrimeiro->pProximo;
-        while(pAtual != NULL) 
+        Element<TIPO>* pCurrent = pFirst;
+        Element<TIPO>* pNext = pFirst->pNext;
+        while(pCurrent != NULL) 
         {
             
-            delete pAtual;
-            pAtual = pProximo;
-            pProximo = pAtual->pProximo;
+            delete pCurrent;
+            pCurrent = pNext;
+            pNext = pCurrent->pNext;
         }
     }
 
     TIPO* getPos(int pos) {
-        Elemento<TIPO>* pAtual = pPrimeiro;
-        for (int i = 0; i < pos && pAtual != NULL; i++)
+        Element<TIPO>* pCurrent = pFirst;
+        for (int i = 0; i < pos && pCurrent != NULL; i++)
         {
-            pAtual = pAtual->pProximo;
+            pCurrent = pCurrent->pNext;
         }
-        if (pAtual == NULL)
+        if (pCurrent == NULL)
         {
             std::cout << "Erro: Acesso de posição indevida" << std::endl;
             return NULL;
         }
-        return pAtual->getData();
+        return pCurrent->getData();
     }
 
     TIPO* operator[](int pos) {
         return getPos(pos);
     }
 
-    Elemento<TIPO>* getPrimeiro() {
-        return pPrimeiro;
+    Element<TIPO>* getPrimeiro() {
+        return pFirst;
     }
 
-    Elemento<TIPO>* getUltimo() {
-        return pUltimo;
+    Element<TIPO>* getUltimo() {
+        return pLast;
     }
 
     const int getSize() const {
         return size;
     }
 
-    void addElemento(Elemento<TIPO>* elem) {
+    void addElemento(Element<TIPO>* elem) {
         if (elem == NULL)
             return;
         size++;
-        if (pPrimeiro == NULL)
+        if (pFirst == NULL)
         {
-            pPrimeiro = elem;
-            pUltimo = elem;
+            pFirst = elem;
+            pLast = elem;
         } else 
         {
-            pUltimo->pProximo = elem;
-            pUltimo = elem;
+            pLast->pNext = elem;
+            pLast = elem;
         }
     }
 
     void addElemento(TIPO* pTipo) {
 
-        Elemento<TIPO>* elTipo = new Elemento<TIPO>;
-        elTipo->setData(pTipo);
+        Element<TIPO>* elType = new Element<TIPO>;
+        elType->setData(pTipo);
 
-        if (elTipo == NULL)
+        if (elType == NULL)
             return;
 
         size++;
 
-        if (pPrimeiro == NULL)
+        if (pFirst == NULL)
         {
-            pPrimeiro = elTipo;
-            pUltimo = elTipo;
+            pFirst = elType;
+            pLast = elType;
         } else 
         {
-            pUltimo->pProximo = elTipo;
-            pUltimo = elTipo;
+            pLast->pNext = elType;
+            pLast = elType;
         }
     }
 };

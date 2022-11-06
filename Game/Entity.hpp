@@ -3,16 +3,16 @@
 #include "Being.hpp"
 #include "Coordinate.hpp"
 
-class Entidade : public Ente
+class Entity : public Being
 {
 private:
 	
 public:
 	bool alive;
-	Coordenada<float> aceleracao;
-	Coordenada<float> velocidade;
-	Entidade();
-	void atualizaPosicao(float deltaTime);
-	void atualizaPosicao(Coordenada<float> coord);
-	virtual void executar(float deltaTime);
+	Coordinate<float> acceleration;
+	Coordinate<float> speed;
+	Entity();
+	void updatePosition(float deltaTime);
+	void updatePosition(Coordinate<float> coord);
+	virtual void execute(float deltaTime);
 };

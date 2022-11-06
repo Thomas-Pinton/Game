@@ -6,11 +6,11 @@
 class EntitiesList 
 {
 private:
-	Lista<Entidade> list;
+	Lista<Entity> list;
 public:
 	EntitiesList();
 	~EntitiesList();
 	void executeEntities(float deltaTime);
-	void printEntities(GerenciadorGrafico* pGerGraf);
-	void addEntity(Entidade* pE);
+	void printEntities(GraphicManager* pGerGraf);
+	void addEntity(Entity* pE);
 };

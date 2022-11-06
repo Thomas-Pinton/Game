@@ -1,29 +1,29 @@
 #include "Character.hpp"
 
-Personagem::Personagem()
-	: Entidade()
+Character::Character()
+	: Entity()
 {
-	vida = 100;
-	// Todo personagem, por padrão, sofre efeito da gravidade
-	aceleracao.y = 1000;
+	hp = 100;
+	// Todo personagem, por padrï¿½o, sofre efeito da gravidade
+	acceleration.y = 1000;
 }
 
-const int Personagem::getVida()
+const int Character::getHp()
 {
-	return vida;
+	return hp;
 }
 
-void Personagem::setVida(int novaVida)
+void Character::setHp(int novaVida)
 {
-	vida = novaVida;
+	hp = novaVida;
 }
 
-void Personagem::diminuirVida(int qtd)
+void Character::decreaseHp(int qtd)
 {
-	vida -= qtd;
+	hp -= qtd;
 }
 
-void Personagem::aumentarVida(int qtd)
+void Character::increaseHp(int qtd)
 {
-	vida += qtd;
+	hp += qtd;
 }

@@ -7,7 +7,7 @@
 
 // Problemas //
 
- - Função checa colisoes (parte entre entidades moveis)
+ - Funï¿½ï¿½o checa colisoes (parte entre entidades moveis)
 
 // To Do's //
 
@@ -15,6 +15,6 @@
 
 int main() 
 {
-	Jogo jogo;
-	jogo.executar();
+	Game game;
+	game.execute();
 }

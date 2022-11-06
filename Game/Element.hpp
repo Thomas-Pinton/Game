@@ -3,31 +3,31 @@
 #include <iostream>
 template <class TIPO>
 
-class Elemento 
+class Element 
 {
 private:
     TIPO* pData;
 public:
-    Elemento<TIPO>* pProximo;
-    Elemento() {
-        pProximo = NULL;
+    Element<TIPO>* pNext;
+    Element() {
+        pNext = NULL;
         pData = NULL;
     }
-    Elemento(Elemento* pProximoE, TIPO* pDataE) {
-        pProximo = pProximoE;
+    Element(Element* pNextE, TIPO* pDataE) {
+        pNext = pNextE;
         pData = pDataE;
     }
-    ~Elemento() {
+    ~Element() {
         
     }
-    const void setProximo(Elemento* pProx) const {
-        pProximo = pProx;
+    const void setProximo(Element* pN) const {
+        pNext = pN;
     }
     const void setData(TIPO* pDataE) {
         pData = pDataE;
     }
-    Elemento* getProximo() const {
-        return pProximo;
+    Element* getProximo() const {
+        return pNext;
     }
     TIPO* getData() const {
         return pData;

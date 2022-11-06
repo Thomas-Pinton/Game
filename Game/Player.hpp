@@ -3,15 +3,15 @@
 #include "Character.hpp"
 #include "math.h"
 
-class Jogador : public Personagem
+class Player : public Character
 {
 private:
-	bool podePular;
+	bool canJump;
 public:
-	Jogador();
+	Player();
 
 	void checkKeys();
-	virtual void executar(float deltaTime);
-	void setPular(bool p);
+	virtual void execute(float deltaTime);
+	void setJump(bool p);
 
 };

@@ -3,7 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "Entity.hpp"
 
-class Tile : public Entidade
+class Tile : public Entity
 {
 private:
 public:

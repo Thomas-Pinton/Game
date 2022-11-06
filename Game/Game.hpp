@@ -7,12 +7,12 @@
 
 #include <iostream>
 
-class Jogo
+class Game
 {
 private:
-	Janela window;
+	Window window;
 	Level level1;
 public:
-	Jogo();
-	void executar();
+	Game();
+	void execute();
 };

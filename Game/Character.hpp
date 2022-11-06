@@ -2,14 +2,14 @@
 
 #include "Entity.hpp"
 
-class Personagem : public Entidade
+class Character : public Entity
 {
 protected:
-	int vida;
+	int hp;
 public:
-	Personagem();
-	const int getVida();
-	void setVida(int novaVida);
-	void diminuirVida(int qtd);
-	void aumentarVida(int qtd);
+	Character();
+	const int getHp();
+	void setHp(int novaVida);
+	void decreaseHp(int qtd);
+	void increaseHp(int qtd);
 };

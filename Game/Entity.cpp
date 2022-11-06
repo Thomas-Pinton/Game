@@ -1,32 +1,32 @@
 #include "Entity.hpp"
 #include <iostream>
 
-Entidade::Entidade()
-	: Ente(),
+Entity::Entity()
+	: Being(),
 	alive(true)
 {
-	velocidade.x = 0; velocidade.y = 0;
-	aceleracao.x = 0; aceleracao.y = 0;
+	speed.x = 0; speed.y = 0;
+	acceleration.x = 0; acceleration.y = 0;
 }
 
-void Entidade::atualizaPosicao(float deltaTime)
+void Entity::updatePosition(float deltaTime)
 {
-	velocidade += aceleracao * deltaTime;
-	posicao += velocidade * deltaTime;
-	rectangle.setPosition(sf::Vector2f(posicao.x, posicao.y));
+	speed += acceleration * deltaTime;
+	position += speed * deltaTime;
+	rectangle.setPosition(sf::Vector2f(position.x, position.y));
 	//sprite.setPosition(sf::Vector2f(posicao.x, posicao.y));
 }
 
-void Entidade::atualizaPosicao(Coordenada<float> coord)
+void Entity::updatePosition(Coordinate<float> coord)
 {
-	posicao += coord;
-	rectangle.setPosition(sf::Vector2f(posicao.x, posicao.y));
+	position += coord;
+	rectangle.setPosition(sf::Vector2f(position.x, position.y));
 	//sprite.setPosition(sf::Vector2f(posicao.x, posicao.y));
 }
 
-void Entidade::executar(float deltaTime)
+void Entity::execute(float deltaTime)
 {
 	if (id > 19)
-		std::cout << "Pos" << posicao << std::endl;
-	atualizaPosicao(deltaTime);
+		std::cout << "Pos" << position << std::endl;
+	updatePosition(deltaTime);
 }
