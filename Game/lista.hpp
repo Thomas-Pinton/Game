@@ -1,10 +1,9 @@
 #pragma once
 
 #include "elemento.hpp"
-
-template <class TIPO>
 #include <iostream>
 
+template <class TIPO>
 
 class Lista
 {
@@ -15,12 +14,13 @@ private:
 public:
     Lista() {
         pPrimeiro = NULL;
+        pUltimo = NULL;
         size = 0;
     }
     ~Lista() { // Desalocando memória
         // Destrutora da lista desaloca todos os elementos
         Elemento<TIPO>* pAtual = pPrimeiro;
-        Elemento<TIPO>* pProximo = pPrimeiro->pProximo();
+        Elemento<TIPO>* pProximo = pPrimeiro->pProximo;
         while(pAtual != NULL) 
         {
             
@@ -30,9 +30,9 @@ public:
         }
     }
 
-    TIPO getPos(int pos) {
+    TIPO* getPos(int pos) {
         Elemento<TIPO>* pAtual = pPrimeiro;
-        for (int i = 0; i <= pos && pAtual != NULL; i++)
+        for (int i = 0; i < pos && pAtual != NULL; i++)
         {
             pAtual = pAtual->pProximo;
         }
@@ -41,10 +41,10 @@ public:
             std::cout << "Erro: Acesso de posição indevida" << std::endl;
             return NULL;
         }
-        return pAtual;
+        return pAtual->getData();
     }
 
-    TIPO operator[](int pos) {
+    TIPO* operator[](int pos) {
         return getPos(pos);
     }
 

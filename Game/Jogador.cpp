@@ -29,3 +29,9 @@ void Jogador::setPular(bool p)
 {
 	podePular = p;
 }
+
+void Jogador::executar(float deltaTime)
+{
+	checkKeys();
+	atualizaPosicao(deltaTime);
+}

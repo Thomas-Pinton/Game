@@ -11,7 +11,7 @@ public:
 	Jogador();
 
 	void checkKeys();
-
+	virtual void executar(float deltaTime);
 	void setPular(bool p);
 
 };

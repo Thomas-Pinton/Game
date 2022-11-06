@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Gerenciador.hpp"
+#include "SFML/Graphics.hpp"
 
-class GerenciadorMovimento : public Gerenciador {
+class GerenciadorMovimento 
+{
 private:
 	sf::Clock clock;
 	float deltaTime;

@@ -1,4 +1,5 @@
 #include "Ente.hpp"
+#include "GerenciadorGrafico.hpp"
 
 Ente::Ente()
 	: //sprite(),
@@ -31,6 +32,11 @@ void Ente::setPosicao(Coordenada<float> p)
 	posicao = p;
 	rectangle.setPosition(sf::Vector2f(p.x, p.y));
 	// mudar para sprite
+}
+
+void Ente::imprimir(GerenciadorGrafico* pGerenciadorGrafico)
+{
+	pGerenciadorGrafico->imprimeEnte(this);
 }
 
 const Coordenada<float> Ente::getTamanho() const {

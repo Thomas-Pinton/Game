@@ -10,6 +10,11 @@ void GerenciadorGrafico::setJanela(Janela* pW)
 	window = pW;
 }
 
+void GerenciadorGrafico::imprimeEnte(Ente* pE)
+{
+	window->config.draw(pE->rectangle);
+}
+/*
 void GerenciadorGrafico::imprime() 
 {
 	// Clear screen
@@ -49,4 +54,13 @@ void GerenciadorGrafico::imprimeLista(std::list<Jogador*> l)
 	for (i = l.begin(); i != l.end(); i++) {
 		window->config.draw((*i)->rectangle);
 	}
+}
+*/
+void GerenciadorGrafico::clear()
+{
+	window->config.clear();
+}
+void GerenciadorGrafico::display()
+{
+	window->config.display();
 }

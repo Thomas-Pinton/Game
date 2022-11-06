@@ -17,7 +17,7 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 	const int HEIGHT = window->getHEIGHT();
 
 	std::list<Entidade*>::iterator i;
-	std::list<Ente*>::iterator j;
+	std::list<Entidade*>::iterator j;
 	std::list<Jogador*>::iterator k;
 
 	// player com resto
@@ -45,6 +45,8 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 		// considerando que todas as moving entities são inimigos
 		for (i = movingEntities.begin(); i != movingEntities.end(); i++)
 		{
+			while ((*i)->alive == false)
+				i++;
 			Coordenada<float> ajuste = checaColisao(*k, *i);
 
 			if (ajuste.y < -0.1f)
@@ -53,8 +55,10 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 				std::cout << "Matei o inimigo" << std::endl;
 				(*k)->atualizaPosicao(ajuste);
 
-				movingEntities.erase(i);
-				delete *i;
+				//movingEntities.erase(i);
+				(*i)->alive = false;
+
+				//delete *i;
 
 			} else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 				ajuste.y > 0.1f || ajuste.y < -0.1f) // houve colisão, checando tanto para positivos como negativos
@@ -94,8 +98,13 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 
 	for (i = movingEntities.begin(); i != movingEntities.end(); i++)
 	{
+
+		while ((*i)->alive == false)
+				i++;
+
 		for (j = staticEntities.begin()++; j != staticEntities.end(); j++)
 		{
+
 			Coordenada<float> ajuste = checaColisao(*i, *j);
 
 			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||

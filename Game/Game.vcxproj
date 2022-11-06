@@ -141,12 +141,12 @@
   <ItemGroup>
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
-    <ClCompile Include="Gerenciador.cpp" />
     <ClCompile Include="GerenciadorColisoes.cpp" />
-    <ClCompile Include="GerenciadorMovimento.cpp" />
     <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Janela.cpp" />
     <ClCompile Include="Jogador.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="EntitiesList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
     <ClCompile Include="Personagem.cpp" />
@@ -154,13 +154,13 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="elemento.hpp" />
-    <ClInclude Include="Gerenciador.hpp" />
+    <ClInclude Include="Elemento.hpp" />
+    <ClInclude Include="EntitiesList.hpp" />
     <ClInclude Include="GerenciadorColisoes.hpp" />
     <ClInclude Include="GerenciadorGrafico.hpp" />
-    <ClInclude Include="GerenciadorMovimento.hpp" />
     <ClInclude Include="Inimigo.hpp" />
     <ClInclude Include="Janela.hpp" />
+    <ClInclude Include="Level.hpp" />
     <ClInclude Include="lista.hpp" />
     <ClInclude Include="Jogo.hpp" />
     <ClInclude Include="Ente.hpp" />

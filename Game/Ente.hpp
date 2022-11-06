@@ -5,6 +5,8 @@
 #include "SFML/Graphics.hpp"
 #include "Coordenada.hpp"
 
+class GerenciadorGrafico;
+
 // Tudo aquilo que tem representação gráfica
 // Ex.: Personagem, blocos, menu, backgrounds, etc
 
@@ -28,11 +30,15 @@ public:
 
 	void setPosicao(Coordenada<float> p);
 
+	void imprimir(GerenciadorGrafico* pGerenciadorGrafico);
+
 	const Coordenada<float> getTamanho() const;
 
 	const Coordenada<float> getPosicao() const;
 
 	const int getId() const;
+
+
 
 };
 

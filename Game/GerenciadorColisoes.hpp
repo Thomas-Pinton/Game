@@ -1,8 +1,11 @@
 #pragma once
 
+#include <iostream>
+#include <list>
 #include "Coordenada.hpp"
-#include "Gerenciador.hpp"
 #include "Janela.hpp"
+#include "Jogador.hpp"
+
 
 /*
 
@@ -13,8 +16,12 @@ realizar um sistema de colisões que divide o espaço e compara elementos dentro d
 
 */
 
-class GerenciadorColisoes : public Gerenciador
+class GerenciadorColisoes
 {
+public:
+	std::list<Entidade*> staticEntities;
+	std::list<Jogador*> players;
+	std::list<Entidade*> movingEntities;
 public:
 	GerenciadorColisoes();
 

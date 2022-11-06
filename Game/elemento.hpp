@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 template <class TIPO>
 
 class Elemento 
@@ -19,16 +20,16 @@ public:
     ~Elemento() {
         
     }
-    const void setProximo() const {
-        return pProximo;
+    const void setProximo(Elemento* pProx) const {
+        pProximo = pProx;
     }
-    const void setData(TIPO* pDataE) const {
+    const void setData(TIPO* pDataE) {
         pData = pDataE;
     }
-    Elemento* getProximo() {
+    Elemento* getProximo() const {
         return pProximo;
     }
-    TIPO* getData() {
+    TIPO* getData() const {
         return pData;
     }
 };
