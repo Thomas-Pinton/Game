@@ -1,4 +1,4 @@
-#include "Janela.hpp"
+#include "Window.hpp"
 
 Janela::Janela(int h = 720, int w = 1080)
 {

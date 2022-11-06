@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entidade.hpp"
+#include "Entity.hpp"
 
 class Personagem : public Entidade
 {

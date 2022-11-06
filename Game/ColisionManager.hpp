@@ -2,9 +2,9 @@
 
 #include <iostream>
 #include <list>
-#include "Coordenada.hpp"
-#include "Janela.hpp"
-#include "Jogador.hpp"
+#include "Coordinate.hpp"
+#include "Window.hpp"
+#include "Player.hpp"
 
 
 /*

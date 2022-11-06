@@ -1,7 +1,7 @@
 #pragma once
-#include "lista.hpp"
-#include "Entidade.hpp"
-#include "Coordenada.hpp"
+#include "List.hpp"
+#include "Entity.hpp"
+#include "Coordinate.hpp"
 
 class EntitiesList 
 {

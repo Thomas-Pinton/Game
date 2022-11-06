@@ -1,4 +1,4 @@
-#include "Entidade.hpp"
+#include "Entity.hpp"
 #include <iostream>
 
 Entidade::Entidade()

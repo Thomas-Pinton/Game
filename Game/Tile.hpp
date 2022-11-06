@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "Entidade.hpp"
+#include "Entity.hpp"
 
 class Tile : public Entidade
 {

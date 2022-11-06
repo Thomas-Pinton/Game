@@ -1,8 +1,8 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "Coordenada.hpp"
-#include "Janela.hpp"
+#include "Coordinate.hpp"
+#include "Window.hpp"
 #include "Level.hpp"
 
 #include <iostream>

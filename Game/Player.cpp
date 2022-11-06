@@ -1,4 +1,4 @@
-#include "Jogador.hpp"
+#include "Player.hpp"
 
 Jogador::Jogador() : Personagem()
 {

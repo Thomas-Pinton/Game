@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Janela.hpp"
-#include "Ente.hpp"
+#include "Window.hpp"
+#include "Being.hpp"
 
 class GerenciadorGrafico
 {

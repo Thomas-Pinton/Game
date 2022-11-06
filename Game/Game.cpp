@@ -1,4 +1,4 @@
-#include "Jogo.hpp"
+#include "Game.hpp"
 
 int Ente::id_count = 0;
 

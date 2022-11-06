@@ -1,4 +1,4 @@
-#include "GerenciadorGrafico.hpp"
+#include "GraphicManager.hpp"
 
 GerenciadorGrafico::GerenciadorGrafico()
 {

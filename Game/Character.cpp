@@ -1,4 +1,4 @@
-#include "Personagem.hpp"
+#include "Character.hpp"
 
 Personagem::Personagem()
 	: Entidade()

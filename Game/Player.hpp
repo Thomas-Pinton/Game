@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Personagem.hpp"
+#include "Character.hpp"
 #include "math.h"
 
 class Jogador : public Personagem

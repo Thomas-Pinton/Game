@@ -22,18 +22,18 @@ Level::~Level()
 
 void Level::create(Janela* window) // criando coisas que vão estar em toda a fase
 {
-	Tile* t = NULL;
+	Tile* tile = NULL;
 
 	std::list<Tile*>::iterator i;
 
 	for (int i = 0; i * 100 + 50 < window->getWIDTH() + 300; i++) // will need to work with memory managent later
 	{
-		t = new Tile;
-		t->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
-		t->setTamanho({ 100, 100 });
-		t->setPosicao({ (float)(i * 100) + 50, (float)window->getHEIGHT() / 2 + 200 });
-		gerCol.staticEntities.push_back((Entidade*)t);
-		entities.addEntity(t);
+		tile = new Tile;
+		tile->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
+		tile->setTamanho({ 100, 100 });
+		tile->setPosicao({ (float)(i * 100) + 50, (float)window->getHEIGHT() / 2 + 200 });
+		gerCol.staticEntities.push_back((Entidade*)tile);
+		entities.addEntity(tile);
 	}
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Ente.hpp"
-#include "Coordenada.hpp"
+#include "Being.hpp"
+#include "Coordinate.hpp"
 
 class Entidade : public Ente
 {

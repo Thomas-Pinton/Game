@@ -1,4 +1,4 @@
-#include "GerenciadorColisoes.hpp"
+#include "ColisionManager.hpp"
 #include <iostream>
 
 /*
@@ -46,7 +46,11 @@ void GerenciadorColisoes::checaColisoes(Janela* window)
 		for (i = movingEntities.begin(); i != movingEntities.end(); i++)
 		{
 			while ((*i)->alive == false)
+			{
 				i++;
+				std::cout << "Morto" << std::endl;
+			}
+				
 			Coordenada<float> ajuste = checaColisao(*k, *i);
 
 			if (ajuste.y < -0.1f)

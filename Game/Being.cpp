@@ -1,5 +1,5 @@
-#include "Ente.hpp"
-#include "GerenciadorGrafico.hpp"
+#include "Entity.hpp"
+#include "GraphicManager.hpp"
 
 Ente::Ente()
 	: //sprite(),

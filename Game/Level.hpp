@@ -1,13 +1,13 @@
 #pragma once
 
 #include <iostream>
-#include "lista.hpp"
+#include "List.hpp"
 #include "EntitiesList.hpp"
-#include "GerenciadorGrafico.hpp"
-#include "GerenciadorColisoes.hpp"
-#include "Jogador.hpp"
+#include "GraphicManager.hpp"
+#include "ColisionManager.hpp"
+#include "Player.hpp"
 #include "Tile.hpp"
-#include "Inimigo.hpp"
+#include "Enemy.hpp"
 
 class Level : public Ente
 {

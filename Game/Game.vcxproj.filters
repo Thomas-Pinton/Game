@@ -21,31 +21,31 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Ente.cpp">
+    <ClCompile Include="Being.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Entidade.cpp">
+    <ClCompile Include="Entity.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Personagem.cpp">
+    <ClCompile Include="Character.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Jogador.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="GerenciadorColisoes.cpp">
+    <ClCompile Include="ColisionManager.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Jogo.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="GerenciadorGrafico.cpp">
+    <ClCompile Include="GraphicManager.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Inimigo.cpp">
+    <ClCompile Include="Enemy.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Janela.cpp">
+    <ClCompile Include="Window.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
@@ -59,40 +59,40 @@
     <ClInclude Include="Tile.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Coordenada.hpp">
+    <ClInclude Include="Coordinate.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Ente.hpp">
+    <ClInclude Include="Being.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Entidade.hpp">
+    <ClInclude Include="Entity.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Personagem.hpp">
+    <ClInclude Include="Character.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Jogador.hpp">
+    <ClInclude Include="Player.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Jogo.hpp">
+    <ClInclude Include="Game.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="GerenciadorColisoes.hpp">
+    <ClInclude Include="ColisionManager.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Elemento.hpp">
+    <ClInclude Include="Element.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="lista.hpp">
+    <ClInclude Include="List.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Janela.hpp">
+    <ClInclude Include="Window.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="GerenciadorGrafico.hpp">
+    <ClInclude Include="GraphicManager.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Inimigo.hpp">
+    <ClInclude Include="Enemy.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Level.hpp">

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Personagem.hpp"
+#include "Character.hpp"
 
 class Inimigo :
     public Personagem

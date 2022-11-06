@@ -139,36 +139,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ente.cpp" />
-    <ClCompile Include="Entidade.cpp" />
-    <ClCompile Include="GerenciadorColisoes.cpp" />
-    <ClCompile Include="Inimigo.cpp" />
-    <ClCompile Include="Janela.cpp" />
-    <ClCompile Include="Jogador.cpp" />
+    <ClCompile Include="Being.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ColisionManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="EntitiesList.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="GerenciadorGrafico.cpp" />
-    <ClCompile Include="Personagem.cpp" />
-    <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="GraphicManager.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Elemento.hpp" />
+    <ClInclude Include="Element.hpp" />
     <ClInclude Include="EntitiesList.hpp" />
-    <ClInclude Include="GerenciadorColisoes.hpp" />
-    <ClInclude Include="GerenciadorGrafico.hpp" />
-    <ClInclude Include="Inimigo.hpp" />
-    <ClInclude Include="Janela.hpp" />
+    <ClInclude Include="ColisionManager.hpp" />
+    <ClInclude Include="GraphicManager.hpp" />
+    <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="Window.hpp" />
     <ClInclude Include="Level.hpp" />
-    <ClInclude Include="lista.hpp" />
-    <ClInclude Include="Jogo.hpp" />
-    <ClInclude Include="Ente.hpp" />
-    <ClInclude Include="Entidade.hpp" />
-    <ClInclude Include="Jogador.hpp" />
-    <ClInclude Include="Personagem.hpp" />
+    <ClInclude Include="List.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Being.hpp" />
+    <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="Player.hpp" />
+    <ClInclude Include="Character.hpp" />
     <ClInclude Include="Tile.hpp" />
-    <ClInclude Include="Coordenada.hpp" />
+    <ClInclude Include="Coordinate.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

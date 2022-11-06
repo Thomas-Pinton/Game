@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "SFML/Graphics.hpp"
-#include "Coordenada.hpp"
+#include "Coordinate.hpp"
 
 class GerenciadorGrafico;
 
