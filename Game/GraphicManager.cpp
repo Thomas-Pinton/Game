@@ -2,17 +2,22 @@
 
 GraphicManager::GraphicManager()
 {
-	window = NULL;
+	pWindow = NULL;
+}
+
+GraphicManager::GraphicManager(Window* pW)
+{
+	pWindow = pW;
 }
 
 void GraphicManager::setWindow(Window* pW)
 {
-	window = pW;
+	pWindow = pW;
 }
 
 void GraphicManager::printBeing(Being* pE)
 {
-	window->config.draw(pE->rectangle);
+	pWindow->config.draw(pE->rectangle);
 }
 /*
 void GraphicManager::print() 
@@ -58,9 +63,9 @@ void GraphicManager::imprimeLista(std::list<Player*> l)
 */
 void GraphicManager::clear()
 {
-	window->config.clear();
+	pWindow->config.clear();
 }
 void GraphicManager::display()
 {
-	window->config.display();
+	pWindow->config.display();
 }

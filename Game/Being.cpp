@@ -34,7 +34,12 @@ void Being::setPosition(Coordinate<float> p)
 	// mudar para sprite
 }
 
+void Being::print()
 {
+	std::cout << "Antes print" << std::endl;
+	pGraMan->printBeing(this);
+	std::cout << "Depois print" << std::endl;
+
 }
 
 const Coordinate<float> Being::getSize() const {

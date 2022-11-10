@@ -22,12 +22,13 @@ public:
 	std::list<Entity*> staticEntities;
 	std::list<Player*> players;
 	std::list<Entity*> movingEntities;
+	Window* pWindow;
 public:
-	ColisionManager();
+	ColisionManager(Window* pW);
 
 	// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
 
-	void checkColisions(Window* janela);
+	void checkColisions();
 	Coordinate<float> checkColision(Being* e1, Being* e2);
 };
 

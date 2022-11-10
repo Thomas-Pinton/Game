@@ -1,16 +1,17 @@
 #include "Game.hpp"
 
 int Being::id_count = 0;
+GraphicManager* Being::pGraMan = NULL;
 
 Game::Game() :
 // criar elementos do jogo
 window(800, 1500),
-level1(&window)
+grapMan(&window),
+level1(&window, &grapMan)
 {
-	// criar tambem os outros gerenciadores, que ainda n�o foram implementados
 }
 
 void Game::execute()
 {
-	level1.execute(&window);
+	level1.execute();
 }

@@ -3,14 +3,6 @@
 Level1::Level1(Window* pW, GraphicManager* pGM) : 
 	Level(pW, pGM)
 {
-}
-
-Level1::~Level1()
-{
-}
-
-void Level1::create() // criando coisas que v�o estar em toda a fase
-{
 	Tile* tile = NULL;
 
 	std::list<Tile*>::iterator i;
@@ -26,6 +18,10 @@ void Level1::create() // criando coisas que v�o estar em toda a fase
 	}
 }
 
+Level1::~Level1()
+{
+}
+
 void Level1::execute()
 {
 
@@ -37,8 +33,6 @@ void Level1::execute()
 	srand((unsigned)time(NULL));
 
 	Enemy* inimigo;
-
-	create();
 
 	while (pWindow->config.isOpen()) // game loop
 	{
@@ -76,11 +70,11 @@ void Level1::execute()
 
 		colMan.checkColisions();
 
-		pGrapMan->clear();
+		pGraMan->clear();
 
 		entities.printEntities();
 
-		pGrapMan->display();
+		pGraMan->display();
 
 	}
 

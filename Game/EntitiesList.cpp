@@ -20,7 +20,7 @@ void EntitiesList::executeEntities(float deltaTime)
 		pElEntidade = pElEntidade->getProximo();
 	}
 }
-void EntitiesList::printEntities(GraphicManager* pGerGraf)
+void EntitiesList::printEntities()
 {
 	Element<Entity>* pE = list.getPrimeiro();
 	int size = list.getSize();
@@ -30,7 +30,7 @@ void EntitiesList::printEntities(GraphicManager* pGerGraf)
 		if (!pE->getData()->alive)
 			std::cout << i << " Esta morto" << std::endl;
 		if (pE->getData()->alive)
-			pE->getData()->print(pGerGraf); // cada entidade se print
+			pE->getData()->print(); // cada entidade se print
 		pE = pE->getProximo();
 	}
 	std::cout << i << std::endl;

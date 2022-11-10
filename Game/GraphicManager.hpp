@@ -6,10 +6,13 @@
 class GraphicManager
 {
 private:
-	Window* window;
+	Window* pWindow;
 public:
-	void setWindow(Window* pW);
+
 	GraphicManager();
+	GraphicManager(Window* pW);
+
+	void setWindow(Window* pW);
 
 	//void print();
 	void printBeing(Being* pE);

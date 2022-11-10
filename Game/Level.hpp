@@ -11,15 +11,15 @@
 
 class Level : public Being
 {
-private:
+protected:
 	EntitiesList entities;
+	Window* pWindow;
 	ColisionManager colMan;
-	GraphicManager grafMan;
+	GraphicManager* pGraMan;
 public:
-	Level(Window* window);
+	Level(Window* pW, GraphicManager* pGM);
 	~Level();
-	void create(Window* window);
-	virtual void execute(Window* w);
-	void manageColisions(Window* window);
+	virtual void execute() = 0;
+	void manageColisions();
 };
 

@@ -7,14 +7,15 @@ Outra maneira de fazer as colis�es seria dividindo o espa�o em n peda�os e
 se os objetos dentro de cada espa�o est�o colidindo
 */
 
-ColisionManager::ColisionManager()
+ColisionManager::ColisionManager(Window* pW)
 {
+	pWindow = pW;
 }
 
-void ColisionManager::checkColisions(Window* window)
+void ColisionManager::checkColisions()
 {
-	const int WIDTH = window->getWIDTH();
-	const int HEIGHT = window->getHEIGHT();
+	const int WIDTH = pWindow->getWIDTH();
+	const int HEIGHT = pWindow->getHEIGHT();
 
 	std::list<Entity*>::iterator i;
 	std::list<Entity*>::iterator j;
@@ -70,7 +71,7 @@ void ColisionManager::checkColisions(Window* window)
 				std::cout << "Morri" << std::endl;
 				(*k)->updatePosition(ajuste); 
 				// perdeu
-				window->config.close();
+				pWindow->config.close();
 			}
 		}
 

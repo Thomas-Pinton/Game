@@ -11,6 +11,6 @@ public:
 	EntitiesList();
 	~EntitiesList();
 	void executeEntities(float deltaTime);
-	void printEntities(GraphicManager* pGerGraf);
+	void printEntities();
 	void addEntity(Entity* pE);
 };

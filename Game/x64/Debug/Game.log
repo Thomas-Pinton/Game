@@ -1,0 +1,27 @@
+﻿  Being.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Entity.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  ColisionManager.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Window.hpp(3,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Enemy.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Window.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Window.hpp(3,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Player.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Level.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  EntitiesList.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  main.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Game.hpp(3,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  GraphicManager.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Window.hpp(3,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Character.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Being.hpp(5,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Game.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Game.hpp(3,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Tile.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Tile.hpp(3,10): fatal  error C1083: Não é possível abrir arquivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Gerando Código...

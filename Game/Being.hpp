@@ -31,6 +31,7 @@ public:
 
 	void setPosition(Coordinate<float> p);
 
+	void print();
 
 	const Coordinate<float> getSize() const;
 
