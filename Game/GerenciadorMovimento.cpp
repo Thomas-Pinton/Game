@@ -5,16 +5,16 @@ GerenciadorMovimento::GerenciadorMovimento()
 }
 void GerenciadorMovimento::atualizaPosicoes(float deltaTime)
 {
-	std::list<Entidade*>::iterator i;
-	std::list<Jogador*>::iterator k;
+	std::list<Entity*>::iterator i;
+	std::list<Player*>::iterator k;
 
 	for (i = movingEntities.begin(); i != movingEntities.end(); i++)
-		(*i)->atualizaPosicao(deltaTime);
+		(*i)->updatePosition(deltaTime);
 
 	for (k = players.begin(); k != players.end(); k++)
 	{
 		(*k)->checkKeys();
-		(*k)->atualizaPosicao(deltaTime);
+		(*k)->updatePosition(deltaTime);
 	}
 
 

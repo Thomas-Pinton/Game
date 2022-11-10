@@ -2,7 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 
-class Janela
+class Window
 {
 private:
 	int HEIGHT;
@@ -10,7 +10,7 @@ private:
 public:
 	sf::RenderWindow config;
 
-	Janela(int h, int w);
+	Window(int h, int w);
 
 	const int getHEIGHT() const;
 

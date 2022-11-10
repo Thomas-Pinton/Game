@@ -1,18 +1,18 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "Coordenada.hpp"
-#include "Janela.hpp"
+#include "Coordinate.hpp"
+#include "Window.hpp"
 #include "Level.hpp"
 
 #include <iostream>
 
-class Jogo
+class Game
 {
 private:
-	Janela window;
+	Window window;
 	Level level1;
 public:
-	Jogo();
-	void executar();
+	Game();
+	void execute();
 };

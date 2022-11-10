@@ -1,16 +1,16 @@
 #pragma once
-#include "lista.hpp"
-#include "Entidade.hpp"
-#include "Coordenada.hpp"
+#include "List.hpp"
+#include "Entity.hpp"
+#include "Coordinate.hpp"
 
 class EntitiesList 
 {
 private:
-	Lista<Entidade> list;
+	Lista<Entity> list;
 public:
 	EntitiesList();
 	~EntitiesList();
 	void executeEntities(float deltaTime);
-	void printEntities(GerenciadorGrafico* pGerGraf);
-	void addEntity(Entidade* pE);
+	void printEntities(GraphicManager* pGerGraf);
+	void addEntity(Entity* pE);
 };
