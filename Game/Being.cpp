@@ -34,9 +34,7 @@ void Being::setPosition(Coordinate<float> p)
 	// mudar para sprite
 }
 
-void Being::print(GraphicManager* pGerenciadorGrafico)
 {
-	pGerenciadorGrafico->printBeing(this);
 }
 
 const Coordinate<float> Being::getSize() const {

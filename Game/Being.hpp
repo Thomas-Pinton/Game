@@ -19,6 +19,7 @@ protected:
 	Coordinate<float> size;
 	sf::Texture texture;
 public:
+	static GraphicManager* pGraMan;
 	sf::RectangleShape rectangle; // tempor�rio
 	sf::Sprite sprite;
 
@@ -30,7 +31,6 @@ public:
 
 	void setPosition(Coordinate<float> p);
 
-	void print(GraphicManager* pGerenciadorGrafico);
 
 	const Coordinate<float> getSize() const;
 
