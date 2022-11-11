@@ -9,7 +9,9 @@ private:
 	Window* pWindow;
 	GraphicManager();
 	GraphicManager(Window* pW);
+
 	static GraphicManager* instance;
+
 public:
 
 	static GraphicManager* getInstance();

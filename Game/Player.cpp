@@ -22,7 +22,7 @@ void Player::checkKeys()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 		speed.x = vel;
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) && canJump)
-		speed.y += -sqrtf(2 * 1000 * 200); canJump = false;
+		speed.y += -sqrtf(2 * 1000 * 130); canJump = false;
 	// 2 * gravidade * altura do pulo
 }
 void Player::setJump(bool p)

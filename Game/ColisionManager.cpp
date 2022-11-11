@@ -17,59 +17,63 @@ void ColisionManager::checkColisions()
 	const int WIDTH = pWindow->getWIDTH();
 	const int HEIGHT = pWindow->getHEIGHT();
 
-	std::list<Entity*>::iterator i;
-	std::list<Entity*>::iterator j;
-	std::list<Player*>::iterator k;
+	std::list<Entity*>::iterator movingE;
+	std::list<Entity*>::iterator staticE;
+	std::list<Player*>::iterator player;
 
 	// player com resto
 
-	for (k = players.begin(); k != players.end(); k++)
+	for (player = players.begin(); player != players.end(); player++)
 	{
-		(*k)->acceleration = { 0.0f, 1000.0 };
-		for (j = staticEntities.begin(); j != staticEntities.end(); j++)
+		(*player)->acceleration = { 0.0f, 1000.0 };
+		for (staticE = staticEntities.begin(); staticE != staticEntities.end(); staticE++)
 		{
-			Coordinate<float> ajuste = checkColision(*k, *j);
+			Coordinate<float> ajuste = checkColision(*player, *staticE);
 			if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
 				ajuste.y > 0.1 || ajuste.y < -0.1) // houve colis�o, checando tanto para positivos como negativos
 			{
-				if (ajuste.y < 0.01f) // colis�o com o ch�o
-					(*k)->setJump(true);
-				// isso faz com que o personagem possa encostar no ch�o, cair e conseguir pular  no ar enquanto est� caindo,
+				if (ajuste.y < -0.01f) // colis�o com o ch�o
+				{
+					(*player)->setJump(true);
+					(*player)->acceleration = { 0.0f, 0.0f };
+					(*player)->speed.y = 0.0;
+				}
+					// isso faz com que o personagem possa encostar no ch�o, cair e conseguir pular  no ar enquanto est� caindo,
 				// ser� que esse comportamento � desej�vel?
 
-				(*k)->acceleration = { 0.0f, 0.0f };
-				(*k)->speed.y = 0.0;
-				(*k)->updatePosition(ajuste);
+				//(*k)->acceleration = { 0.0f, 0.0f };
+				//(*k)->speed.y = 0.0;
+				(*player)->updatePosition(ajuste);
 			}
 		}
 
 		// considerando que todas as moving entities s�o inimigos
-		for (i = movingEntities.begin(); i != movingEntities.end(); i++)
+		for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
 		{
-			while ((*i)->alive == false)
+			while ((*movingE)->alive == false)
 			{
-				i++;
-				std::cout << "Morto" << std::endl;
+				movingE++;
 			}
 				
-			Coordinate<float> ajuste = checkColision(*k, *i);
+			Coordinate<float> ajuste = checkColision(*player, *movingE);
 
 			if (ajuste.y < -0.1f)
 				// se bateu na cabe�a do inimgo ele morreu
 			{
 				std::cout << "Matei o inimigo" << std::endl;
-				(*k)->updatePosition(ajuste);
+				std::cout << ajuste << std::endl;
+
+				(*player)->updatePosition(ajuste);
 
 				//movingEntities.erase(i);
-				(*i)->alive = false;
+				(*movingE)->alive = false;
 
 				//delete *i;
 
 			} else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-				ajuste.y > 0.1f || ajuste.y < -0.1f) // houve colis�o, checando tanto para positivos como negativos
+				ajuste.y > 0.1f) // houve colis�o, checando tanto para positivos como negativos
 			{
 				std::cout << "Morri" << std::endl;
-				(*k)->updatePosition(ajuste); 
 				// perdeu
 				pWindow->config.close();
 			}
@@ -79,21 +83,21 @@ void ColisionManager::checkColisions()
 
 	// player com parede
 
-	for (k = players.begin(); k != players.end(); k++)
+	for (player = players.begin(); player != players.end(); player++)
 	{
-		float tamanho = (*k)->getSize().x / 2, posicao = (*k)->getPosition().x;
+		float tamanho = (*player)->getSize().x / 2, posicao = (*player)->getPosition().x;
 
 		//poderia criar uma fun��o setPosition, que colocaria a posicao exata (0 e WIDTH - tamanho, respectivamente)
 		if (tamanho > posicao) // se est� indo para fora pela esquerda
 		{
 			Coordinate<float> coord(tamanho - posicao, 0);
-			(*k)->updatePosition(coord);
+			(*player)->updatePosition(coord);
 		}
 
 		if (posicao + tamanho > WIDTH) // se est� indo para fora pela direita
 		{
 			Coordinate<float> coord(-1 * (posicao + tamanho - WIDTH), 0);
-			(*k)->updatePosition(coord);
+			(*player)->updatePosition(coord);
 		}
 
 	}
@@ -101,23 +105,26 @@ void ColisionManager::checkColisions()
 	//moving com static
 	///*
 
-	for (i = movingEntities.begin(); i != movingEntities.end(); i++)
+	for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
 	{
 
-		while ((*i)->alive == false)
-				i++;
+		while ((*movingE)->alive == false)
+			movingE++;
 
-		for (j = staticEntities.begin()++; j != staticEntities.end(); j++)
+		for (staticE = staticEntities.begin()++; staticE != staticEntities.end(); staticE++)
 		{
 
-			Coordinate<float> ajuste = checkColision(*i, *j);
+			Coordinate<float> ajuste = checkColision(*movingE, *staticE);
 
 			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 				ajuste.y > 0.1f || ajuste.y < -0.1f)
 			{
-				(*i)->acceleration.y = 0.0f;
-				(*i)->speed.y = 0.0;
-				(*i)->updatePosition(ajuste);
+				(*movingE)->acceleration.y = 0.0f;
+				//(*i)->speed.y = 0.0;
+				// inves de zerar, inverter a posicao
+				(*movingE)->updatePosition(ajuste);
+				if (ajuste.x > 0.5f || ajuste.x < -0.5f)
+					(*movingE)->speed.x *= -1;
 			}
 			/* // antigo checador de colis�es
 
@@ -201,23 +208,3 @@ Coordinate<float> ColisionManager::checkColision(Being* e1, Being* e2)
 	}
 	return { 0.0f, 0.0f };
 }
-
-
-/*
-Coordinate<float> ColisionManager::checkColision(Entity* e1, Entity* e2)
-{
-	Coordinate<float> tam1 = e1->getSize(); Coordinate<float> pos1 = e1->getPosition();
-	Coordinate<float> tam2 = e2->getSize(); Coordinate<float> pos2 = e2->getPosition();
-	
-	Coordinate<float> distTamanhos = (tam1 + tam2) / 2;
-
-	float dx = pos1.x - pos2.x > 0 ? pos1.x - pos2.x : pos2.x - pos1.x;
-	float dy = pos1.y - pos2.y > 0 ? pos1.y - pos2.y : pos2.y - pos1.y;
-	
-	// pegar dx em m�dulo, pois pode ser negativo
-	if (distTamanhos.x > dx && distTamanhos.y > dy) // tem que passar tanto em x quanto em y para haver colis�o
-		return true;
-
-	return 0;
-}
-*/

@@ -12,7 +12,7 @@ Level::Level(Window* pW, GraphicManager* pGM)
 
 	Player* player1 = new Player;
 
-	player1->setSize({ 100, 100 });
+	player1->setSize({ 32, 32 });
 	player1->setPosition({ 50, 50 });
 
 	entities.addEntity(player1);

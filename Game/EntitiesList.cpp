@@ -33,7 +33,6 @@ void EntitiesList::printEntities()
 			pE->getData()->print(); // cada entidade se print
 		pE = pE->getProximo();
 	}
-	std::cout << i << std::endl;
 
 }
 

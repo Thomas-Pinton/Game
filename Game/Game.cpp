@@ -6,7 +6,7 @@ GraphicManager* GraphicManager::instance = NULL;
 
 Game::Game() :
 // criar elementos do jogo
-window(800, 1500),
+window(800, 960),
 level1(&window, GraphicManager::getInstance())
 {
 	grapMan = GraphicManager::getInstance();

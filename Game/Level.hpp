@@ -16,6 +16,7 @@ protected:
 	Window* pWindow;
 	ColisionManager colMan;
 	GraphicManager* pGraMan;
+	int* tileMap;
 public:
 	Level(Window* pW, GraphicManager* pGM);
 	~Level();

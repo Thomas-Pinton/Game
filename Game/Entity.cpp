@@ -26,7 +26,5 @@ void Entity::updatePosition(Coordinate<float> coord)
 
 void Entity::execute(float deltaTime)
 {
-	if (id > 19)
-		std::cout << "Pos" << position << std::endl;
 	updatePosition(deltaTime);
 }
