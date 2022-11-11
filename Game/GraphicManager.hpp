@@ -7,10 +7,12 @@ class GraphicManager
 {
 private:
 	Window* pWindow;
-public:
-
 	GraphicManager();
 	GraphicManager(Window* pW);
+	static GraphicManager* instance;
+public:
+
+	static GraphicManager* getInstance();
 
 	void setWindow(Window* pW);
 

@@ -7,8 +7,8 @@ Level::Level(Window* pW, GraphicManager* pGM)
 {
 	pGraMan = NULL;
 
-	pGraMan = pGM;
-	Being::pGraMan = pGM;
+	pGraMan = GraphicManager::getInstance();
+	Being::pGraMan = GraphicManager::getInstance();
 
 	Player* player1 = new Player;
 

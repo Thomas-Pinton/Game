@@ -11,9 +11,10 @@ class Game
 {
 private:
 	Window window;
-	GraphicManager grapMan;
+	GraphicManager* grapMan;
 	Level1 level1;
 public:
 	Game();
+	~Game();
 	void execute();
 };

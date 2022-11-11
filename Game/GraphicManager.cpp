@@ -10,6 +10,15 @@ GraphicManager::GraphicManager(Window* pW)
 	pWindow = pW;
 }
 
+GraphicManager* GraphicManager::getInstance()
+{
+	if (GraphicManager::instance == NULL)
+	{
+		instance = new GraphicManager;
+	}
+	return instance;
+}
+
 void GraphicManager::setWindow(Window* pW)
 {
 	pWindow = pW;
