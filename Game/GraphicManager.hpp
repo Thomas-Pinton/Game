@@ -9,6 +9,8 @@ private:
 	Window* pWindow;
 	GraphicManager();
 	GraphicManager(Window* pW);
+	float deltaTime;
+	sf::Clock clock;
 
 	static GraphicManager* instance;
 
@@ -17,6 +19,10 @@ public:
 	static GraphicManager* getInstance();
 
 	void setWindow(Window* pW);
+
+	float updateDeltaTime();
+
+	const float getDeltaTime() const;
 
 	//void print();
 	void printBeing(Being* pE);

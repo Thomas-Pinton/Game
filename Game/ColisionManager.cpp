@@ -81,8 +81,6 @@ void ColisionManager::checkColisions()
 			}
 		}
 
-		std::cout << "Finished checking colisions entities - players" << std::endl;
-
 	}
 
 	// player com parede
@@ -105,8 +103,6 @@ void ColisionManager::checkColisions()
 		}
 
 	}
-
-	std::cout << "Finished checking colisions player wall" << std::endl;
 
 	//moving com static
 	///*

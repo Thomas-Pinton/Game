@@ -11,7 +11,7 @@ public:
 	Player();
 
 	void checkKeys();
-	virtual void execute(float deltaTime);
+	virtual void execute();
 	void setJump(bool p);
 
 };

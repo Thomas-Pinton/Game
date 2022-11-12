@@ -7,16 +7,21 @@ EntitiesList::EntitiesList()
 EntitiesList::~EntitiesList()
 {
 }
-void EntitiesList::executeEntities(float deltaTime)
+void EntitiesList::executeEntities()
 {
+	GraphicManager* pGM = GraphicManager::getInstance();
+	float deltaTime = pGM->getDeltaTime();
+	// getting Graphic Manager info
+
 	int size = list.getSize();
 	Element<Entity>* pElEntidade = list.getPrimeiro();
+
 	for (int i = 0; i < size; i++)
 	{
 		if (!(pElEntidade->getData()->alive))
 			std::cout << i << " Esta morto" << std::endl;
 		if (pElEntidade->getData()->alive)
-			pElEntidade->getData()->execute(deltaTime);
+			pElEntidade->getData()->execute();
 		pElEntidade = pElEntidade->getProximo();
 	}
 }

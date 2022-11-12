@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include "GraphicManager.hpp"
 #include <iostream>
 
 Entity::Entity()
@@ -9,8 +10,9 @@ Entity::Entity()
 	acceleration.x = 0; acceleration.y = 0;
 }
 
-void Entity::updatePosition(float deltaTime)
+void Entity::updatePosition()
 {
+	float deltaTime = pGraMan->getDeltaTime();
 	speed += acceleration * deltaTime;
 	position += speed * deltaTime;
 	rectangle.setPosition(sf::Vector2f(position.x, position.y));
@@ -24,7 +26,7 @@ void Entity::updatePosition(Coordinate<float> coord)
 	//sprite.setPosition(sf::Vector2f(posicao.x, posicao.y));
 }
 
-void Entity::execute(float deltaTime)
+void Entity::execute()
 {
-	updatePosition(deltaTime);
+	updatePosition();
 }

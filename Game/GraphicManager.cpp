@@ -3,11 +3,13 @@
 GraphicManager::GraphicManager()
 {
 	pWindow = NULL;
+	deltaTime = 0.0f;
 }
 
 GraphicManager::GraphicManager(Window* pW)
 {
 	pWindow = pW;
+	deltaTime = 0.0f;
 }
 
 GraphicManager* GraphicManager::getInstance()
@@ -22,6 +24,21 @@ GraphicManager* GraphicManager::getInstance()
 void GraphicManager::setWindow(Window* pW)
 {
 	pWindow = pW;
+}
+
+float GraphicManager::updateDeltaTime()
+{
+	deltaTime = (float)clock.restart().asSeconds();
+
+	if (deltaTime > 0.15f)
+		deltaTime = 0.15f;
+
+	return deltaTime;
+}
+
+const float GraphicManager::getDeltaTime() const
+{
+	return deltaTime;
 }
 
 void GraphicManager::printBeing(Being* pE)

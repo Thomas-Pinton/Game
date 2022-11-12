@@ -30,8 +30,8 @@ void Player::setJump(bool p)
 	canJump = p;
 }
 
-void Player::execute(float deltaTime)
+void Player::execute()
 {
 	checkKeys();
-	updatePosition(deltaTime);
+	updatePosition();
 }

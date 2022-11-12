@@ -119,9 +119,6 @@ void Level1::execute()
 {
 
 	sf::Event e;
-	sf::Clock clock;
-	float deltaTime;
-	float tempoCriarInimigo = 0;
 
 	srand((unsigned)time(NULL));
 
@@ -134,12 +131,7 @@ void Level1::execute()
 		}
 
 		// colocar essa parte no gerenciador de movimento
-		deltaTime = (float)clock.restart().asSeconds();
-
-		//tempoCriarInimigo += deltaTime;
-
-		if (deltaTime > 0.15f)
-			deltaTime = 0.15f;
+        pGraMan->updateDeltaTime();
 
         /*
 		if (tempoCriarInimigo > 3)
@@ -157,7 +149,7 @@ void Level1::execute()
         */
 
 		//executando cada entidade
-		entities.executeEntities(deltaTime);
+		entities.executeEntities();
 
 		colMan.checkColisions();
     

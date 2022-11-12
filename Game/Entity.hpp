@@ -12,7 +12,7 @@ public:
 	Coordinate<float> acceleration;
 	Coordinate<float> speed;
 	Entity();
-	void updatePosition(float deltaTime);
+	void updatePosition();
 	void updatePosition(Coordinate<float> coord);
-	virtual void execute(float deltaTime);
+	virtual void execute();
 };
