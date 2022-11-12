@@ -15,9 +15,9 @@ void Player::checkKeys()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 		speed.x = -vel;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-		speed.y = vel;
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) ||
+	//	sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+	//	speed.y = vel;
 	// Para baixo n�o faz nada (por enquanto)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 		speed.x = vel;

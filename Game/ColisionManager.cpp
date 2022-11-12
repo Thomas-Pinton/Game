@@ -48,36 +48,40 @@ void ColisionManager::checkColisions()
 		}
 
 		// considerando que todas as moving entities s�o inimigos
+		
+
 		for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
 		{
-			while ((*movingE)->alive == false)
+			if ((*movingE)->alive) // só chegar colisão se ele estiver vivo
 			{
-				movingE++;
-			}
-				
-			Coordinate<float> ajuste = checkColision(*player, *movingE);
+				Coordinate<float> ajuste = checkColision(*player, *movingE);
 
-			if (ajuste.y < -0.1f)
-				// se bateu na cabe�a do inimgo ele morreu
-			{
-				std::cout << "Matei o inimigo" << std::endl;
-				std::cout << ajuste << std::endl;
+				if (ajuste.y < -0.1f)
+					// se bateu na cabe�a do inimgo ele morreu
+				{
+					std::cout << "Matei o inimigo" << std::endl;
+					std::cout << ajuste << std::endl;
 
-				(*player)->updatePosition(ajuste);
+					(*player)->updatePosition(ajuste);
 
-				//movingEntities.erase(i);
-				(*movingE)->alive = false;
+					//movingEntities.erase(i);
+					(*movingE)->alive = false;
 
-				//delete *i;
+					//delete *i;
 
-			} else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-				ajuste.y > 0.1f) // houve colis�o, checando tanto para positivos como negativos
-			{
-				std::cout << "Morri" << std::endl;
-				// perdeu
-				pWindow->config.close();
+				}
+				else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+					ajuste.y > 0.1f) // houve colis�o, checando tanto para positivos como negativos
+				{
+					std::cout << "Morri" << std::endl;
+					// perdeu
+					std::cout << "Closing Window" << std::endl;
+					pWindow->config.close();
+				}
 			}
 		}
+
+		std::cout << "Finished checking colisions entities - players" << std::endl;
 
 	}
 
@@ -102,65 +106,32 @@ void ColisionManager::checkColisions()
 
 	}
 
+	std::cout << "Finished checking colisions player wall" << std::endl;
+
 	//moving com static
 	///*
 
 	for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
 	{
 
-		while ((*movingE)->alive == false)
-			movingE++;
-
-		for (staticE = staticEntities.begin()++; staticE != staticEntities.end(); staticE++)
+		if ((*movingE)->alive)
 		{
-
-			Coordinate<float> ajuste = checkColision(*movingE, *staticE);
-
-			if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-				ajuste.y > 0.1f || ajuste.y < -0.1f)
+			for (staticE = staticEntities.begin()++; staticE != staticEntities.end(); staticE++)
 			{
-				(*movingE)->acceleration.y = 0.0f;
-				//(*i)->speed.y = 0.0;
-				// inves de zerar, inverter a posicao
-				(*movingE)->updatePosition(ajuste);
-				if (ajuste.x > 0.5f || ajuste.x < -0.5f)
-					(*movingE)->speed.x *= -1;
-			}
-			/* // antigo checador de colis�es
 
-			if (somaTamanhos.x > dx && somaTamanhos.y > dy) // colidiu
-			{
-				if (dif_x < dif_y)
-				{
-					if (pos1.x > pos2.x)
-					{
-						Coordinate<float> coord(dif_x, 0);
-						(*i)->updatePosition(coord);
-					}
-					else 
-					{
-						Coordinate<float> coord(-1 * dif_x, 0);
-						(*i)->updatePosition(coord);
-					}	
-				}
-				else
-				{
-					if (pos1.y > pos2.y)
-					{
-						Coordinate<float> coord(0, dif_y);
-						(*i)->updatePosition(coord);
-					}
-					else
-					{
-						//colidiu com o ch�o, se for o player pode pular novamente
-						Coordinate<float> coord(0, -1 * dif_y);
-						(*i)->updatePosition(coord);
-					}
-				}
-					
-			}
+				Coordinate<float> ajuste = checkColision(*movingE, *staticE);
 
-			*/
+				if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+					ajuste.y > 0.1f || ajuste.y < -0.1f)
+				{
+					(*movingE)->acceleration.y = 0.0f;
+					//(*i)->speed.y = 0.0;
+					// inves de zerar, inverter a posicao
+					(*movingE)->updatePosition(ajuste);
+					if (ajuste.x > 0.2f || ajuste.x < -0.2f)
+						(*movingE)->speed.x *= -1;
+				}
+			}
 		}
 	}
 
