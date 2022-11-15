@@ -15,7 +15,7 @@ Menu::Menu()
 	Being::pGraMan = GraphicManager::getInstance();
 
 	option = 0;
-	optionsAmount = 4;
+	optionsAmount = 3;
 
 	Button* pB = NULL;
 
@@ -39,17 +39,13 @@ Menu::Menu()
 	buttons[0]->setString("Play level 1");
 	buttons[1]->setString("Play level 2");
 	buttons[2]->setString("Leaderboard");
-	buttons[3]->setString("Settings");
 
 }
 
-void Menu::execute()
+int Menu::execute()
 {
 	sf::Event event;
 	print();
-	int i = 0;
-	
-	///*
 
 	while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)))
 	{
@@ -87,7 +83,9 @@ void Menu::execute()
 			} 
 		}
 	}
-	//*/
+
+	return option;
+
 }
 
 void Menu::print()

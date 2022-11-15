@@ -22,8 +22,21 @@ Game::~Game()
 
 void Game::execute()
 {
-	std::cout << "Executando menu" << std::endl;
-	menu.execute();
-	std::cout << "Finished executing menu" << std::endl;
+	
+	int result = menu.execute();
+
+	switch (result)
+	{
+	case 0:
+		level1.execute();
+		break;
+	case 1:
+		std::cout << "Sem level 2 ainda" << std::endl;
+	case 2:
+		std::cout << "Sem leaderboard ainda" << std::endl;
+	default:
+		break;
+	}
+	
 	//level1.execute();
 }

@@ -18,8 +18,6 @@ void EntitiesList::executeEntities()
 
 	for (int i = 0; i < size; i++)
 	{
-		if (!(pElEntidade->getData()->alive))
-			std::cout << i << " Esta morto" << std::endl;
 		if (pElEntidade->getData()->alive)
 			pElEntidade->getData()->execute();
 		pElEntidade = pElEntidade->getProximo();
@@ -32,8 +30,6 @@ void EntitiesList::printEntities()
 	int i = 0;
 	for (i = 0; i < size; i++)
 	{
-		if (!(pE->getData()->alive))
-			std::cout << i << " Esta morto" << std::endl;
 		if (pE->getData()->alive)
 			pE->getData()->print(); // cada entidade se print
 		pE = pE->getProximo();

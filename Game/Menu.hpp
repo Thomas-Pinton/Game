@@ -14,7 +14,7 @@ private:
     std::vector<Button*> buttons;
 public:
     Menu();
-    void execute();
+    int execute();
     void print();
 };
 
