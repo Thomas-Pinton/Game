@@ -4,6 +4,7 @@
 #include "Coordinate.hpp"
 #include "Window.hpp"
 #include "Level1.hpp"
+#include "Menu.hpp"
 
 #include <iostream>
 
@@ -13,6 +14,7 @@ private:
 	Window window;
 	GraphicManager* grapMan;
 	Level1 level1;
+	Menu menu;
 public:
 	Game();
 	~Game();

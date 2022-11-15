@@ -26,6 +26,11 @@ void GraphicManager::setWindow(Window* pW)
 	pWindow = pW;
 }
 
+Window* GraphicManager::getWindow()
+{
+	return pWindow;
+}
+
 float GraphicManager::updateDeltaTime()
 {
 	deltaTime = (float)clock.restart().asSeconds();
@@ -45,6 +50,12 @@ void GraphicManager::printBeing(Being* pE)
 {
 	pWindow->config.draw(pE->rectangle);
 }
+
+void GraphicManager::printText(sf::Text* pT)
+{
+	pWindow->config.draw(*pT);
+}
+
 /*
 void GraphicManager::print() 
 {

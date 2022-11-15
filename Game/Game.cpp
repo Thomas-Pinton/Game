@@ -7,10 +7,12 @@ GraphicManager* GraphicManager::instance = NULL;
 Game::Game() :
 // criar elementos do jogo
 window(800, 960),
-level1(&window, GraphicManager::getInstance())
+level1(&window, GraphicManager::getInstance()),
+menu()
 {
 	grapMan = GraphicManager::getInstance();
 	grapMan->setWindow(&window);
+	Being::pGraMan = grapMan;
 }
 
 Game::~Game()
@@ -20,5 +22,8 @@ Game::~Game()
 
 void Game::execute()
 {
-	level1.execute();
+	std::cout << "Executando menu" << std::endl;
+	menu.execute();
+	std::cout << "Finished executing menu" << std::endl;
+	//level1.execute();
 }
