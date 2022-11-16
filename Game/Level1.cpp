@@ -97,7 +97,11 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
 
     srand(time(0));
 
-    for (i = 0; i < 3; i++)
+    int amountOfEnemies = 3 + rand() % 2;
+
+    std::cout << "enemies " << amountOfEnemies << std::endl;
+
+    for (i = 0; i < amountOfEnemies; i++)
     {
         j = 5 + rand() % 55;
         std::cout << "Criando inimigo" << std::endl;

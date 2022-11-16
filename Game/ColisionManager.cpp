@@ -126,8 +126,6 @@ namespace Manager
 					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 						ajuste.y > 0.1f || ajuste.y < -0.1f)
 					{
-						std::cout << "Ajuste " << ajuste << std::endl;
-
 						(*movingE)->updatePosition(ajuste);
 
 						if (ajuste.y < -0.01f)
