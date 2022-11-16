@@ -7,7 +7,7 @@
 #include "ColisionManager.hpp"
 #include "Player.hpp"
 #include "Obstacle.hpp"
-#include "Enemy.hpp"
+#include "Mushroom.hpp"
 
 using namespace Manager;
 

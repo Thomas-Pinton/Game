@@ -5,8 +5,15 @@ Player::Player() : Character()
 	position.x = 0.0;
 	position.y = 0.0;
 	canJump = false;
+	pontuation = 0;
 	// Posic�o inicial
 }
+
+void Player::addPoints(int amount)
+{
+	pontuation += amount;
+}
+
 void Player::checkKeys()
 {
 	float vel = 3.0 * 100;

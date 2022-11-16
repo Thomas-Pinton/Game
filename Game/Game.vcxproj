@@ -146,6 +146,8 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Mud.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -165,6 +167,8 @@
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Level1.hpp" />
     <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="Mud.hpp" />
+    <ClInclude Include="Mushroom.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="List.hpp" />

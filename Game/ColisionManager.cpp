@@ -41,6 +41,11 @@ namespace Manager
 						(*player)->acceleration = { 0.0f, 0.0f };
 						(*player)->speed.y = 0.0;
 					}
+					if (ajuste.y > 0.1f && (*player)->speed.y > 0.0f)
+					{
+						(*player)->speed.y = 0.0f;
+						// pensar em como fazer ele bater a cabeca e comecar a cair
+					}
 						// isso faz com que o personagem possa encostar no ch�o, cair e conseguir pular  no ar enquanto est� caindo,
 					// ser� que esse comportamento � desej�vel?
 
@@ -51,15 +56,13 @@ namespace Manager
 			}
 
 			// considerando que todas as moving entities s�o inimigos
-		
-
 			for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
 			{
 				if ((*movingE)->alive) // só chegar colisão se ele estiver vivo
 				{
 					Coordinate<float> ajuste = checkColision(*player, *movingE);
 
-					if (ajuste.y < -0.1f)
+					if (ajuste.y < -0.1f && (*player)->speed.y > 0.1f)
 						// se bateu na cabe�a do inimgo ele morreu
 					{
 						std::cout << "Matei o inimigo" << std::endl;
@@ -69,7 +72,7 @@ namespace Manager
 
 						//movingEntities.erase(i);
 						(*movingE)->alive = false;
-
+						(*player)->addPoints(50);
 						//delete *i;
 
 					}
@@ -123,12 +126,24 @@ namespace Manager
 					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 						ajuste.y > 0.1f || ajuste.y < -0.1f)
 					{
-						(*movingE)->acceleration.y = 0.0f;
-						//(*i)->speed.y = 0.0;
-						// inves de zerar, inverter a posicao
+						std::cout << "Ajuste " << ajuste << std::endl;
+
 						(*movingE)->updatePosition(ajuste);
-						if (ajuste.x > 0.2f || ajuste.x < -0.2f)
+
+						if (ajuste.y < -0.01f)
+						{
+							(*movingE)->acceleration.y = 0.0f;
+							(*movingE)->speed.y = 0.0f;
+						}
+							
+
+						// modulo da velocidade
+						/*
+						if ((*movingE)->speed.x * (*movingE)->speed.x < (*movingE)->speed.y * (*movingE)->speed.y)
+							(*movingE)->acceleration.y = 0.0f;
+						else 
 							(*movingE)->speed.x *= -1;
+						*/
 					}
 				}
 			}

@@ -14,7 +14,7 @@ void EntitiesList::executeEntities()
 	// getting Graphic Manager info
 
 	int size = list.getSize();
-	Element<Entity>* pElEntidade = list.getPrimeiro();
+	Lista<Entity>::Element<Entity>* pElEntidade = list.getPrimeiro();
 
 	for (int i = 0; i < size; i++)
 	{
@@ -25,7 +25,7 @@ void EntitiesList::executeEntities()
 }
 void EntitiesList::printEntities()
 {
-	Element<Entity>* pE = list.getPrimeiro();
+	Lista<Entity>::Element<Entity>* pE = list.getPrimeiro();
 	int size = list.getSize();
 	int i = 0;
 	for (i = 0; i < size; i++)
