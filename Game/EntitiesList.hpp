@@ -2,7 +2,7 @@
 #include "List.hpp"
 #include "Entity.hpp"
 #include "Coordinate.hpp"
-#include "GraphicManager.hpp"
+//#include "GraphicManager.hpp"
 
 class EntitiesList 
 {

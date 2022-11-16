@@ -1,6 +1,8 @@
 #include "Button.hpp"
 #include "GraphicManager.hpp"
 
+using namespace Manager;
+
 Button::Button()
 {
 }

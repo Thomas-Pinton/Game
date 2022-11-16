@@ -154,7 +154,7 @@
     <ClCompile Include="GraphicManager.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
@@ -173,7 +173,7 @@
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Character.hpp" />
-    <ClInclude Include="Tile.hpp" />
+    <ClInclude Include="Obstacle.hpp" />
     <ClInclude Include="Coordinate.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

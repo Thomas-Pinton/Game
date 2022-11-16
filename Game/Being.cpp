@@ -1,6 +1,8 @@
 #include "Entity.hpp"
 #include "GraphicManager.hpp"
 
+using namespace Manager;
+
 Being::Being()
 	: //sprite(),
 	rectangle() //tempor�rio

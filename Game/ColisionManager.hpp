@@ -16,19 +16,24 @@ realizar um sistema de colis�es que divide o espa�o e compara elementos dent
 
 */
 
-class ColisionManager
+namespace Manager
 {
-public:
-	std::list<Entity*> staticEntities;
-	std::list<Player*> players;
-	std::list<Entity*> movingEntities;
-	Window* pWindow;
-public:
-	ColisionManager(Window* pW);
+	class ColisionManager
+	{
+	public:
+		std::list<Entity*> staticEntities;
+		std::list<Player*> players;
+		std::list<Entity*> movingEntities;
+		Window* pWindow;
+	public:
+		ColisionManager(Window* pW);
 
-	// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
+		// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
 
-	void checkColisions();
-	Coordinate<float> checkColision(Being* e1, Being* e2);
-};
+		void checkColisions();
+		Coordinate<float> checkColision(Being* e1, Being* e2);
+	};
+}
+
+
 

@@ -32,8 +32,10 @@ void Game::execute()
 		break;
 	case 1:
 		std::cout << "Sem level 2 ainda" << std::endl;
+		break;
 	case 2:
 		std::cout << "Sem leaderboard ainda" << std::endl;
+		break;
 	default:
 		break;
 	}

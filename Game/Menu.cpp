@@ -21,7 +21,7 @@ Menu::Menu()
 
 	for (int i = 0; i < optionsAmount; i++)
 	{
-		pB = new Button("../Assets/GUI_Essential_Free_v1.1/Font/TTF/Toriko.ttf", "Button i", 35);
+		pB = new Button("../Assets/GUI_Essential_Free_v1.1/Font/TTF/m5x7.ttf", "Button " + std::to_string(i), 35);
 		pB->setPosition({ 500.0f, 100 + 100.0f * i });
 		//pB->text.setPosition({ 500.0f, 100 + 100.0f * i });
 		pB->setSize({ 200, 50 });

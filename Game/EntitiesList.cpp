@@ -9,8 +9,8 @@ EntitiesList::~EntitiesList()
 }
 void EntitiesList::executeEntities()
 {
-	GraphicManager* pGM = GraphicManager::getInstance();
-	float deltaTime = pGM->getDeltaTime();
+	//GraphicManager* pGM = GraphicManager::getInstance();
+	//float deltaTime = pGM->getDeltaTime();
 	// getting Graphic Manager info
 
 	int size = list.getSize();

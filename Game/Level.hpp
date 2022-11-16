@@ -6,8 +6,10 @@
 #include "GraphicManager.hpp"
 #include "ColisionManager.hpp"
 #include "Player.hpp"
-#include "Tile.hpp"
+#include "Obstacle.hpp"
 #include "Enemy.hpp"
+
+using namespace Manager;
 
 class Level : public Being
 {
@@ -15,10 +17,10 @@ protected:
 	EntitiesList entities;
 	Window* pWindow;
 	ColisionManager colMan;
-	GraphicManager* pGraMan;
+	Manager::GraphicManager* pGraMan;
 	int* tileMap;
 public:
-	Level(Window* pW, GraphicManager* pGM);
+	Level(Window* pW, Manager::GraphicManager* pGM);
 	~Level();
 	virtual void execute() = 0;
 	void manageColisions();

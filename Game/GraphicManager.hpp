@@ -3,36 +3,40 @@
 #include "Window.hpp"
 #include "Being.hpp"
 
-class GraphicManager
+namespace Manager
 {
-private:
-	Window* pWindow;
-	GraphicManager();
-	GraphicManager(Window* pW);
-	float deltaTime;
-	sf::Clock clock;
+	class GraphicManager
+	{
+	private:
+		Window* pWindow;
+		GraphicManager();
+		GraphicManager(Window* pW);
+		float deltaTime;
+		sf::Clock clock;
 
-	static GraphicManager* instance;
+		static GraphicManager* instance;
 
-public:
+	public:
 
-	static GraphicManager* getInstance();
+		static GraphicManager* getInstance();
 
-	void setWindow(Window* pW);
+		void setWindow(Window* pW);
 
-	Window* getWindow();
+		Window* getWindow();
 
-	float updateDeltaTime();
+		float updateDeltaTime();
 
-	const float getDeltaTime() const;
+		const float getDeltaTime() const;
 
-	//void print();
-	void printBeing(Being* pE);
-	void printText(sf::Text* pT);
-	//void imprimeLista(std::list<Being*> l);
-	//void imprimeLista(std::list<Entity*> l);
-	//void imprimeLista(std::list<Player*> l);
+		//void print();
+		void printBeing(Being* pE);
+		void printText(sf::Text* pT);
+		//void imprimeLista(std::list<Being*> l);
+		//void imprimeLista(std::list<Entity*> l);
+		//void imprimeLista(std::list<Player*> l);
 
-	void clear();
-	void display();
-};
+		void clear();
+		void display();
+	};
+}
+

@@ -2,6 +2,8 @@
 #include "GraphicManager.hpp"
 #include <iostream>
 
+using namespace Manager;
+
 Entity::Entity()
 	: Being(),
 	alive(true)

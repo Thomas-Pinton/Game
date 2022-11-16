@@ -5,10 +5,15 @@
 #include "SFML/Graphics.hpp"
 #include "Coordinate.hpp"
 
-class GraphicManager;
+namespace Manager {
+	class GraphicManager;
+}
+
 
 // Tudo aquilo que tem representa��o gr�fica
 // Ex.: Character, blocos, menu, backgrounds, etc
+
+using namespace Manager;
 
 class Being
 {
@@ -19,7 +24,7 @@ protected:
 	Coordinate<float> size;
 	sf::Texture texture;
 public:
-	static GraphicManager* pGraMan;
+	static Manager::GraphicManager* pGraMan;
 	sf::RectangleShape rectangle; // tempor�rio
 	sf::Sprite sprite;
 

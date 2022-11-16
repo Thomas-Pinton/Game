@@ -58,13 +58,13 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
     51, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 53
     };
 
-	//std::list<Tile*>::iterator i;
+	//std::list<Obstacle*>::iterator i;
 
 	/*
 
 	for (int i = 0; i * 100 + 50 < pWindow->getWIDTH() + 300; i++) // will need to work with memory managent later
 	{
-		tile = new Tile;
+		tile = new Obstacle;
 		tile->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
 		tile->setSize({ 100, 100 });
 		tile->setPosition({ (float)(i * 100) + 50, (float)pWindow->getHEIGHT() / 2 + 200 });
@@ -74,7 +74,7 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
 
 	*/
 
-	Tile* tile = NULL;
+	Obstacle* tile = NULL;
     Enemy* enemy = NULL;
 
 	int i, j;
@@ -98,7 +98,7 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
                 }
                 else 
                 {
-                    tile = new Tile;
+                    tile = new Obstacle;
                     tile->setSize({ 16.0, 16.0 });
                     tile->setPosition({ (float)(j * 16) + 8, (float)(i * 16) + 8 });
                     tile->rectangle.setFillColor(sf::Color(200, 0, 0));
