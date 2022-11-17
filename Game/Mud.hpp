@@ -10,7 +10,9 @@ namespace Obstacles
     private:
         float slowdown;
     public:
+        Mud();
         void execute();
+        void affectPlayer(Player* pP);
     };
 }
 

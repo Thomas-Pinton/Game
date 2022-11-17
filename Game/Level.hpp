@@ -6,8 +6,9 @@
 #include "GraphicManager.hpp"
 #include "ColisionManager.hpp"
 #include "Player.hpp"
-#include "Obstacle.hpp"
 #include "Mushroom.hpp"
+#include "FlyingBlock.hpp"
+#include "Mud.hpp"
 
 using namespace Manager;
 

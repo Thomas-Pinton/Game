@@ -144,6 +144,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ColisionManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FlyingBlock.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mud.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Element.hpp" />
     <ClInclude Include="EntitiesList.hpp" />
     <ClInclude Include="ColisionManager.hpp" />
+    <ClInclude Include="FlyingBlock.hpp" />
     <ClInclude Include="GraphicManager.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Level1.hpp" />

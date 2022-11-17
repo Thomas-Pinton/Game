@@ -5,6 +5,7 @@
 #include "Coordinate.hpp"
 #include "Window.hpp"
 #include "Player.hpp"
+#include "Obstacle.hpp"
 
 
 /*
@@ -21,7 +22,7 @@ namespace Manager
 	class ColisionManager
 	{
 	public:
-		std::list<Entity*> staticEntities;
+		std::list<Obstacle*> staticEntities;
 		std::list<Player*> players;
 		std::list<Entity*> movingEntities;
 		Window* pWindow;

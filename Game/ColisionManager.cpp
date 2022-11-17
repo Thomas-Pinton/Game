@@ -21,17 +21,23 @@ namespace Manager
 		const int HEIGHT = pWindow->getHEIGHT();
 
 		std::list<Entity*>::iterator movingE;
-		std::list<Entity*>::iterator staticE;
+		std::list<Obstacle*>::iterator staticE;
 		std::list<Player*>::iterator player;
 
 		// player com resto
 
+		
+
 		for (player = players.begin(); player != players.end(); player++)
 		{
-			(*player)->acceleration = { 0.0f, 1000.0 };
+			(*player)->acceleration = { 0.0f, 1000.0f };
+			// if not colliding, these are the base values
+			// if is coliding, then the values will be changed
+
 			for (staticE = staticEntities.begin(); staticE != staticEntities.end(); staticE++)
 			{
 				Coordinate<float> ajuste = checkColision(*player, *staticE);
+
 				if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
 					ajuste.y > 0.1 || ajuste.y < -0.1) // houve colis�o, checando tanto para positivos como negativos
 				{
@@ -40,6 +46,7 @@ namespace Manager
 						(*player)->setJump(true);
 						(*player)->acceleration = { 0.0f, 0.0f };
 						(*player)->speed.y = 0.0;
+						(*staticE)->affectPlayer(*player);
 					}
 					if (ajuste.y > 0.1f && (*player)->speed.y > 0.0f)
 					{
@@ -73,6 +80,9 @@ namespace Manager
 						//movingEntities.erase(i);
 						(*movingE)->alive = false;
 						(*player)->addPoints(50);
+
+						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
+
 						//delete *i;
 
 					}
@@ -108,7 +118,11 @@ namespace Manager
 				(*player)->updatePosition(coord);
 			}
 
+			std::cout << "Leaving colision manager, speed :" << (*player)->movingSpeed << std::endl;
+		
 		}
+
+		
 
 		//moving com static
 		///*
