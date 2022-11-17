@@ -2,7 +2,8 @@
 
 namespace Obstacles 
 {
-	Mud::Mud()
+	Mud::Mud() :
+		Obstacle()
 	{
 		slowdown = 0.2f;
 	}

@@ -1,4 +1,5 @@
 #include "ColisionManager.hpp"
+#include "Constants.hpp"
 #include <iostream>
 
 /*
@@ -30,7 +31,7 @@ namespace Manager
 
 		for (player = players.begin(); player != players.end(); player++)
 		{
-			(*player)->acceleration = { 0.0f, 1000.0f };
+			(*player)->acceleration = { 0.0f, GRAVITY };
 			// if not colliding, these are the base values
 			// if is coliding, then the values will be changed
 
@@ -91,8 +92,8 @@ namespace Manager
 					{
 						std::cout << "Morri" << std::endl;
 						// perdeu
-						std::cout << "Closing Window" << std::endl;
-						pWindow->config.close();
+						(*player)->decreaseHp(1);
+						return;
 					}
 				}
 			}
@@ -117,8 +118,6 @@ namespace Manager
 				Coordinate<float> coord(-1 * (posicao + tamanho - WIDTH), 0);
 				(*player)->updatePosition(coord);
 			}
-
-			std::cout << "Leaving colision manager, speed :" << (*player)->movingSpeed << std::endl;
 		
 		}
 

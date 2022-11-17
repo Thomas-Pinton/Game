@@ -9,7 +9,9 @@ class Obstacle : public Entity
 private:
 	float counterForce;
 public:
+	Obstacle();
 	virtual void affectPlayer(Player* pP);
+	void execute();
 };
 
 

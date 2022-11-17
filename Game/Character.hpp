@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Entity.hpp"
+#include "Constants.hpp"
+
 
 class Character : public Entity
 {
