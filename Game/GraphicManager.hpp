@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Window.hpp"
-#include "Being.hpp"
+#include "Entity.hpp"
 
 namespace Manager
 {
@@ -29,7 +29,7 @@ namespace Manager
 		const float getDeltaTime() const;
 
 		//void print();
-		void printBeing(Being* pE);
+		void printEntity(Entity* pE);
 		void printText(sf::Text* pT);
 		//void imprimeLista(std::list<Being*> l);
 		//void imprimeLista(std::list<Entity*> l);

@@ -165,7 +165,7 @@ namespace Manager
 
 
 	// checa colis�o e retorna o quanto deve ser ajustado
-	Coordinate<float> ColisionManager::checkColision(Being* e1, Being* e2)
+	Coordinate<float> ColisionManager::checkColision(Entity* e1, Entity* e2)
 	{
 		Coordinate<float> tam1 = (e1)->getSize(); Coordinate<float> pos1 = (e1)->getPosition();
 		Coordinate<float> tam2 = (e2)->getSize(); Coordinate<float> pos2 = (e2)->getPosition();

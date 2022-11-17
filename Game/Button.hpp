@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Being.hpp"
+#include "Entity.hpp"
 
 class Button :
-    public Being
+    public Entity
 {
 private:
     bool isSelected;

@@ -99,7 +99,7 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
                 pMud = new Obstacles::Mud;
                 pMud->setSize({ 16.0, 16.0 });
                 pMud->setPosition({ (float)(j * 16) + 8, (float)(i * 16) + 8 });
-                pMud->rectangle.setFillColor(sf::Color(200, 30, 30));
+                pMud->rectangle.setFillColor(sf::Color::Cyan);
                 colMan.staticEntities.push_back((Obstacle*)pMud);
                 entities.addEntity(pMud);
             }
@@ -159,31 +159,12 @@ void Level1::execute()
 		// colocar essa parte no graphic manager
         pGraMan->updateDeltaTime();
 
-        /*
-		if (tempoCriarInimigo > 3)
-		{
-			//ger.movingEntities.remove(inimigo);
-			std::cout << "Criando inimigo" << std::endl;
-			tempoCriarInimigo -= 3;
-			inimigo = new Enemy;
-			colMan.movingEntities.push_back(inimigo);
-			inimigo->setPosition({ (float)(pWindow->getWIDTH() + 250 + (rand() % 3)), (float)pWindow->getHEIGHT() / 2 + 100 });
-			inimigo->setSize({ 100.0f, 100.0f });
-			inimigo->speed = { -250.0f + 50 * (rand() % 3), 0.0f };
-			entities.addEntity(inimigo);
-		}
-        */
-
 		//executando cada entidade
 		entities.executeEntities();
 
 		colMan.checkColisions();
     
-		pGraMan->clear();
-
-		entities.printEntities();
-
-		pGraMan->display();
+        print();
 
 	}
 

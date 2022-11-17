@@ -22,6 +22,7 @@ public:
 	Level(Window* pW, Manager::GraphicManager* pGM);
 	~Level();
 	virtual void execute() = 0;
+	void print();
 	void manageColisions();
 };
 

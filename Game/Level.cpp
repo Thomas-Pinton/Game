@@ -23,6 +23,15 @@ Level::~Level()
 {
 }
 
+void Level::print()
+{
+	pGraMan->clear();
+
+	entities.printEntities();
+
+	pGraMan->display();
+}
+
 void Level::manageColisions()
 {
 	colMan.checkColisions();

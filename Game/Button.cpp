@@ -8,7 +8,7 @@ Button::Button()
 }
 
 Button::Button(std::string fontFilePath = "../Assets/GUI_Essential_Free_v1.1/Font/TTF/Toriko.ttf", std::string string = "Empty Button", int characterSize = 24) :
-	Being(),
+	Entity(),
 	text()
 {
 	isSelected = false;
@@ -48,7 +48,7 @@ void Button::setPosition(Coordinate<float> p)
 
 void Button::print()
 {
-	pGraMan->printBeing(this);
+	pGraMan->printEntity(this);
 	pGraMan->printText(&text);
 }
 

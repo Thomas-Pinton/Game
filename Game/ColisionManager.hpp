@@ -32,7 +32,7 @@ namespace Manager
 		// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
 
 		void checkColisions();
-		Coordinate<float> checkColision(Being* e1, Being* e2);
+		Coordinate<float> checkColision(Entity* e1, Entity* e2);
 	};
 }
 
