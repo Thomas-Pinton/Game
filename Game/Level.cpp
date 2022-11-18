@@ -3,7 +3,8 @@
 Level::Level(Window* pW, GraphicManager* pGM)
 	: entities(),
 	pWindow(pW),
-	colMan(pW)
+	colMan(pW),
+	tileMap(NULL)
 {
 	pGraMan = NULL;
 
@@ -14,6 +15,8 @@ Level::Level(Window* pW, GraphicManager* pGM)
 
 	player1->setSize({ 32, 32 });
 	player1->setPosition({ 50, 50 });
+
+	pP = player1;
 
 	entities.addEntity(player1);
 	colMan.players.push_back(player1);
@@ -30,6 +33,8 @@ void Level::print()
 	entities.printEntities();
 
 	pGraMan->display();
+
+	pGraMan->updateDeltaTime();
 }
 
 void Level::manageColisions()

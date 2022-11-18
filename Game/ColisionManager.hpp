@@ -25,6 +25,7 @@ namespace Manager
 		std::list<Obstacle*> staticEntities;
 		std::list<Player*> players;
 		std::list<Entity*> movingEntities;
+		// projetctiles list
 		Window* pWindow;
 	public:
 		ColisionManager(Window* pW);

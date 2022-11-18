@@ -2,6 +2,7 @@
 
 #include "Being.hpp"
 #include "Coordinate.hpp"
+#include "Constants.hpp"
 
 class Entity : public Being
 {

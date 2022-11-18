@@ -37,7 +37,6 @@ void Player::checkKeys()
 	}
 
 	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
-	std::cout << "Moving speed " << movingSpeed << std::endl;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 		speed.x = -movingSpeed;

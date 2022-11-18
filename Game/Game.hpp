@@ -5,6 +5,7 @@
 #include "Window.hpp"
 #include "Level1.hpp"
 #include "Menu.hpp"
+#include "Plant.hpp"
 
 #include <iostream>
 

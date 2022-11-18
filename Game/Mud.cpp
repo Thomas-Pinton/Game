@@ -23,6 +23,5 @@ namespace Obstacles
 
 		//itchio 2d plataform sprite
 
-		std::cout << "Moving speed " << pP->movingSpeed << std::endl;
 	}
 }

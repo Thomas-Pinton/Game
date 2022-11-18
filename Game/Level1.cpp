@@ -29,7 +29,7 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     29, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    29, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 24, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    29, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 24, 25, 0, 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     29, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 46, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     29, 32, 8, 8, 8, 8, 8, 8, -3, -3, -3, -3, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     51, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 53, 0, 0, 0, 0, 124, 125, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -78,6 +78,8 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
     Obstacles::Mud* pMud = NULL;
     Obstacles::FireBlock* pFireBlock = NULL;
     Mushroom* mushroom = NULL;
+    Enemies::Plant* pPlant = NULL;
+    Projectile* pProj = NULL;
 
 	int i, j;
 
@@ -93,8 +95,8 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
                 pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
                 colMan.staticEntities.push_back((Obstacle*)pFlyingBlock);
                 entities.addEntity(pFlyingBlock);
-			}
-            if (testTileMap[i * 60 + j] == -3)
+			} 
+            else if (testTileMap[i * 60 + j] == -3)
             {
                 pMud = new Obstacles::Mud;
                 pMud->setSize({ 16.0, 16.0 });
@@ -103,7 +105,7 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
                 colMan.staticEntities.push_back((Obstacle*)pMud);
                 entities.addEntity(pMud);
             }
-            if (testTileMap[i * 60 + j] == -4)
+            else if (testTileMap[i * 60 + j] == -4)
             {
                 pFireBlock = new Obstacles::FireBlock;
                 pFireBlock->setSize({ 16.0, 16.0 });
@@ -112,6 +114,33 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
                 colMan.staticEntities.push_back((Obstacle*)pFireBlock);
                 entities.addEntity(pFireBlock);
             }
+            ///*
+            else if (testTileMap[i * 60 + j] == -5)
+            {
+                std::cout << "Criando plantas " << std::endl;
+                pPlant = new Enemies::Plant;
+
+                pPlant->setSize({ 16.0, 16.0 });
+                pPlant->setPosition({ (float)(j * 16) + 8, (float)(i * 16) + 8 });
+                pPlant->rectangle.setFillColor(sf::Color::Yellow);
+                colMan.movingEntities.push_back((Obstacle*)pPlant);
+                entities.addEntity(pPlant);
+                pPlant->pPlayer = pP;
+
+                std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    pProj = new Projectile;
+                    pProj->setSize({ 8, 8 });
+                    pProj->rectangle.setFillColor(sf::Color::Magenta);
+                    pPlant->addProjectile(pProj);
+                    entities.addEntity(pProj);
+                    colMan.movingEntities.push_back((Entity*)pProj);
+                }
+                pPlant->lastProjectileShooted = pPlant->projectiles.begin();
+            }
+            //*/
 		}
 	}
 
@@ -133,6 +162,7 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
         //aleatoriza modulo e direcao da velocidade
         mushroom->rectangle.setFillColor(sf::Color(0, 200, 0));
         entities.addEntity(mushroom);
+        std::cout << "Mushroom " << mushroom->acceleration.y << std::endl;
     }
    
 }
@@ -155,9 +185,6 @@ void Level1::execute()
 			if (e.type == sf::Event::Closed)
 				pWindow->config.close();
 		}
-
-		// colocar essa parte no graphic manager
-        pGraMan->updateDeltaTime();
 
 		//executando cada entidade
 		entities.executeEntities();

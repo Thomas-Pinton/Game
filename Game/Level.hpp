@@ -6,6 +6,7 @@
 #include "GraphicManager.hpp"
 #include "ColisionManager.hpp"
 #include "Player.hpp"
+#include "Plant.hpp"
 
 
 using namespace Manager;
@@ -18,6 +19,7 @@ protected:
 	ColisionManager colMan;
 	Manager::GraphicManager* pGraMan;
 	int* tileMap;
+	Player* pP;
 public:
 	Level(Window* pW, Manager::GraphicManager* pGM);
 	~Level();

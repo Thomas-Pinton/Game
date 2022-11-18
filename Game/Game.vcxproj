@@ -150,6 +150,8 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mud.cpp" />
     <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -174,6 +176,8 @@
     <ClInclude Include="Menu.hpp" />
     <ClInclude Include="Mud.hpp" />
     <ClInclude Include="Mushroom.hpp" />
+    <ClInclude Include="Plant.hpp" />
+    <ClInclude Include="Projectile.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="List.hpp" />

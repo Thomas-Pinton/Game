@@ -131,6 +131,7 @@ namespace Manager
 
 			if ((*movingE)->alive)
 			{
+				(*movingE)->acceleration.y = GRAVITY;
 				for (staticE = staticEntities.begin()++; staticE != staticEntities.end(); staticE++)
 				{
 

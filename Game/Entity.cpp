@@ -9,7 +9,7 @@ Entity::Entity()
 	alive(true)
 {
 	speed.x = 0; speed.y = 0;
-	acceleration.x = 0; acceleration.y = 0;
+	acceleration.x = 0; acceleration.y = GRAVITY;
 }
 
 
