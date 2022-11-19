@@ -4,8 +4,11 @@
 #include <list>
 #include "Coordinate.hpp"
 #include "Window.hpp"
+#include "GraphicManager.hpp"
 #include "Player.hpp"
 #include "Obstacle.hpp"
+#include "Enemy.hpp"
+#include "Projectile.hpp"
 
 
 /*
@@ -22,10 +25,10 @@ namespace Manager
 	class ColisionManager
 	{
 	public:
-		std::list<Obstacle*> staticEntities;
+		std::list<Obstacle*> obstacles;
 		std::list<Player*> players;
-		std::list<Entity*> movingEntities;
-		// projetctiles list
+		std::list<Enemy*> enemies;
+		std::list<Projectile*> projectiles;
 		Window* pWindow;
 	public:
 		ColisionManager(Window* pW);

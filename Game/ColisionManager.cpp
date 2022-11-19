@@ -13,6 +13,11 @@ namespace Manager
 
 	ColisionManager::ColisionManager(Window* pW)
 	{
+		if (pW == NULL)
+		{
+			std::cout << "Error while opening window" << std::endl;
+			exit(1);
+		}
 		pWindow = pW;
 	}
 
@@ -21,12 +26,12 @@ namespace Manager
 		const int WIDTH = pWindow->getWIDTH();
 		const int HEIGHT = pWindow->getHEIGHT();
 
-		std::list<Entity*>::iterator movingE;
-		std::list<Obstacle*>::iterator staticE;
+		std::list<Enemy*>::iterator movingE;
+		std::list<Obstacle*>::iterator obstacle;
 		std::list<Player*>::iterator player;
+		std::list<Projectile*>::iterator projectile;
 
 		// player com resto
-
 		
 
 		for (player = players.begin(); player != players.end(); player++)
@@ -35,9 +40,9 @@ namespace Manager
 			// if not colliding, these are the base values
 			// if is coliding, then the values will be changed
 
-			for (staticE = staticEntities.begin(); staticE != staticEntities.end(); staticE++)
+			for (obstacle = obstacles.begin(); obstacle != obstacles.end(); obstacle++)
 			{
-				Coordinate<float> ajuste = checkColision(*player, *staticE);
+				Coordinate<float> ajuste = checkColision(*player, *obstacle);
 
 				if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
 					ajuste.y > 0.1 || ajuste.y < -0.1) // houve colis�o, checando tanto para positivos como negativos
@@ -47,7 +52,7 @@ namespace Manager
 						(*player)->setJump(true);
 						(*player)->acceleration = { 0.0f, 0.0f };
 						(*player)->speed.y = 0.0;
-						(*staticE)->affectPlayer(*player);
+						(*obstacle)->affectPlayer(*player);
 					}
 					if (ajuste.y > 0.1f && (*player)->speed.y > 0.0f)
 					{
@@ -64,7 +69,7 @@ namespace Manager
 			}
 
 			// considerando que todas as moving entities s�o inimigos
-			for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
+			for (movingE = enemies.begin(); movingE != enemies.end(); movingE++)
 			{
 				if ((*movingE)->alive) // só chegar colisão se ele estiver vivo
 				{
@@ -78,9 +83,12 @@ namespace Manager
 
 						(*player)->updatePosition(ajuste);
 
-						//movingEntities.erase(i);
-						(*movingE)->alive = false;
+						//enemies.erase(i);
+						(*movingE)->decreaseHp(1);
 						(*player)->addPoints(50);
+
+						(*player)->speed.y += -sqrtf(2 * GRAVITY * 130); (*player)->setJump(false);
+						//jogador pula cada vez que bate na cabeca de um inimigo
 
 						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
 
@@ -95,6 +103,25 @@ namespace Manager
 						(*player)->decreaseHp(1);
 						return;
 					}
+				}
+			}
+
+			for (projectile = projectiles.begin(); projectile != projectiles.end(); projectile++)
+			{
+				if ((*projectile)->alive) // só chegar colisão se ele estiver vivo
+				{
+					Coordinate<float> ajuste = checkColision(*player, *movingE);
+
+					if (ajuste.x > 0.1 || ajuste.x < -0.1 ||
+						ajuste.y > 0.1 || ajuste.y < -0.1)
+					{
+						std::cout << "Morri" << std::endl;
+
+						// perdeu
+						(*player)->decreaseHp(1);
+						return;
+					}
+
 				}
 			}
 
@@ -126,16 +153,16 @@ namespace Manager
 		//moving com static
 		///*
 
-		for (movingE = movingEntities.begin(); movingE != movingEntities.end(); movingE++)
+		for (movingE = enemies.begin(); movingE != enemies.end(); movingE++)
 		{
 
 			if ((*movingE)->alive)
 			{
 				(*movingE)->acceleration.y = GRAVITY;
-				for (staticE = staticEntities.begin()++; staticE != staticEntities.end(); staticE++)
+				for (obstacle = obstacles.begin()++; obstacle != obstacles.end(); obstacle++)
 				{
 
-					Coordinate<float> ajuste = checkColision(*movingE, *staticE);
+					Coordinate<float> ajuste = checkColision(*movingE, *obstacle);
 
 					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 						ajuste.y > 0.1f || ajuste.y < -0.1f)
@@ -162,6 +189,33 @@ namespace Manager
 		}
 
 		//*/
+
+		// projetil com static
+		for (projectile = projectiles.begin(); projectile != projectiles.end(); projectile++)
+		{
+
+			if ((*movingE)->alive)
+			{
+				(*movingE)->acceleration.y = GRAVITY;
+				for (obstacle = obstacles.begin()++; obstacle != obstacles.end(); obstacle++)
+				{
+
+					Coordinate<float> ajuste = checkColision(*movingE, *obstacle);
+
+					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+						ajuste.y > 0.1f || ajuste.y < -0.1f)
+					{
+						(*movingE)->updatePosition(ajuste);
+
+						if (ajuste.y < -0.01f)
+						{
+							(*movingE)->acceleration.y = 0.0f;
+							(*movingE)->speed.y = 0.0f;
+						}
+					}
+				}
+			}
+		}
 	}
 
 
