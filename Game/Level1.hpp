@@ -1,10 +1,6 @@
 #pragma once
 
 #include "Level.hpp"
-#include "Mushroom.hpp"
-#include "FlyingBlock.hpp"
-#include "FireBlock.hpp"
-#include "Mud.hpp"
 
 class Level1 :
     public Level

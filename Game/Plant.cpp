@@ -6,7 +6,7 @@ namespace Enemies
 	Plant::Plant()
 	{
 		shootInterval = 0.0f;
-		shootCooldown = 2.0f;
+		shootCooldown = 1.0f;
 		pPlayer = NULL;
 	}
 

@@ -1,6 +1,13 @@
 #pragma once
 #include <iostream>
 
+/*
+
+// Insipirado no codigo do monitor Burda, apresentado no vídeo:
+// https://www.youtube.com/watch?v=xD3A4CDlwpI&t=167s
+
+*/
+
 template<class T>
 
 class Coordinate

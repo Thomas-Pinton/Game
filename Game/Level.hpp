@@ -7,6 +7,10 @@
 #include "ColisionManager.hpp"
 #include "Player.hpp"
 #include "Plant.hpp"
+#include "Mushroom.hpp"
+#include "FlyingBlock.hpp"
+#include "FireBlock.hpp"
+#include "Mud.hpp"
 
 
 using namespace Manager;
@@ -22,9 +26,17 @@ protected:
 	Player* pP;
 public:
 	Level(Window* pW, Manager::GraphicManager* pGM);
+
 	~Level();
 	virtual void execute() = 0;
 	void print();
 	void manageColisions();
+
+	void createFlyingObstacle(Coordinate<int> position);
+	void createMudObstacle(Coordinate<int> position);
+	void createFireObstacle(Coordinate<int> position);
+	void createPlant(Coordinate<int> position);
+	Projectile* createProjectile();
+	void createMushroom(Coordinate<int> position);
 };
 
