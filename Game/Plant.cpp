@@ -30,9 +30,7 @@ namespace Enemies
 			pP = *(lastProjectileShooted++);
 			lastProjectileShooted = lastProjectileShooted++;
 		}
-		pP->alive = true;
-		pP->speed = { 0.0f, 0.0f };
-		pP->setPosition(this->getPosition());
+		pP->reset(this->getPosition());
 		//pP->updatePosition({ this->getSize().x / 2, 0 });
 		if (this->getPosition().x > pPlayer->getPosition().x)
 			pP->speed.x = -600.0f;

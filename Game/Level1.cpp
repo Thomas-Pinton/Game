@@ -72,23 +72,19 @@ Level1::Level1(Window* pW) :
         {
             if (testTileMap[i * BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
                 createFlyingObstacle({ j, i });
-            if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+            else if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
             {
                 if (rand1 == 0)
                     createMudObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
             }
-            if (testTileMap[i * BLOCK_WIDTH + j] == 298)
+            else if (testTileMap[i * BLOCK_WIDTH + j] == 298)
             {
                 if (rand1 == 1)
                     createMudObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
-            }
-            else if (testTileMap[i * 75 + j] == -5)
-            {
-                createPlant({ j, i });
             }
         }
     }
@@ -113,8 +109,10 @@ Level1::Level1(Window* pW) :
         createMushroom({ j, 45 });
     }
 
-    for (i = 0; i < amountOfPlants; i++)
-        createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
+    for (i = 0; i < amountOfPlants; i++) {
+
+    }
+        //createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
    
 }
 

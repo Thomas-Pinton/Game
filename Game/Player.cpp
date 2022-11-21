@@ -57,7 +57,7 @@ void Player::checkKeys()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 			speed.x = movingSpeed;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && canJump)
-			speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
+			executeJump((float)-sqrtf(2 * GRAVITY * 130));
 		// 2 * gravidade * altura do pulo
 	}
 }
@@ -77,4 +77,10 @@ void Player::execute()
 	checkKeys();
 	updatePosition();
 	//displayPoints();
+}
+
+void Player::executeJump(float height)
+{
+	speed.y = height; 
+	canJump = false;
 }

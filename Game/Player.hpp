@@ -20,5 +20,6 @@ public:
 	//void displayPoints();
 	virtual void execute();
 	void setJump(bool p);
+	void executeJump(float height);
 
 };
