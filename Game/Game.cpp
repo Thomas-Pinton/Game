@@ -27,8 +27,8 @@ void Game::execute()
 {
 	std::cout << "Executando menu" << std::endl;
 	//int result;
-	//while (grapMan->getWindow()->config.isOpen())
-	//{
+	while (grapMan->getWindow()->config.isOpen())
+	{
 		int result = menu.execute();
 
 		switch (result)
@@ -45,7 +45,7 @@ void Game::execute()
 		default:
 			break;
 		}
-	//}
+	}
 	
 	//level1.execute();
 }

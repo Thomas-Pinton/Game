@@ -75,5 +75,6 @@ namespace Enemies
 			for (it = projectiles.begin(); it != projectiles.end(); it++)
 				(*it)->setAlive(false);
 		}
+		alive = false;
 	}
 }

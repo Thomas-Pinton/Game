@@ -40,6 +40,11 @@ void Player::checkKeys()
 
 	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	{
+		
+	}
+
 	if (playerId == 1)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))

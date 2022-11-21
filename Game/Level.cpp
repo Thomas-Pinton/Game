@@ -127,7 +127,7 @@ Projectile* Level::createProjectile()
 	pProj->setSize({ 8, 8 });
 	pProj->rectangle.setFillColor(sf::Color::Magenta);
 	entities.addEntity(pProj);
-	colMan.enemies.push_back((Enemy*)pProj);
+	colMan.projectiles.push_back((Projectile*)pProj);
 	return pProj;
 }
 void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)

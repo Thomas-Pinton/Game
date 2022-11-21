@@ -109,10 +109,8 @@ Level1::Level1(Window* pW) :
         createMushroom({ j, 45 });
     }
 
-    for (i = 0; i < amountOfPlants; i++) {
-
-    }
-        //createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
+    for (i = 0; i < amountOfPlants; i++) 
+        createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
    
 }
 

@@ -23,13 +23,6 @@ namespace Manager
 
 	void ColisionManager::checkColisions()
 	{
-		std::list<Enemy*>::iterator enemy;
-		std::list<Obstacle*>::iterator obstacle;
-		std::list<Player*>::iterator player;
-		std::list<Projectile*>::iterator projectile;
-
-		// player com resto
-		
 		checkColisionsPlayerEnemy();
 		checkColisionsPlayerObstacles();
 		checkColisionsPlayerProjectiles();
@@ -37,7 +30,6 @@ namespace Manager
 		checkColisionsPlayerWall();
 		checkColisionsEnemyObstacles();
 		checkColisionsProjectilesObstacles();
-	
 	}
 
 
@@ -65,8 +57,8 @@ namespace Manager
 						(*enemy)->decreaseHp(1);
 						(*player)->addPoints(50);
 
-						(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
-						//(*player)->executeJump(-sqrtf(2 * GRAVITY * 70));
+						//(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
+						(*player)->executeJump(-sqrtf(2 * GRAVITY * 70));
 						//jogador pula cada vez que bate na cabeca de um inimigo
 
 						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
@@ -149,7 +141,7 @@ namespace Manager
 						ajuste.y > 0.1 || ajuste.y < -0.1)
 					{
 						std::cout << "Morri" << std::endl;
-
+						std::cout << "Coliding with projectile " << std::endl;
 						// perdeu
 						(*player)->decreaseHp((*projectile)->getDamage());
 						return;
@@ -211,9 +203,18 @@ namespace Manager
 					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
 						ajuste.y > 0.1f || ajuste.y < -0.1f)
 					{
+
+						std::cout << "Projectile coliding with obstacle " << std::endl;
+
 						(*projectile)->updatePosition(ajuste);
 
-						(*projectile)->setAlive(false);
+						if (ajuste.y < -0.01f)
+						{
+							(*projectile)->acceleration.y = 0.0f;
+							(*projectile)->speed.y = 0.0f;
+						}
+
+						//(*projectile)->setAlive(false);
 					}
 				}
 			}
