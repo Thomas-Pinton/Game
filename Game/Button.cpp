@@ -3,7 +3,8 @@
 
 using namespace Manager;
 
-Button::Button()
+Button::Button() :
+	isSelected(false)
 {
 }
 
@@ -55,4 +56,9 @@ void Button::print()
 void Button::setString(std::string string) 
 {
 	text.setString(string);
+}
+
+std::string Button::getString()
+{
+	return text.getString();
 }

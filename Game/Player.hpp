@@ -8,11 +8,12 @@ class Player : public Character
 private:
 	bool canJump;
 	int pontuation;
+	int playerId;
 public:
 	float movingSpeed;
 	float mudCooldown;
 
-	Player();
+	Player(int pId = 1);
 	void addPoints(int amount);
 	const int getPoints() const;
 	void checkKeys();

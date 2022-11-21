@@ -2,14 +2,19 @@
 
 #include "Enemy.hpp"
 
-class Mushroom :
-    public Enemy
+namespace Enemies
 {
-private:
-    float changeDirectionTime;
-    float timeElapsed;
-public:
-    Mushroom(float chDirTime);
-    void execute();
-};
+    class Mushroom :
+        public Enemy
+    {
+    private:
+        float changeDirectionTime;
+        float timeElapsed;
+    public:
+        Mushroom(float chDirTime = 4);
+        void execute();
+    };
+}
+
+
 

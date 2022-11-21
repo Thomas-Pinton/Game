@@ -37,12 +37,21 @@ void Entity::setPosition(Coordinate<float> p)
 	// mudar para sprite
 }
 
+void Entity::setAlive(bool status)
+{
+	alive = status;
+}
+
 const Coordinate<float> Entity::getSize() const {
 	return size;
 }
 
 const Coordinate<float> Entity::getPosition() const {
 	return position;
+}
+
+const bool Entity::getAlive() const {
+	return alive;
 }
 
 void Entity::updatePosition()

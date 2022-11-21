@@ -18,10 +18,12 @@ namespace Enemies
         std::list<Projectile*> projectiles;
         std::list<Projectile*>::iterator lastProjectileShooted;
         Plant();
+        ~Plant();
         Player* pPlayer;
         void shoot();
         void execute();
         void addProjectile(Projectile* pP);
+        void setAlive(bool status);
     };
 }
 

@@ -1,7 +1,9 @@
 #include "Player.hpp"
 #include "GraphicManager.hpp"
 
-Player::Player() : Character()
+Player::Player(int pId) : 
+	Character(),
+	playerId(pId)
 {
 	position.x = 0.0;
 	position.y = 0.0;
@@ -38,17 +40,26 @@ void Player::checkKeys()
 
 	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-		speed.x = -movingSpeed;
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) ||
-	//	sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-	//	speed.y = vel;
-	// Para baixo n�o faz nada (por enquanto)
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-		speed.x = movingSpeed;
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) && canJump)
-		speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
-	// 2 * gravidade * altura do pulo
+	if (playerId == 1)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			speed.x = -movingSpeed;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+			speed.x = movingSpeed;
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) && canJump)
+			speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
+		// 2 * gravidade * altura do pulo
+	}
+	else if (playerId == 2)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+			speed.x = -movingSpeed;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+			speed.x = movingSpeed;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && canJump)
+			speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
+		// 2 * gravidade * altura do pulo
+	}
 }
 /*
 void Player::displayPoints()

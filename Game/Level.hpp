@@ -11,7 +11,9 @@
 #include "FlyingBlock.hpp"
 #include "FireBlock.hpp"
 #include "Mud.hpp"
-
+#include "Pig.hpp"
+#include <list>
+// Os inimigos e osbtasculos estao sendo incluidos no nivel pois eles serao usados na maioria das fases
 
 using namespace Manager;
 
@@ -19,16 +21,16 @@ class Level : public Being
 {
 protected:
 	EntitiesList entities;
-	Window* pWindow;
 	ColisionManager colMan;
 	Manager::GraphicManager* pGraMan;
 	int* tileMap;
 	Player* pP;
+	//Player* p2;
 public:
-	Level(Window* pW, Manager::GraphicManager* pGM);
-
+	Level(Window* pW);
 	~Level();
-	virtual void execute() = 0;
+
+	void execute();
 	void print();
 	void manageColisions();
 
@@ -37,6 +39,8 @@ public:
 	void createFireObstacle(Coordinate<int> position);
 	void createPlant(Coordinate<int> position);
 	Projectile* createProjectile();
-	void createMushroom(Coordinate<int> position);
+	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
+	void createPig(Coordinate<int> position, float changeDirectionTime = 1.5f + (rand() % 2) / 2);
+	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
 };
 

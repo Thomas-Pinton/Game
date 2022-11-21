@@ -1,7 +1,7 @@
 ﻿#include "Level1.hpp"
 
-Level1::Level1(Window* pW, GraphicManager* pGM) : 
-	Level(pW, pGM)
+Level1::Level1(Window* pW) : 
+	Level(pW)
 {
     //tileMap = (int*) malloc(sizeof(int) * 50 * 60);
 
@@ -58,43 +58,20 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
     51, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 53
     };
 
-	//std::list<Obstacle*>::iterator i;
-
-	/*
-
-	for (int i = 0; i * 100 + 50 < pWindow->getWIDTH() + 300; i++) // will need to work with memory managent later
-	{
-		obstacle = new Obstacle;
-		obstacle->rectangle.setFillColor(sf::Color(255 / ((i % 2) + 1), 100, 150));
-		obstacle->setSize({ 100, 100 });
-		obstacle->setPosition({ (float)(i * 100) + 50, (float)pWindow->getHEIGHT() / 2 + 200 });
-		colMan.staticEntities.push_back((Entity*)obstacle);
-		entities.addEntity(obstacle);
-	}
-
-	*/
-
-    
-    Obstacles::Mud* pMud = NULL;
-    Obstacles::FireBlock* pFireBlock = NULL;
-    Mushroom* mushroom = NULL;
-    Enemies::Plant* pPlant = NULL;
-    Projectile* pProj = NULL;
-
-	int i, j;
+    int i, j;
 
     srand(time(0));
 
     int rand1 = rand() % 2;
 
-	for (i = 0; i < 50; i++)
-	{
-		for (j = 0; j < 60; j++)
-		{
-			if (testTileMap[i * 60 + j] > 0 || testTileMap[i * 60 + j] == -2)
-			{
+    for (i = 0; i < 50; i++)
+    {
+        for (j = 0; j < 60; j++)
+        {
+            if (testTileMap[i * 60 + j] > 0 || testTileMap[i * 60 + j] == -2)
+            {
                 createFlyingObstacle({ j, i });
-			} 
+            }
             else if (testTileMap[i * 60 + j] == -3)
             {
                 if (rand1 == 1)
@@ -104,20 +81,18 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
             }
             else if (testTileMap[i * 60 + j] == -4)
             {
-                
+
                 if (rand1 == 0)
                     createMudObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
             }
-            ///*
             else if (testTileMap[i * 60 + j] == -5)
             {
                 createPlant({ j, i });
             }
-            //*/
-		}
-	}
+        }
+    }
 
     int amountOfEnemies = 3 + rand() % 2;
 
@@ -127,8 +102,9 @@ Level1::Level1(Window* pW, GraphicManager* pGM) :
     {
         j = 5 + rand() % 55;
         std::cout << "Criando inimigo" << std::endl;
-        createMushroom({ j, i });
+        createMushroom({ j, 45 });
     }
+
    
 }
 
@@ -136,29 +112,4 @@ Level1::~Level1()
 {
 }
 
-void Level1::execute()
-{
-
-	sf::Event e;
-
-	srand((unsigned)time(NULL));
-
-	while (pWindow->config.isOpen()) // game loop
-	{
-		while (pWindow->config.pollEvent(e))
-		{
-			if (e.type == sf::Event::Closed)
-				pWindow->config.close();
-		}
-
-		//executando cada entidade
-		entities.executeEntities();
-
-		colMan.checkColisions();
-    
-        print();
-
-	}
-
-}
 

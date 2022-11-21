@@ -8,7 +8,7 @@ void GerenciadorMovimento::atualizaPosicoes(float deltaTime)
 	std::list<Entity*>::iterator i;
 	std::list<Player*>::iterator k;
 
-	for (i = movingEntities.begin(); i != movingEntities.end(); i++)
+	for (i = enemies.begin(); i != enemies.end(); i++)
 		(*i)->updatePosition(deltaTime);
 
 	for (k = players.begin(); k != players.end(); k++)

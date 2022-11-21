@@ -147,9 +147,11 @@
     <ClCompile Include="FireBlock.cpp" />
     <ClCompile Include="FlyingBlock.cpp" />
     <ClCompile Include="Level1.cpp" />
+    <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mud.cpp" />
     <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Pig.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -173,9 +175,11 @@
     <ClInclude Include="GraphicManager.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Level1.hpp" />
+    <ClInclude Include="Level2.hpp" />
     <ClInclude Include="Menu.hpp" />
     <ClInclude Include="Mud.hpp" />
     <ClInclude Include="Mushroom.hpp" />
+    <ClInclude Include="Pig.hpp" />
     <ClInclude Include="Plant.hpp" />
     <ClInclude Include="Projectile.hpp" />
     <ClInclude Include="Window.hpp" />

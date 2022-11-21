@@ -13,9 +13,9 @@ const int Character::getHp()
 	return hp;
 }
 
-void Character::setHp(int novaVida)
+void Character::setHp(int newHp)
 {
-	hp = novaVida;
+	hp = newHp;
 	if (hp <= 0)
 		alive = false;
 }

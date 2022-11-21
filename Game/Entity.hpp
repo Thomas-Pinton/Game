@@ -30,6 +30,8 @@ public:
 
 	void setPosition(Coordinate<float> p);
 
+	virtual void setAlive(bool status);
+
 	void updatePosition();
 
 	void updatePosition(Coordinate<float> coord);
@@ -37,6 +39,8 @@ public:
 	const Coordinate<float> getSize() const;
 
 	const Coordinate<float> getPosition() const;
+
+	const bool getAlive() const;
 
 	virtual void print();
 

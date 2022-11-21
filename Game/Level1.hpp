@@ -6,7 +6,6 @@ class Level1 :
     public Level
 {
 public:
-    Level1(Window* pW, GraphicManager* pGM);
+    Level1(Window* pW);
     ~Level1();
-    void execute();
 };

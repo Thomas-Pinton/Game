@@ -78,7 +78,7 @@ namespace Manager
 					if (ajuste.y < -0.1f && (*player)->speed.y > 0.1f)
 						// se bateu na cabe�a do inimgo ele morreu
 					{
-						std::cout << "Matei o inimigo" << std::endl;
+						std::cout << "Dei dano" << std::endl;
 						std::cout << ajuste << std::endl;
 
 						(*player)->updatePosition(ajuste);
@@ -87,7 +87,7 @@ namespace Manager
 						(*movingE)->decreaseHp(1);
 						(*player)->addPoints(50);
 
-						(*player)->speed.y += -sqrtf(2 * GRAVITY * 130); (*player)->setJump(false);
+						(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
 						//jogador pula cada vez que bate na cabeca de um inimigo
 
 						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;

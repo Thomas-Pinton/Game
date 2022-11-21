@@ -10,6 +10,13 @@ namespace Enemies
 		pPlayer = NULL;
 	}
 
+	Plant::~Plant()
+	{
+		std::list<Projectile*>::iterator it;
+		for (it = projectiles.begin(); it != projectiles.end(); it++)
+			delete (*it);
+	}
+
 	void Plant::shoot()
 	{
 		std::cout << "Shooting " << std::endl;
@@ -35,10 +42,17 @@ namespace Enemies
 
 	void Plant::execute()
 	{
+
+		updatePosition();
+
 		shootInterval += pGraMan->getDeltaTime();
 
 		float dy = pPlayer->getPosition().y - this->getPosition().y > 0 ? pPlayer->getPosition().y - this->getPosition().y : this->getPosition().y - pPlayer->getPosition().y;
-		if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
+		if (!pPlayer->getAlive())
+			return;
+
+		if (pPlayer->getPosition().y + pPlayer->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
+		//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
 		{
 			if (shootInterval > shootCooldown)
 			{
@@ -47,11 +61,21 @@ namespace Enemies
 				shoot();
 			}
 		}
-		updatePosition();
+		
 	}
 
 	void Plant::addProjectile(Projectile* pP)
 	{
 		projectiles.push_back(pP);
+	}
+
+	void Plant::setAlive(bool status)
+	{
+		if (status == false)
+		{
+			std::list<Projectile*>::iterator it;
+			for (it = projectiles.begin(); it != projectiles.end(); it++)
+				(*it)->setAlive(false);
+		}
 	}
 }

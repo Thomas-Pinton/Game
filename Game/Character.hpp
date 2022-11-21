@@ -11,7 +11,7 @@ protected:
 public:
 	Character();
 	const int getHp();
-	void setHp(int novaVida);
-	void decreaseHp(int qtd);
-	void increaseHp(int qtd);
+	virtual void setHp(int newHp);
+	virtual void decreaseHp(int qtd);
+	virtual void increaseHp(int qtd);
 };
