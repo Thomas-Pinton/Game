@@ -7,7 +7,6 @@ namespace Enemies
 	{
 		shootInterval = 0.0f;
 		shootCooldown = 1.0f;
-		pPlayer = NULL;
 	}
 
 	Plant::~Plant()
@@ -17,7 +16,7 @@ namespace Enemies
 			delete (*it);
 	}
 
-	void Plant::shoot()
+	void Plant::shoot(Player* pPlayer)
 	{
 		std::cout << "Shooting " << std::endl;
 		Projectile* pP;
@@ -45,21 +44,26 @@ namespace Enemies
 
 		shootInterval += pGraMan->getDeltaTime();
 
-		float dy = pPlayer->getPosition().y - this->getPosition().y > 0 ? pPlayer->getPosition().y - this->getPosition().y : this->getPosition().y - pPlayer->getPosition().y;
-		if (!pPlayer->getAlive())
-			return;
 
-		if (pPlayer->getPosition().y + pPlayer->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
-		//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
+
+		//float dy = pPlayer->getPosition().y - this->getPosition().y > 0 ? pPlayer->getPosition().y - this->getPosition().y : this->getPosition().y - pPlayer->getPosition().y;
+		
+		for (std::list<Player*>::iterator pPlayer = players.begin(); pPlayer != players.end(); pPlayer++)
 		{
-			if (shootInterval > shootCooldown)
+			if (!(*pPlayer)->getAlive())
+				return;
+
+			if ((*pPlayer)->getPosition().y + (*pPlayer)->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
+				//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
 			{
-				shootInterval = 0;
-				std::cout << "2" << std::endl;
-				shoot();
+				if (shootInterval > shootCooldown)
+				{
+					shootInterval = 0;
+					std::cout << "2" << std::endl;
+					shoot((*pPlayer));
+				}
 			}
 		}
-		
 	}
 
 	void Plant::addProjectile(Projectile* pP)

@@ -10,15 +10,9 @@ Level::Level(Window* pW)
 	pGraMan = GraphicManager::getInstance();
 	Being::pGraMan = GraphicManager::getInstance();
 
-	Player* player1 = new Player;
-
-	player1->setSize({ 32, 32 });
-	player1->setPosition({ 50, 50 });
-
-	pP = player1;
-
-	entities.addEntity(player1);
-	colMan.players.push_back(player1);
+	createPlayer({ 50, 50 }, 1);
+	createPlayer({ 100, 100 }, 2);
+	
 }
 
 Level::~Level()
@@ -62,6 +56,19 @@ void Level::execute()
 		print();
 
 	}
+}
+
+void Level::createPlayer(Coordinate<float> position, int id)
+{
+	Player* player = new Player(id);
+
+	player->setSize({ 32, 32 });
+	player->setPosition(position);
+
+	players.push_back(player);
+
+	entities.addEntity(player);
+	colMan.players.push_back(player);
 }
 
 void Level::createFlyingObstacle(Coordinate<int> position)
@@ -109,7 +116,8 @@ void Level::createPlant(Coordinate<int> position)
 	pPlant->rectangle.setFillColor(sf::Color::Yellow);
 	colMan.enemies.push_back((Enemy*)pPlant);
 	entities.addEntity(pPlant);
-	pPlant->pPlayer = pP;
+
+	pPlant->players = players;
 
 	std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
 

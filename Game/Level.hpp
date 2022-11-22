@@ -24,8 +24,7 @@ protected:
 	ColisionManager colMan;
 	Manager::GraphicManager* pGraMan;
 	int* tileMap;
-	Player* pP;
-	//Player* p2;
+	std::list<Player*> players;
 public:
 	Level(Window* pW);
 	~Level();
@@ -34,6 +33,7 @@ public:
 	void print();
 	void manageColisions();
 
+	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);
 	void createMudObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);

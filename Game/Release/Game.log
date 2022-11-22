@@ -1,8 +1,7 @@
-﻿  Level1.cpp
-C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Level1.cpp(65,15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+﻿  Level.cpp
   Gerando código
-  4 of 533 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  5 of 556 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    20 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   Game.vcxproj -> C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Release\Game.exe

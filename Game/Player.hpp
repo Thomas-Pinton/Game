@@ -9,6 +9,7 @@ private:
 	bool canJump;
 	int pontuation;
 	int playerId;
+	int keys[3];
 public:
 	float movingSpeed;
 	float mudCooldown;

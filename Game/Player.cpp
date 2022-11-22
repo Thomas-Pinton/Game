@@ -11,6 +11,19 @@ Player::Player(int pId) :
 	pontuation = 0;
 	movingSpeed = 300.0f;
 	mudCooldown = 0.0f;
+
+	if (pId == 1)
+	{
+		keys[0] = sf::Keyboard::Key::A;
+		keys[1] = sf::Keyboard::Key::D;
+		keys[2] = sf::Keyboard::Key::W;
+	}
+	else if (pId == 2)
+	{
+		keys[0] = sf::Keyboard::Key::Left;
+		keys[1] = sf::Keyboard::Key::Right;
+		keys[2] = sf::Keyboard::Key::Up;
+	}
 	// Posic�o inicial
 }
 
@@ -42,29 +55,16 @@ void Player::checkKeys()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 	{
-		
+		//pausar jogo
 	}
 
-	if (playerId == 1)
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-			speed.x = -movingSpeed;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-			speed.x = movingSpeed;
-		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) && canJump)
-			speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[0]))
+		speed.x = -movingSpeed;
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[1]))
+		speed.x = movingSpeed;
+	if ((sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[2])) && canJump)
+		speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
 		// 2 * gravidade * altura do pulo
-	}
-	else if (playerId == 2)
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-			speed.x = -movingSpeed;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-			speed.x = movingSpeed;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && canJump)
-			executeJump((float)-sqrtf(2 * GRAVITY * 130));
-		// 2 * gravidade * altura do pulo
-	}
 }
 /*
 void Player::displayPoints()
