@@ -20,7 +20,7 @@ public:
 	Coordinate(T xc, T yc);
 	~Coordinate() { };
 	Coordinate<T> operator+ (Coordinate<T> vector2);
-	void operator- (Coordinate<T> vector2);
+	Coordinate<T> operator- (Coordinate<T> vector2);
 	void operator= (Coordinate<T> vector2);
 	void operator+= (Coordinate<T> vector2);
 	Coordinate<T> operator* (T escalar);;
@@ -53,7 +53,7 @@ Coordinate<T> Coordinate<T>::operator+ (Coordinate<T> vector2)
 }
 
 template<class T>
-void Coordinate<T>::operator- (Coordinate<T> vector2)
+Coordinate<T> Coordinate<T>::operator- (Coordinate<T> vector2)
 {
 	x -= vector2.x;
 	y -= vector2.y;
