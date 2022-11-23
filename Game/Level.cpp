@@ -60,7 +60,7 @@ void Level::execute()
 
 void Level::createPlayer(Coordinate<float> position, int id)
 {
-	Player* player = new Player(id);
+	player = new Player(id);
 
 	player->setSize({ 32, 32 });
 	player->setPosition(position);
@@ -73,7 +73,7 @@ void Level::createPlayer(Coordinate<float> position, int id)
 
 void Level::createFlyingObstacle(Coordinate<int> position)
 {
-	Obstacles::FlyingBlock* pFlyingBlock = NULL;
+	pFlyingBlock = NULL;
 	pFlyingBlock = new Obstacles::FlyingBlock;
 	pFlyingBlock->setSize({ 16.0, 16.0 });
 	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
@@ -83,7 +83,7 @@ void Level::createFlyingObstacle(Coordinate<int> position)
 }
 void Level::createMudObstacle(Coordinate<int> position)
 {
-	Obstacles::Mud* pMud = NULL;
+	pMud = NULL;
 	pMud = new Obstacles::Mud;
 	pMud->setSize({ 16.0, 16.0 });
 	pMud->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
@@ -93,7 +93,7 @@ void Level::createMudObstacle(Coordinate<int> position)
 }
 void Level::createFireObstacle(Coordinate<int> position)
 {
-	Obstacles::FireBlock* pFireBlock = NULL;
+	pFireBlock = NULL;
 	pFireBlock = new Obstacles::FireBlock;
 	pFireBlock->setSize({ 16.0, 16.0 });
 	pFireBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
@@ -102,45 +102,10 @@ void Level::createFireObstacle(Coordinate<int> position)
 	entities.addEntity(pFireBlock);
 }
 
-void Level::createPlant(Coordinate<int> position)
-{
-	Enemies::Plant* pPlant = NULL;
-	pPlant = new Enemies::Plant;
-	if (pPlant == NULL)
-	{
-		std::cout << "Erro ao criar planta" << std::endl; 
-		return;
-	}
-	pPlant->setSize({ 16.0, 16.0 });
-	pPlant->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-	pPlant->rectangle.setFillColor(sf::Color::Yellow);
-	colMan.enemies.push_back((Enemy*)pPlant);
-	entities.addEntity(pPlant);
 
-	pPlant->players = players;
-
-	std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
-
-	for (int i = 0; i < 3; i++)
-	{
-		pPlant->addProjectile(createProjectile());
-	}
-	pPlant->lastProjectileShooted = pPlant->projectiles.begin();
-	std::cout << "Plant created " << std::endl;
-}
-Projectile* Level::createProjectile()
-{
-	Projectile* pProj;
-	pProj = new Projectile;
-	pProj->setSize({ 8, 8 });
-	pProj->rectangle.setFillColor(sf::Color::Magenta);
-	entities.addEntity(pProj);
-	colMan.projectiles.push_back((Projectile*)pProj);
-	return pProj;
-}
 void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 {
-	Enemies::Mushroom* mushroom = NULL;
+	mushroom = NULL;
 	mushroom = new Enemies::Mushroom(changeDirectionTime);
 	if (mushroom == NULL)
 	{
@@ -155,22 +120,4 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	mushroom->rectangle.setFillColor(sf::Color(0, 200, 0));
 	entities.addEntity(mushroom);
 	std::cout << "Mushroom " << mushroom->acceleration.y << std::endl;
-}
-
-void Level::createPig(Coordinate<int> position, float changeDirectionTime)
-{
-	Enemies::Pig* pPig = NULL;
-	pPig = new Enemies::Pig(changeDirectionTime);
-	if (pPig == NULL)
-	{
-		std::cout << "Error when trying to create Pig" << std::endl;
-		return;
-	}
-	pPig->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-	pPig->setSize({ 32.0, 32.0 });
-	pPig->speed = { (-200.0f + 20 * (rand() % 3)), 0.0f };
-	//aleatoriza modulo e direcao da velocidade
-	pPig->rectangle.setFillColor(sf::Color::White);
-	entities.addEntity(pPig);
-	colMan.enemies.push_back(pPig);
 }

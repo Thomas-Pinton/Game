@@ -7,6 +7,9 @@ Level1::Level1(Window* pW) :
 	Level(pW)
 {
 
+    pProjectile = NULL;
+    pPlant = NULL;
+
     int testTileMap[3750] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -118,4 +121,37 @@ Level1::~Level1()
 {
 }
 
+void Level1::createPlant(Coordinate<int> position)
+{
+    pPlant = new Enemies::Plant;
+    if (pPlant == NULL)
+    {
+        std::cout << "Erro ao criar planta" << std::endl;
+        return;
+    }
+    pPlant->setSize({ 16.0, 16.0 });
+    pPlant->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pPlant->rectangle.setFillColor(sf::Color::Yellow);
+    colMan.enemies.push_back((Enemy*)pPlant);
+    entities.addEntity(pPlant);
 
+    pPlant->players = players;
+
+    std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
+
+    for (int i = 0; i < 3; i++)
+    {
+        pPlant->addProjectile(createProjectile());
+    }
+    pPlant->lastProjectileShooted = pPlant->projectiles.begin();
+    std::cout << "Plant created " << std::endl;
+}
+Projectile* Level1::createProjectile()
+{
+    pProjectile = new Projectile;
+    pProjectile->setSize({ 8, 8 });
+    pProjectile->rectangle.setFillColor(sf::Color::Magenta);
+    entities.addEntity(pProjectile);
+    colMan.projectiles.push_back((Projectile*)pProjectile);
+    return pProjectile;
+}

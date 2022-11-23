@@ -50,17 +50,17 @@ namespace Enemies
 		
 		for (std::list<Player*>::iterator pPlayer = players.begin(); pPlayer != players.end(); pPlayer++)
 		{
-			if (!(*pPlayer)->getAlive())
-				return;
-
-			if ((*pPlayer)->getPosition().y + (*pPlayer)->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
-				//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
+			if ((*pPlayer)->getAlive())
 			{
-				if (shootInterval > shootCooldown)
+				if ((*pPlayer)->getPosition().y + (*pPlayer)->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
+					//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
 				{
-					shootInterval = 0;
-					std::cout << "2" << std::endl;
-					shoot((*pPlayer));
+					if (shootInterval > shootCooldown)
+					{
+						shootInterval = 0;
+						std::cout << "2" << std::endl;
+						shoot((*pPlayer));
+					}
 				}
 			}
 		}

@@ -6,6 +6,9 @@
 Level2::Level2(Window* pW) :
 	Level(pW)
 {
+
+    pPig = NULL;
+
     int testTileMap[3750] = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -94,7 +97,7 @@ Level2::Level2(Window* pW) :
     int pigUpAmount = 1 + rand() % 2;
 
     for (int i = 0; i < mushroomFloorAmout; i++) //1120
-        //createMushroom({ 21 + rand() % 50, 15});
+        createMushroom({ 21 + rand() % 50, 15});
  
     for (int i = 0; i < 1; i++)
         createPig({ 50 + rand() % 21, 13 }, 2.0f);
@@ -105,4 +108,21 @@ Level2::Level2(Window* pW) :
 
 Level2::~Level2()
 {
+}
+
+void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
+{
+    pPig = new Enemies::Pig(changeDirectionTime);
+    if (pPig == NULL)
+    {
+        std::cout << "Error when trying to create Pig" << std::endl;
+        return;
+    }
+    pPig->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pPig->setSize({ 32.0, 32.0 });
+    pPig->speed = { (-200.0f + 20 * (rand() % 3)), 0.0f };
+    //aleatoriza modulo e direcao da velocidade
+    pPig->rectangle.setFillColor(sf::Color::White);
+    entities.addEntity(pPig);
+    colMan.enemies.push_back(pPig);
 }

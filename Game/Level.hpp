@@ -25,6 +25,14 @@ protected:
 	Manager::GraphicManager* pGraMan;
 	int* tileMap;
 	std::list<Player*> players;
+
+	Player* player;
+
+	Obstacles::FlyingBlock* pFlyingBlock;
+	Obstacles::Mud* pMud;
+	Obstacles::FireBlock* pFireBlock;
+
+	Enemies::Mushroom* mushroom;
 public:
 	Level(Window* pW);
 	~Level();
@@ -37,10 +45,7 @@ public:
 	void createFlyingObstacle(Coordinate<int> position);
 	void createMudObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);
-	void createPlant(Coordinate<int> position);
-	Projectile* createProjectile();
 	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
-	void createPig(Coordinate<int> position, float changeDirectionTime = 1.5f + (rand() % 2) / 2);
 	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
 };
 
