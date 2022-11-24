@@ -204,8 +204,6 @@ namespace Manager
 						ajuste.y > 0.1f || ajuste.y < -0.1f)
 					{
 
-						std::cout << "Projectile coliding with obstacle " << std::endl;
-
 						(*projectile)->updatePosition(ajuste);
 
 						if (ajuste.y < -0.01f)

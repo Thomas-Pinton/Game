@@ -13,6 +13,7 @@ namespace Obstacles
         Mud();
         void execute();
         void affectPlayer(Player* pP);
+        void save();
     };
 }
 

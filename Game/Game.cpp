@@ -1,6 +1,5 @@
 #include "Game.hpp"
 
-int Being::id_count = 0;
 GraphicManager* Being::pGraMan = NULL;
 GraphicManager* GraphicManager::instance = NULL;
 

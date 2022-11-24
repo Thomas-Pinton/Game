@@ -39,6 +39,8 @@ void Level::execute()
 {
 	sf::Event e;
 
+	bool paused = false;
+
 	srand((unsigned)time(NULL));
 
 	while (pGraMan->getWindow()->config.isOpen()) // game loop
@@ -47,15 +49,41 @@ void Level::execute()
 		{
 			if (e.type == sf::Event::Closed)
 				pGraMan->getWindow()->config.close();
+			if (e.type == sf::Event::KeyPressed)
+			{
+				// pausing and returning logic
+				if (e.key.code == sf::Keyboard::Escape)
+				{
+					if (!paused)
+						paused = true;
+					else
+					{
+						entities.saveEntities();
+						std::cout << "Saving entities " << std::endl;
+						return;
+					}
+						
+				}
+				if (e.key.code == sf::Keyboard::Enter && paused)
+					paused = false;
+					
+			}
+		}
+		if (!paused)
+		{
+			entities.executeEntities();
+
+			colMan.checkColisions();
+
+			print();
 		}
 
-		entities.executeEntities();
-
-		colMan.checkColisions();
-
-		print();
-
 	}
+}
+
+void Level::loadSave(std::string filePath)
+{
+
 }
 
 void Level::createPlayer(Coordinate<float> position, int id)

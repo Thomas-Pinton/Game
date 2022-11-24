@@ -79,3 +79,7 @@ void Entity::execute()
 {
 	updatePosition();
 }
+
+void Entity::save()
+{
+}

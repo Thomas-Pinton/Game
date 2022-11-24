@@ -37,9 +37,11 @@ namespace Manager {
 	{
 		deltaTime = (float)clock.restart().asSeconds();
 
-		if (deltaTime > 0.15f)
-			deltaTime = 0.15f;
-
+		if (deltaTime > 0.05f)
+		{
+			std::cout << "Too big of a delta time " << std::endl;
+			deltaTime = 0.05f;
+		}
 		return deltaTime;
 	}
 

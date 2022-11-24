@@ -22,5 +22,6 @@ public:
 	virtual void execute();
 	void setJump(bool p);
 	void executeJump(float height);
+	void save();
 
 };

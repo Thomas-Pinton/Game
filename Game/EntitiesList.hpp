@@ -14,4 +14,5 @@ public:
 	void executeEntities();
 	void printEntities();
 	void addEntity(Entity* pE);
+	void saveEntities();
 };

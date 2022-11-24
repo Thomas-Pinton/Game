@@ -5,7 +5,7 @@
 class Enemy :
     public Character
 {
-private:
+protected:
     int damage;
 public:
     Enemy();

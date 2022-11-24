@@ -3,6 +3,7 @@
 #include "Being.hpp"
 #include "Coordinate.hpp"
 #include "Constants.hpp"
+#include <fstream>
 
 class Entity : public Being
 {
@@ -10,7 +11,7 @@ protected:
 	Coordinate<float> position;
 	Coordinate<float> size;
 	sf::Texture texture;
-
+	//std::stringstream saveInfo;
 public:
 	bool alive;
 
@@ -45,4 +46,6 @@ public:
 	virtual void print();
 
 	virtual void execute();
+
+	virtual void save();
 };

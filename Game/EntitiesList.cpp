@@ -41,3 +41,16 @@ void EntitiesList::addEntity(Entity* pE)
 {
 	list.addElemento(pE);
 }
+
+void EntitiesList::saveEntities()
+{
+	int size = list.getSize();
+	Lista<Entity>::Element<Entity>* pElEntidade = list.getPrimeiro();
+
+	for (int i = 0; i < size; i++)
+	{
+		//if (pElEntidade->getData()->alive)
+		pElEntidade->getData()->save();
+		pElEntidade = pElEntidade->getProximo();
+	}
+}

@@ -24,6 +24,7 @@ namespace Enemies
         void execute();
         void addProjectile(Projectile* pP);
         void setAlive(bool status);
+        void save();
     };
 }
 

@@ -5,6 +5,7 @@ namespace Enemies
 {
 	Plant::Plant()
 	{
+		id = classes(plant);
 		shootInterval = 0.0f;
 		shootCooldown = 1.0f;
 	}
@@ -32,9 +33,9 @@ namespace Enemies
 		pP->reset(this->getPosition());
 		//pP->updatePosition({ this->getSize().x / 2, 0 });
 		if (this->getPosition().x > pPlayer->getPosition().x)
-			pP->speed.x = -600.0f;
+			pP->speed.x = -500.0f;
 		else
-			pP->speed.x = 600.0f;
+			pP->speed.x = 500.0f;
 	}
 
 	void Plant::execute()
@@ -80,5 +81,27 @@ namespace Enemies
 				(*it)->setAlive(false);
 		}
 		alive = false;
+	}
+	
+	void Plant::save()
+	{
+		std::ofstream plantFile("../data/Plant.txt", std::ios_base::app);
+		plantFile << alive << " "
+			<< position.x << " " << position.y << " "
+			<< size.x << " " << size.y << " "
+			<< speed.x << " " << speed.y << " "
+			<< acceleration.x << " " << acceleration.y << " "
+			<< hp << " "
+			<< damage << " "
+			<< shootCooldown << " "
+			<< std::endl;		
+		plantFile.close();
+		std::list<Projectile*>::iterator projectile;
+		for (projectile = lastProjectileShooted; projectile != lastProjectileShooted; projectile++)
+		{
+			(*projectile)->save();
+			if (projectile == projectiles.end())
+				projectile = projectiles.begin();
+		}
 	}
 }

@@ -5,6 +5,7 @@ Player::Player(int pId) :
 	Character(),
 	playerId(pId)
 {
+	id = (classes)player;
 	position.x = 0.0;
 	position.y = 0.0;
 	canJump = false;
@@ -53,11 +54,6 @@ void Player::checkKeys()
 
 	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
-	{
-		//pausar jogo
-	}
-
 	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[0]))
 		speed.x = -movingSpeed;
 	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[1]))
@@ -88,4 +84,19 @@ void Player::executeJump(float height)
 {
 	speed.y = height; 
 	canJump = false;
+}
+
+void Player::save()
+{
+	std::ofstream playerFile("../data/Player.txt", std::ofstream::out);
+	playerFile  << alive << " " 
+				<< position.x << " " << position.y << " " 
+				<< size.x << " " << size.y << " "
+				<< speed.x << " " << speed.y << " "
+				<< acceleration.x << " " << acceleration.y << " "
+				<< hp << " "
+				<< canJump << " "
+				<< pontuation << " "
+				<< std::endl;
+	playerFile.close();
 }

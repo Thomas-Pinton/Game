@@ -12,5 +12,6 @@ public:
     const int getDamage() const;
     void setDamage(int d);
     void reset(Coordinate<float> pos);
+    void save();
 };
 
