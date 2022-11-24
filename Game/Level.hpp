@@ -13,6 +13,8 @@
 #include "Mud.hpp"
 #include "Pig.hpp"
 #include <list>
+#include <fstream>
+#include "Constants.hpp"
 // Os inimigos e osbtasculos estao sendo incluidos no nivel pois eles serao usados na maioria das fases
 
 using namespace Manager;

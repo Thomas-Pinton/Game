@@ -16,7 +16,11 @@ namespace Manager
 
 		static GraphicManager* instance;
 
+		std::map<std::string, sf::Texture*> textureMap;
+
 	public:
+
+		~GraphicManager();
 
 		static GraphicManager* getInstance();
 
@@ -31,9 +35,8 @@ namespace Manager
 		//void print();
 		void printEntity(Entity* pE);
 		void printText(sf::Text* pT);
-		//void imprimeLista(std::list<Being*> l);
-		//void imprimeLista(std::list<Entity*> l);
-		//void imprimeLista(std::list<Player*> l);
+
+		sf::Texture* loadTexture(std::string filePath);
 
 		void clear();
 		void display();

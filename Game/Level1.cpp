@@ -129,9 +129,9 @@ void Level1::createPlant(Coordinate<int> position)
         std::cout << "Erro ao criar planta" << std::endl;
         return;
     }
-    pPlant->setSize({ 16.0, 16.0 });
+    pPlant->setSize({ 42, 44 });
     pPlant->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-    pPlant->rectangle.setFillColor(sf::Color::Yellow);
+    pPlant->setTexture("Enemies/Plant/Idle (44x42).png", { 0, 0 }, { 44, 42 });
     colMan.enemies.push_back((Enemy*)pPlant);
     entities.addEntity(pPlant);
 
@@ -150,7 +150,8 @@ Projectile* Level1::createProjectile()
 {
     pProjectile = new Projectile;
     pProjectile->setSize({ 8, 8 });
-    pProjectile->rectangle.setFillColor(sf::Color::Magenta);
+    pProjectile->setTexture("Enemies/Plant/Bullet.png", { 0, 0 }, { 16, 16 });
+    pProjectile->rectangle.scale(2.0f, 2.0f);
     entities.addEntity(pProjectile);
     colMan.projectiles.push_back((Projectile*)pProjectile);
     return pProjectile;

@@ -1,13 +1,8 @@
-﻿  FireBlock.cpp
-  FlyingBlock.cpp
-  Mud.cpp
-  Mushroom.cpp
-  Pig.cpp
-  Plant.cpp
-  Projectile.cpp
+﻿  Level2.cpp
+C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Game\Level2.cpp(65,15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
   Gerando código
-  10 of 631 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+  1 of 752 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
   Game.vcxproj -> C:\Users\thoma_000\source\repos\Thomas-Pinton\Game\Release\Game.exe

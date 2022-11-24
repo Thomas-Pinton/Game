@@ -119,10 +119,10 @@ void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
         return;
     }
     pPig->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-    pPig->setSize({ 32.0, 32.0 });
+    pPig->setSize({ 36.0, 30.0 });
     pPig->speed = { (-200.0f + 20 * (rand() % 3)), 0.0f };
     //aleatoriza modulo e direcao da velocidade
-    pPig->rectangle.setFillColor(sf::Color::White);
+    pPig->setTexture("Enemies/AngryPig/Idle (36x30).png", {0, 0}, {36, 30});
     entities.addEntity(pPig);
     colMan.enemies.push_back(pPig);
 }

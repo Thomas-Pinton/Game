@@ -10,7 +10,7 @@ class Entity : public Being
 protected:
 	Coordinate<float> position;
 	Coordinate<float> size;
-	sf::Texture texture;
+	sf::Texture* texture;
 	//std::stringstream saveInfo;
 public:
 	bool alive;
@@ -25,7 +25,7 @@ public:
 
 	Entity();
 
-	void setTexture(std::string filePath);
+	void setTexture(std::string filePath, Coordinate<int> start = {0, 0}, Coordinate<int> size = { 0, 0 });
 
 	void setSize(Coordinate<float> t);
 
