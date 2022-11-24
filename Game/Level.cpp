@@ -81,11 +81,6 @@ void Level::execute()
 	}
 }
 
-void Level::loadSave(std::string filePath)
-{
-
-}
-
 void Level::createPlayer(Coordinate<float> position, int id)
 {
 	player = new Player(id);
