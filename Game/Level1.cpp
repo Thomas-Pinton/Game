@@ -7,6 +7,9 @@ Level1::Level1(Window* pW) :
 	Level(pW)
 {
 
+    pProjectile = NULL;
+    pPlant = NULL;
+
     int testTileMap[3750] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -72,23 +75,19 @@ Level1::Level1(Window* pW) :
         {
             if (testTileMap[i * BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
                 createFlyingObstacle({ j, i });
-            if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+            else if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
             {
                 if (rand1 == 0)
                     createMudObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
             }
-            if (testTileMap[i * BLOCK_WIDTH + j] == 298)
+            else if (testTileMap[i * BLOCK_WIDTH + j] == 298)
             {
                 if (rand1 == 1)
                     createMudObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
-            }
-            else if (testTileMap[i * 75 + j] == -5)
-            {
-                createPlant({ j, i });
             }
         }
     }
@@ -113,7 +112,7 @@ Level1::Level1(Window* pW) :
         createMushroom({ j, 45 });
     }
 
-    for (i = 0; i < amountOfPlants; i++)
+    for (i = 0; i < amountOfPlants; i++) 
         createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
    
 }
@@ -122,4 +121,38 @@ Level1::~Level1()
 {
 }
 
+void Level1::createPlant(Coordinate<int> position)
+{
+    pPlant = new Enemies::Plant;
+    if (pPlant == NULL)
+    {
+        std::cout << "Erro ao criar planta" << std::endl;
+        return;
+    }
+    pPlant->setSize({ 42, 44 });
+    pPlant->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pPlant->setTexture("Enemies/Plant/Idle (44x42).png", { 0, 0 }, { 44, 42 });
+    colMan.enemies.push_back((Enemy*)pPlant);
+    entities.addEntity(pPlant);
 
+    pPlant->players = players;
+
+    std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
+
+    for (int i = 0; i < 3; i++)
+    {
+        pPlant->addProjectile(createProjectile());
+    }
+    pPlant->lastProjectileShooted = pPlant->projectiles.begin();
+    std::cout << "Plant created " << std::endl;
+}
+Projectile* Level1::createProjectile()
+{
+    pProjectile = new Projectile;
+    pProjectile->setSize({ 8, 8 });
+    pProjectile->setTexture("Enemies/Plant/Bullet.png", { 0, 0 }, { 16, 16 });
+    pProjectile->rectangle.scale(2.0f, 2.0f);
+    entities.addEntity(pProjectile);
+    colMan.projectiles.push_back((Projectile*)pProjectile);
+    return pProjectile;
+}

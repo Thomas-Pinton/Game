@@ -5,9 +5,9 @@ namespace Enemies
 {
 	Plant::Plant()
 	{
+		id = classes(plant);
 		shootInterval = 0.0f;
 		shootCooldown = 1.0f;
-		pPlayer = NULL;
 	}
 
 	Plant::~Plant()
@@ -17,7 +17,7 @@ namespace Enemies
 			delete (*it);
 	}
 
-	void Plant::shoot()
+	void Plant::shoot(Player* pPlayer)
 	{
 		std::cout << "Shooting " << std::endl;
 		Projectile* pP;
@@ -30,14 +30,12 @@ namespace Enemies
 			pP = *(lastProjectileShooted++);
 			lastProjectileShooted = lastProjectileShooted++;
 		}
-		pP->alive = true;
-		pP->speed = { 0.0f, 0.0f };
-		pP->setPosition(this->getPosition());
+		pP->reset(this->getPosition());
 		//pP->updatePosition({ this->getSize().x / 2, 0 });
 		if (this->getPosition().x > pPlayer->getPosition().x)
-			pP->speed.x = -600.0f;
+			pP->speed.x = -500.0f;
 		else
-			pP->speed.x = 600.0f;
+			pP->speed.x = 500.0f;
 	}
 
 	void Plant::execute()
@@ -47,21 +45,26 @@ namespace Enemies
 
 		shootInterval += pGraMan->getDeltaTime();
 
-		float dy = pPlayer->getPosition().y - this->getPosition().y > 0 ? pPlayer->getPosition().y - this->getPosition().y : this->getPosition().y - pPlayer->getPosition().y;
-		if (!pPlayer->getAlive())
-			return;
 
-		if (pPlayer->getPosition().y + pPlayer->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
-		//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
+
+		//float dy = pPlayer->getPosition().y - this->getPosition().y > 0 ? pPlayer->getPosition().y - this->getPosition().y : this->getPosition().y - pPlayer->getPosition().y;
+		
+		for (std::list<Player*>::iterator pPlayer = players.begin(); pPlayer != players.end(); pPlayer++)
 		{
-			if (shootInterval > shootCooldown)
+			if ((*pPlayer)->getAlive())
 			{
-				shootInterval = 0;
-				std::cout << "2" << std::endl;
-				shoot();
+				if ((*pPlayer)->getPosition().y + (*pPlayer)->getSize().y / 2 > this->getPosition().y) // se o player esta abaixo do centro do inimigo
+					//if ((pPlayer->getSize().y + this->getSize().y) / 2 > dy) // estao colidindo no eixo y, entao atira
+				{
+					if (shootInterval > shootCooldown)
+					{
+						shootInterval = 0;
+						std::cout << "2" << std::endl;
+						shoot((*pPlayer));
+					}
+				}
 			}
 		}
-		
 	}
 
 	void Plant::addProjectile(Projectile* pP)
@@ -76,6 +79,29 @@ namespace Enemies
 			std::list<Projectile*>::iterator it;
 			for (it = projectiles.begin(); it != projectiles.end(); it++)
 				(*it)->setAlive(false);
+		}
+		alive = false;
+	}
+	
+	void Plant::save()
+	{
+		std::ofstream plantFile("../data/Plant.txt", std::ios_base::app);
+		plantFile << alive << " "
+			<< position.x << " " << position.y << " "
+			<< size.x << " " << size.y << " "
+			<< speed.x << " " << speed.y << " "
+			<< acceleration.x << " " << acceleration.y << " "
+			<< hp << " "
+			<< damage << " "
+			<< shootCooldown << " "
+			<< std::endl;		
+		plantFile.close();
+		std::list<Projectile*>::iterator projectile;
+		for (projectile = lastProjectileShooted; projectile != lastProjectileShooted; projectile++)
+		{
+			(*projectile)->save();
+			if (projectile == projectiles.end())
+				projectile = projectiles.begin();
 		}
 	}
 }

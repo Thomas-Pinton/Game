@@ -6,6 +6,7 @@ namespace Enemies
 	Pig::Pig(float chanDirTime) :
 		Enemy()
 	{
+		id = classes(pig);
 		changeDirectionTime = chanDirTime;
 		changeState(CALM);
 		hp = 3;
@@ -62,5 +63,22 @@ namespace Enemies
 			timeElapsed -= changeDirectionTime;
 		} 
 		updatePosition();
+	}
+
+	void Pig::save()
+	{
+		std::ofstream pigFile("../data/Pig.txt", std::ios_base::app);
+		pigFile << alive << " "
+			<< position.x << " " << position.y << " "
+			<< size.x << " " << size.y << " "
+			<< speed.x << " " << speed.y << " "
+			<< acceleration.x << " " << acceleration.y << " "
+			<< hp << " "
+			<< damage << " "
+			<< state << " "
+			<< changeDirectionTime << " "
+			<< timeElapsed << " "
+			<< std::endl;
+		pigFile.close();
 	}
 }

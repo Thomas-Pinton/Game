@@ -13,6 +13,7 @@ namespace Enemies
     public:
         Mushroom(float chDirTime = 4);
         void execute();
+        void save();
     };
 }
 

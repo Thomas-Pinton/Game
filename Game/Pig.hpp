@@ -20,6 +20,7 @@ namespace Enemies
 		void setHp(int newHp);
 		void decreaseHp(int qtd);
 		void execute();
+		void save();
 	};
 }
 

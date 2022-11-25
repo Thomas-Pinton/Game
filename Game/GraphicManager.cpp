@@ -14,6 +14,14 @@ namespace Manager {
 		deltaTime = 0.0f;
 	}
 
+	GraphicManager::~GraphicManager()
+	{
+		for (std::map<std::string, sf::Texture*>::iterator paths = textureMap.begin(); paths != textureMap.end(); paths++)
+		{
+			delete (*paths).second;
+		}
+	}
+
 	GraphicManager* GraphicManager::getInstance()
 	{
 		if (GraphicManager::instance == NULL)
@@ -37,9 +45,11 @@ namespace Manager {
 	{
 		deltaTime = (float)clock.restart().asSeconds();
 
-		if (deltaTime > 0.15f)
-			deltaTime = 0.15f;
-
+		if (deltaTime > 0.05f)
+		{
+			std::cout << "Too big of a delta time " << std::endl;
+			deltaTime = 0.05f;
+		}
 		return deltaTime;
 	}
 
@@ -68,4 +78,29 @@ namespace Manager {
 		pWindow->config.display();
 	}
 
+	sf::Texture* GraphicManager::loadTexture(std::string filePath)
+	{
+		for (std::map<std::string, sf::Texture*>::iterator paths = textureMap.begin(); paths != textureMap.end(); paths++)
+		{
+			if ((*paths).first == filePath)
+			{
+				return (*paths).second;
+			}
+		}
+
+		std::cout << "Texture in " << filePath << "Not loaded yet." << std::endl;
+
+
+		sf::Texture* text = new sf::Texture();
+		if (!text->loadFromFile("../Assets/" + filePath))
+		//if (!text->loadFromFile(filePath))
+			std::cout << "Error loading new texture " << std::endl;
+
+		textureMap.insert({ filePath, text });
+
+		std::cout << "Texture loaded" << std::endl;
+
+		return text;
+			
+	}
 }

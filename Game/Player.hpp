@@ -9,6 +9,7 @@ private:
 	bool canJump;
 	int pontuation;
 	int playerId;
+	int keys[3];
 public:
 	float movingSpeed;
 	float mudCooldown;
@@ -20,5 +21,7 @@ public:
 	//void displayPoints();
 	virtual void execute();
 	void setJump(bool p);
+	void executeJump(float height);
+	void save();
 
 };

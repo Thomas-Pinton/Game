@@ -6,7 +6,7 @@
 
 class Obstacle : public Entity
 {
-private:
+protected:
 	float counterForce;
 public:
 	Obstacle();

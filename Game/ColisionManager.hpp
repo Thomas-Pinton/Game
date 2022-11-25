@@ -36,11 +36,12 @@ namespace Manager
 		// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
 
 		void checkColisions();
-		//void checkColisionsPlayerEnemy();
-		//void checkColisionsPlayerObstacles();
-		//void checkColisionsEnemyObstacles();
-		//void checkColisionsPlayerProjectiles();
-		//void checkColisionsProjectilesObstacles();
+		void checkColisionsPlayerEnemy();
+		void checkColisionsPlayerObstacles();
+		void checkColisionsPlayerProjectiles();
+		void checkColisionsEnemyObstacles();
+		void checkColisionsProjectilesObstacles();
+		void checkColisionsPlayerWall();
 
 		Coordinate<float> checkColision(Entity* e1, Entity* e2);
 	};

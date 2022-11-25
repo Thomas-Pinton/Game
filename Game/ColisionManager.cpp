@@ -23,16 +23,66 @@ namespace Manager
 
 	void ColisionManager::checkColisions()
 	{
-		const int WIDTH = pWindow->getWIDTH();
-		const int HEIGHT = pWindow->getHEIGHT();
+		checkColisionsPlayerEnemy();
+		checkColisionsPlayerObstacles();
+		checkColisionsPlayerProjectiles();
+		checkColisionsEnemyObstacles();
+		checkColisionsPlayerWall();
+		checkColisionsEnemyObstacles();
+		checkColisionsProjectilesObstacles();
+	}
 
-		std::list<Enemy*>::iterator movingE;
+
+	void ColisionManager::checkColisionsPlayerEnemy()
+	{
+		std::list<Enemy*>::iterator enemy;
+		std::list<Player*>::iterator player;
+
+		for (player = players.begin(); player != players.end(); player++)
+		{
+			for (enemy = enemies.begin(); enemy != enemies.end(); enemy++)
+			{
+				if ((*enemy)->alive) // só chegar colisão se ele estiver vivo
+				{
+					Coordinate<float> ajuste = checkColision(*player, *enemy);
+
+					if (ajuste.y < -0.1f && (*player)->speed.y > 0.1f)
+						// se bateu na cabe�a do inimgo ele morreu
+					{
+						std::cout << "Dei dano" << std::endl;
+						std::cout << ajuste << std::endl;
+
+						(*player)->updatePosition(ajuste);
+
+						(*enemy)->decreaseHp(1);
+						(*player)->addPoints(50);
+
+						//(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
+						(*player)->executeJump(-sqrtf(2 * GRAVITY * 70));
+						//jogador pula cada vez que bate na cabeca de um inimigo
+
+						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
+
+					}
+					else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+						ajuste.y > 0.1f) // houve colis�o, checando tanto para positivos como negativos
+					{
+						std::cout << "Morri" << std::endl;
+						// perdeu
+						std::cout << "Damage " << (*enemy)->getDamage() << std::endl;
+						(*player)->decreaseHp((*enemy)->getDamage());
+						// diminuir hp pelo dano que o inimigo causa
+						return;
+					}
+				}
+		}
+		}
+	}
+
+	void ColisionManager::checkColisionsPlayerObstacles()
+	{
 		std::list<Obstacle*>::iterator obstacle;
 		std::list<Player*>::iterator player;
-		std::list<Projectile*>::iterator projectile;
-
-		// player com resto
-		
 
 		for (player = players.begin(); player != players.end(); player++)
 		{
@@ -44,81 +94,56 @@ namespace Manager
 			{
 				Coordinate<float> ajuste = checkColision(*player, *obstacle);
 
-				if (ajuste.x > 0.1 || ajuste.x < -0.1 || 
+				if (ajuste.x > 0.1 || ajuste.x < -0.1 ||
 					ajuste.y > 0.1 || ajuste.y < -0.1) // houve colis�o, checando tanto para positivos como negativos
 				{
+					if (ajuste.y > 0.1 || ajuste.y < -0.1)
+						(*player)->speed.y = 0.0f;
 					if (ajuste.y < -0.01f) // colis�o com o ch�o
 					{
 						(*player)->setJump(true);
 						(*player)->acceleration = { 0.0f, 0.0f };
-						(*player)->speed.y = 0.0;
 						(*obstacle)->affectPlayer(*player);
 					}
-					if (ajuste.y > 0.1f && (*player)->speed.y > 0.0f)
-					{
-						(*player)->speed.y = 0.0f;
-						// pensar em como fazer ele bater a cabeca e comecar a cair
-					}
-						// isso faz com que o personagem possa encostar no ch�o, cair e conseguir pular  no ar enquanto est� caindo,
-					// ser� que esse comportamento � desej�vel?
 
-					//(*k)->acceleration = { 0.0f, 0.0f };
-					//(*k)->speed.y = 0.0;
+					// isso faz com que o personagem possa encostar no ch�o, cair e conseguir pular  no ar enquanto est� caindo,
+				// ser� que esse comportamento � desej�vel?
+
+				//(*k)->acceleration = { 0.0f, 0.0f };
+				//(*k)->speed.y = 0.0;
 					(*player)->updatePosition(ajuste);
 				}
 			}
 
 			// considerando que todas as moving entities s�o inimigos
-			for (movingE = enemies.begin(); movingE != enemies.end(); movingE++)
-			{
-				if ((*movingE)->alive) // só chegar colisão se ele estiver vivo
-				{
-					Coordinate<float> ajuste = checkColision(*player, *movingE);
 
-					if (ajuste.y < -0.1f && (*player)->speed.y > 0.1f)
-						// se bateu na cabe�a do inimgo ele morreu
-					{
-						std::cout << "Dei dano" << std::endl;
-						std::cout << ajuste << std::endl;
+		}
+	}
 
-						(*player)->updatePosition(ajuste);
+	void ColisionManager::checkColisionsPlayerProjectiles()
+	{
+		std::list<Projectile*>::iterator projectile;
+		std::list<Player*>::iterator player;
 
-						//enemies.erase(i);
-						(*movingE)->decreaseHp(1);
-						(*player)->addPoints(50);
-
-						(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
-						//jogador pula cada vez que bate na cabeca de um inimigo
-
-						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
-
-						//delete *i;
-
-					}
-					else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-						ajuste.y > 0.1f) // houve colis�o, checando tanto para positivos como negativos
-					{
-						std::cout << "Morri" << std::endl;
-						// perdeu
-						(*player)->decreaseHp(1);
-						return;
-					}
-				}
-			}
+		for (player = players.begin(); player != players.end(); player++)
+		{
+			(*player)->acceleration = { 0.0f, GRAVITY };
+			// if not colliding, these are the base values
+			// if is coliding, then the values will be changed
 
 			for (projectile = projectiles.begin(); projectile != projectiles.end(); projectile++)
 			{
 				if ((*projectile)->alive) // só chegar colisão se ele estiver vivo
 				{
-					Coordinate<float> ajuste = checkColision(*player, *movingE);
+					Coordinate<float> ajuste = checkColision(*player, *projectile);
 
 					if (ajuste.x > 0.1 || ajuste.x < -0.1 ||
 						ajuste.y > 0.1 || ajuste.y < -0.1)
 					{
 						std::cout << "Morri" << std::endl;
-
+						std::cout << "Coliding with projectile " << std::endl;
 						// perdeu
-						(*player)->decreaseHp(1);
+						(*player)->decreaseHp((*projectile)->getDamage());
 						return;
 					}
 
@@ -126,8 +151,78 @@ namespace Manager
 			}
 
 		}
+	}
 
-		// player com parede
+	void ColisionManager::checkColisionsEnemyObstacles()
+	{
+		std::list<Enemy*>::iterator enemy;
+		std::list<Obstacle*>::iterator obstacle;
+		for (enemy = enemies.begin(); enemy != enemies.end(); enemy++)
+		{
+
+			if ((*enemy)->alive)
+			{
+				(*enemy)->acceleration.y = GRAVITY;
+				for (obstacle = obstacles.begin()++; obstacle != obstacles.end(); obstacle++)
+				{
+
+					Coordinate<float> ajuste = checkColision(*enemy, *obstacle);
+
+					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+						ajuste.y > 0.1f || ajuste.y < -0.1f)
+					{
+						(*enemy)->updatePosition(ajuste);
+
+						if (ajuste.y < -0.01f)
+						{
+							(*enemy)->acceleration.y = 0.0f;
+							(*enemy)->speed.y = 0.0f;
+						}
+
+					}
+				}
+			}
+		}
+	}
+
+	void ColisionManager::checkColisionsProjectilesObstacles()
+	{
+		std::list<Projectile*>::iterator projectile;
+		std::list<Obstacle*>::iterator obstacle;
+		for (projectile = projectiles.begin(); projectile != projectiles.end(); projectile++)
+		{
+
+			if ((*projectile)->alive)
+			{
+				(*projectile)->acceleration.y = GRAVITY;
+				for (obstacle = obstacles.begin()++; obstacle != obstacles.end(); obstacle++)
+				{
+
+					Coordinate<float> ajuste = checkColision(*projectile, *obstacle);
+
+					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
+						ajuste.y > 0.1f || ajuste.y < -0.1f)
+					{
+
+						(*projectile)->updatePosition(ajuste);
+
+						if (ajuste.y < -0.01f)
+						{
+							(*projectile)->acceleration.y = 0.0f;
+							(*projectile)->speed.y = 0.0f;
+						}
+
+						//(*projectile)->setAlive(false);
+					}
+				}
+			}
+		}
+	}
+
+	void ColisionManager::checkColisionsPlayerWall()
+	{
+		const int WIDTH = pWindow->getWIDTH();
+		std::list<Player*>::iterator player;
 
 		for (player = players.begin(); player != players.end(); player++)
 		{
@@ -145,79 +240,9 @@ namespace Manager
 				Coordinate<float> coord(-1 * (posicao + tamanho - WIDTH), 0);
 				(*player)->updatePosition(coord);
 			}
-		
-		}
 
-		
-
-		//moving com static
-		///*
-
-		for (movingE = enemies.begin(); movingE != enemies.end(); movingE++)
-		{
-
-			if ((*movingE)->alive)
-			{
-				(*movingE)->acceleration.y = GRAVITY;
-				for (obstacle = obstacles.begin()++; obstacle != obstacles.end(); obstacle++)
-				{
-
-					Coordinate<float> ajuste = checkColision(*movingE, *obstacle);
-
-					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-						ajuste.y > 0.1f || ajuste.y < -0.1f)
-					{
-						(*movingE)->updatePosition(ajuste);
-
-						if (ajuste.y < -0.01f)
-						{
-							(*movingE)->acceleration.y = 0.0f;
-							(*movingE)->speed.y = 0.0f;
-						}
-							
-
-						// modulo da velocidade
-						/*
-						if ((*movingE)->speed.x * (*movingE)->speed.x < (*movingE)->speed.y * (*movingE)->speed.y)
-							(*movingE)->acceleration.y = 0.0f;
-						else 
-							(*movingE)->speed.x *= -1;
-						*/
-					}
-				}
-			}
-		}
-
-		//*/
-
-		// projetil com static
-		for (projectile = projectiles.begin(); projectile != projectiles.end(); projectile++)
-		{
-
-			if ((*movingE)->alive)
-			{
-				(*movingE)->acceleration.y = GRAVITY;
-				for (obstacle = obstacles.begin()++; obstacle != obstacles.end(); obstacle++)
-				{
-
-					Coordinate<float> ajuste = checkColision(*movingE, *obstacle);
-
-					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-						ajuste.y > 0.1f || ajuste.y < -0.1f)
-					{
-						(*movingE)->updatePosition(ajuste);
-
-						if (ajuste.y < -0.01f)
-						{
-							(*movingE)->acceleration.y = 0.0f;
-							(*movingE)->speed.y = 0.0f;
-						}
-					}
-				}
-			}
 		}
 	}
-
 
 	// checa colis�o e retorna o quanto deve ser ajustado
 	Coordinate<float> ColisionManager::checkColision(Entity* e1, Entity* e2)

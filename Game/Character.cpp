@@ -17,14 +17,14 @@ void Character::setHp(int newHp)
 {
 	hp = newHp;
 	if (hp <= 0)
-		alive = false;
+		setAlive(false);
 }
 
 void Character::decreaseHp(int qtd)
 {
 	hp -= qtd;
 	if (hp <= 0)
-		alive = false;
+		setAlive(false);
 }
 
 void Character::increaseHp(int qtd)

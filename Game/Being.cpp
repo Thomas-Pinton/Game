@@ -5,8 +5,7 @@ using namespace Manager;
 
 Being::Being()
 {
-	id = id_count;
-	id_count++;
+	id = -1;
 	// id n�o imprementado ainda
 }
 

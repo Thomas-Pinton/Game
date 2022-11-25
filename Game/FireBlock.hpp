@@ -12,6 +12,7 @@ namespace Obstacles
     public:
         FireBlock();
         void affectPlayer(Player* pP);
+        void save();
     };
 }
 

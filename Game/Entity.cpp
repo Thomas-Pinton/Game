@@ -10,17 +10,17 @@ Entity::Entity()
 {
 	speed.x = 0; speed.y = 0;
 	acceleration.x = 0; acceleration.y = GRAVITY;
+	//temporario
+	//rectangle.setOutlineColor(sf::Color::Red);
+	//rectangle.setOutlineThickness(1);
 }
 
 
-void Entity::setTexture(std::string filePath)
+void Entity::setTexture(std::string filePath, Coordinate<int> start, Coordinate<int> size)
 {
-	if (!texture.loadFromFile(filePath))
-	{
-		std::cout << "Erro ao carregar imagem" << std::endl;
-		return;
-	}
-	sprite.setTexture(texture);
+	texture = pGraMan->loadTexture(filePath);
+	rectangle.setTexture(texture);
+	rectangle.setTextureRect(sf::IntRect(start.x, start.y, size.x, size.y));
 }
 
 void Entity::setSize(Coordinate<float> t) {
@@ -78,4 +78,8 @@ void Entity::print()
 void Entity::execute()
 {
 	updatePosition();
+}
+
+void Entity::save()
+{
 }

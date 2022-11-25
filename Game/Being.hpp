@@ -9,16 +9,26 @@ namespace Manager {
 	class GraphicManager;
 }
 
-
 // Tudo aquilo que tem representa��o gr�fica
 // Ex.: Character, blocos, menu, backgrounds, etc
+
+enum classes {
+	notSaved = -1,
+	player,
+	projectile,
+	fireBlock,
+	mud,
+	flyingBlock,
+	mushroom,
+	plant,
+	pig,
+};
 
 using namespace Manager;
 
 class Being
 {
 protected:
-	static int id_count;
 	int id;
 public:
 	static Manager::GraphicManager* pGraMan;

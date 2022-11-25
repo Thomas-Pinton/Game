@@ -13,6 +13,8 @@
 #include "Mud.hpp"
 #include "Pig.hpp"
 #include <list>
+#include <fstream>
+#include "Constants.hpp"
 // Os inimigos e osbtasculos estao sendo incluidos no nivel pois eles serao usados na maioria das fases
 
 using namespace Manager;
@@ -24,8 +26,15 @@ protected:
 	ColisionManager colMan;
 	Manager::GraphicManager* pGraMan;
 	int* tileMap;
-	Player* pP;
-	//Player* p2;
+	std::list<Player*> players;
+
+	Player* player;
+
+	Obstacles::FlyingBlock* pFlyingBlock;
+	Obstacles::Mud* pMud;
+	Obstacles::FireBlock* pFireBlock;
+
+	Enemies::Mushroom* mushroom;
 public:
 	Level(Window* pW);
 	~Level();
@@ -34,13 +43,11 @@ public:
 	void print();
 	void manageColisions();
 
+	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);
 	void createMudObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);
-	void createPlant(Coordinate<int> position);
-	Projectile* createProjectile();
 	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
-	void createPig(Coordinate<int> position, float changeDirectionTime = 1.5f + (rand() % 2) / 2);
 	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
 };
 

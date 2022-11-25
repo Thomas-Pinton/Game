@@ -8,7 +8,9 @@ namespace Obstacles
         public Obstacle
     {
     public:
+        FlyingBlock();
         void affectPlayer();
+        void save();
     };
 }
 

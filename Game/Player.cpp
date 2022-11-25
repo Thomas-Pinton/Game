@@ -5,12 +5,26 @@ Player::Player(int pId) :
 	Character(),
 	playerId(pId)
 {
+	id = (classes)player;
 	position.x = 0.0;
 	position.y = 0.0;
 	canJump = false;
 	pontuation = 0;
 	movingSpeed = 300.0f;
 	mudCooldown = 0.0f;
+
+	if (pId == 1)
+	{
+		keys[0] = sf::Keyboard::Key::A;
+		keys[1] = sf::Keyboard::Key::D;
+		keys[2] = sf::Keyboard::Key::W;
+	}
+	else if (pId == 2)
+	{
+		keys[0] = sf::Keyboard::Key::Left;
+		keys[1] = sf::Keyboard::Key::Right;
+		keys[2] = sf::Keyboard::Key::Up;
+	}
 	// Posic�o inicial
 }
 
@@ -40,26 +54,13 @@ void Player::checkKeys()
 
 	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
 
-	if (playerId == 1)
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-			speed.x = -movingSpeed;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-			speed.x = movingSpeed;
-		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) && canJump)
-			speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[0]))
+		speed.x = -movingSpeed;
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[1]))
+		speed.x = movingSpeed;
+	if ((sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[2])) && canJump)
+		speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
 		// 2 * gravidade * altura do pulo
-	}
-	else if (playerId == 2)
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-			speed.x = -movingSpeed;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-			speed.x = movingSpeed;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && canJump)
-			speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
-		// 2 * gravidade * altura do pulo
-	}
 }
 /*
 void Player::displayPoints()
@@ -77,4 +78,25 @@ void Player::execute()
 	checkKeys();
 	updatePosition();
 	//displayPoints();
+}
+
+void Player::executeJump(float height)
+{
+	speed.y = height; 
+	canJump = false;
+}
+
+void Player::save()
+{
+	std::ofstream playerFile("../data/Player.txt", std::ofstream::out);
+	playerFile  << alive << " " 
+				<< position.x << " " << position.y << " " 
+				<< size.x << " " << size.y << " "
+				<< speed.x << " " << speed.y << " "
+				<< acceleration.x << " " << acceleration.y << " "
+				<< hp << " "
+				<< canJump << " "
+				<< pontuation << " "
+				<< std::endl;
+	playerFile.close();
 }
