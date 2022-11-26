@@ -9,9 +9,12 @@ Player::Player(int pId) :
 	position.x = 0.0;
 	position.y = 0.0;
 	canJump = false;
+	canWalk = true;
 	pontuation = 0;
 	movingSpeed = 300.0f;
+	jumpHeight = -sqrtf(2 * GRAVITY * 130);
 	mudCooldown = 0.0f;
+	sandCooldown = 0.0f;
 
 	if (pId == 1)
 	{
@@ -42,6 +45,28 @@ void Player::checkKeys()
 {
 	//float vel = 3.0 * 100;
 
+	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[0]) && (canWalk || canJump == false))
+		speed.x = -movingSpeed;
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[1]) && (canWalk || canJump == false))
+		speed.x = movingSpeed;
+	if ((sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[2])) && canJump)
+		speed.y = jumpHeight; canJump = false;
+		// 2 * gravidade * altura do pulo
+}
+
+void Player::checkForObstacles()
+{
+	if (sandCooldown > 0.05f)
+	{
+		sandCooldown -= pGraMan->getDeltaTime();
+	}
+	else {
+		jumpHeight = -sqrtf(2 * GRAVITY * 130);
+		sandCooldown = 0.0f;
+		setWalk(true);
+	}
+
 	if (mudCooldown > 0.05f)
 	{
 		mudCooldown -= pGraMan->getDeltaTime();
@@ -51,30 +76,21 @@ void Player::checkKeys()
 		movingSpeed = 300.0f;
 		mudCooldown = 0.0f;
 	}
-
-	speed.x = 0; // padr�o, caso nenhuma tecla esteja sendo apertada
-
-	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[0]))
-		speed.x = -movingSpeed;
-	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[1]))
-		speed.x = movingSpeed;
-	if ((sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[2])) && canJump)
-		speed.y += -sqrtf(2 * GRAVITY * 130); canJump = false;
-		// 2 * gravidade * altura do pulo
 }
-/*
-void Player::displayPoints()
-{
-	pGraMan->displayPoints();
-}
-*/
+
 void Player::setJump(bool p)
 {
 	canJump = p;
 }
 
+void Player::setWalk(bool w)
+{
+	canWalk = w;
+}
+
 void Player::execute()
 {
+	checkForObstacles();
 	checkKeys();
 	updatePosition();
 	//displayPoints();

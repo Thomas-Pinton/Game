@@ -3,7 +3,7 @@
 #include "Being.hpp"
 #include "Coordinate.hpp"
 #include "Constants.hpp"
-#include <fstream>
+
 
 class Entity : public Being
 {

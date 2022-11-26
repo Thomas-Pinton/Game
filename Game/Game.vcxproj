@@ -146,6 +146,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FireBlock.cpp" />
     <ClCompile Include="FlyingBlock.cpp" />
+    <ClCompile Include="Ice.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Pig.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Sand.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -174,6 +176,7 @@
     <ClInclude Include="FlyingBlock.hpp" />
     <ClInclude Include="GraphicManager.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="Ice.hpp" />
     <ClInclude Include="Level1.hpp" />
     <ClInclude Include="Level2.hpp" />
     <ClInclude Include="Menu.hpp" />
@@ -182,6 +185,7 @@
     <ClInclude Include="Pig.hpp" />
     <ClInclude Include="Plant.hpp" />
     <ClInclude Include="Projectile.hpp" />
+    <ClInclude Include="Sand.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="List.hpp" />

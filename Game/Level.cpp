@@ -32,6 +32,21 @@ Level::~Level()
 {
 }
 
+void Level::loadFromSave()
+{
+	loadFireBlock();
+}
+
+void Level::loadFireBlock()
+{
+	std::ifstream fireBlockFile("../data/FireBlock.txt");
+	if (fireBlockFile.is_open())
+	{
+		std::string line;
+
+	}
+}
+
 void Level::print()
 {
 	pGraMan->clear();
@@ -150,6 +165,8 @@ void Level::createFireObstacle(Coordinate<int> position)
 
 void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 {
+	std::cout << "Creating Mushroom " << std::endl;
+	std::cout << "Position " << position << std::endl;
 	mushroom = NULL;
 	mushroom = new Enemies::Mushroom(changeDirectionTime);
 	if (mushroom == NULL)
@@ -160,7 +177,8 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	colMan.enemies.push_back((Enemy*)mushroom);
 	mushroom->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	mushroom->setSize({ 32.0, 32.0 });
-	mushroom->speed = { (-200.0f + 40 * (rand() % 3)), 0.0f };
+	float speedx = (-200.0f + 40 * (rand() % 3));
+	mushroom->speed = { speedx, 0.0f };
 	//aleatoriza modulo e direcao da velocidade
 	mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE*2,  BLOCK_SIZE*2 });
 	entities.addEntity(mushroom);
