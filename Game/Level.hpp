@@ -46,11 +46,14 @@ public:
 
 	void loadFireBlock();
 
+	void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath);
 	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);
 	void createMudObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);
 	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
 	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
+
+	void recoverMushroom();
 };
 

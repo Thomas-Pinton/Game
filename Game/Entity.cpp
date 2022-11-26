@@ -83,3 +83,18 @@ void Entity::execute()
 void Entity::save()
 {
 }
+
+void Entity::recoverEntity(std::string data)
+{
+	std::istringstream ss(data);
+
+	std::string word;
+
+	ss >> alive;
+	ss >> position.x; ss >> position.y;
+	ss >> size.x; ss >> size.y;
+	ss >> speed.x; ss >> speed.y;
+	ss >> acceleration.x; ss >> acceleration.y;
+
+	std::cout << "Alive " << alive << "position " << position << "Size " << size << std::endl;
+}

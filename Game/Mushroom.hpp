@@ -12,6 +12,7 @@ namespace Enemies
         float timeElapsed;
     public:
         Mushroom(float chDirTime = 4);
+        Mushroom(std::string data);
         void execute();
         void save();
     };

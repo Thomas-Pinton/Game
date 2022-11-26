@@ -40,42 +40,45 @@ namespace Manager
 
 		for (player = players.begin(); player != players.end(); player++)
 		{
-			for (enemy = enemies.begin(); enemy != enemies.end(); enemy++)
+			if ((*player)->alive)
 			{
-				if ((*enemy)->alive) // só chegar colisão se ele estiver vivo
+				for (enemy = enemies.begin(); enemy != enemies.end(); enemy++)
 				{
-					Coordinate<float> ajuste = checkColision(*player, *enemy);
-
-					if (ajuste.y < -0.01f && (*player)->speed.y > 0.1f)
-						// se bateu na cabe�a do inimgo ele morreu
+					if ((*enemy)->alive) // só chegar colisão se ele estiver vivo
 					{
-						std::cout << "Dei dano" << std::endl;
-						std::cout << ajuste << std::endl;
+						Coordinate<float> ajuste = checkColision(*player, *enemy);
 
-						(*player)->updatePosition(ajuste);
+						if (ajuste.y < -0.01f && (*player)->speed.y > 0.1f)
+							// se bateu na cabe�a do inimgo ele morreu
+						{
+							std::cout << "Dei dano" << std::endl;
+							std::cout << ajuste << std::endl;
 
-						(*enemy)->decreaseHp(1);
-						(*player)->addPoints(50);
+							(*player)->updatePosition(ajuste);
 
-						//(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
-						(*player)->executeJump(-sqrtf(2 * GRAVITY * 70));
-						//jogador pula cada vez que bate na cabeca de um inimigo
+							(*enemy)->decreaseHp(1);
+							(*player)->addPoints(50);
 
-						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
+							//(*player)->speed.y = -sqrtf(2 * GRAVITY * 70); (*player)->setJump(false);
+							(*player)->executeJump(-sqrtf(2 * GRAVITY * 70));
+							//jogador pula cada vez que bate na cabeca de um inimigo
 
-					}
-					else if (ajuste.x > 0.01f || ajuste.x < -0.01f ||
-						ajuste.y > 0.01f) // houve colis�o, checando tanto para positivos como negativos
-					{
-						std::cout << "Morri" << std::endl;
-						// perdeu
-						std::cout << "Damage " << (*enemy)->getDamage() << std::endl;
-						(*player)->decreaseHp((*enemy)->getDamage());
-						// diminuir hp pelo dano que o inimigo causa
-						return;
+							std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
+
+						}
+						else if (ajuste.x > 0.01f || ajuste.x < -0.01f ||
+							ajuste.y > 0.01f) // houve colis�o, checando tanto para positivos como negativos
+						{
+							std::cout << "Morri" << std::endl;
+							// perdeu
+							std::cout << "Damage " << (*enemy)->getDamage() << std::endl;
+							(*player)->decreaseHp((*enemy)->getDamage());
+							// diminuir hp pelo dano que o inimigo causa
+							return;
+						}
 					}
 				}
-		}
+			}
 		}
 	}
 
@@ -94,12 +97,12 @@ namespace Manager
 			{
 				Coordinate<float> ajuste = checkColision(*player, *obstacle);
 
-				if (ajuste.x > 0.01 || ajuste.x < -0.01 ||
-					ajuste.y > 0.01 || ajuste.y < -0.01) // houve colis�o, checando tanto para positivos como negativos
+				if (ajuste.x > 0.001 || ajuste.x < -0.001 ||
+					ajuste.y > 0.001 || ajuste.y < -0.001) // houve colis�o, checando tanto para positivos como negativos
 				{
-					if (ajuste.y > 0.01 || ajuste.y < -0.01)
+					if (ajuste.y > 0.001 || ajuste.y < -0.001)
 						(*player)->speed.y = 0.0f;
-					if (ajuste.y < -0.01f) // colis�o com o ch�o
+					if (ajuste.y < -0.001f) // colis�o com o ch�o
 					{
 						(*player)->setJump(true);
 						(*player)->acceleration = { 0.0f, 0.0f };

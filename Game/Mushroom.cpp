@@ -1,5 +1,6 @@
 #include "Mushroom.hpp"
 #include "GraphicManager.hpp"
+#include <sstream>
 
 namespace Enemies
 {
@@ -10,8 +11,34 @@ namespace Enemies
 		timeElapsed = 0;
 	}
 
+	Mushroom::Mushroom(std::string data)
+	{
+		id = classes(mushroom);
+		std::cout << "Recovering Mushroom " << std::endl;
+
+		std::istringstream ss(data);
+
+		std::string word;
+		std::string entityString;
+		for (int i = 0; i < 9; i++)
+		{
+			ss >> word;
+			entityString += word + " ";
+		}
+		recoverEntity(entityString);
+
+		ss >> hp;
+		ss >> damage;
+		ss >> changeDirectionTime;
+		ss >> timeElapsed;
+
+		std::cout << "Hp " << hp << "damage " << damage << "time elapsed " << timeElapsed << std::endl;
+
+	}
+
 	void Mushroom::execute()
 	{
+		std::cout << "Executing mushroom " << std::endl;
 		checkIce();
 		timeElapsed += pGraMan->getDeltaTime();
 		if (timeElapsed > changeDirectionTime)

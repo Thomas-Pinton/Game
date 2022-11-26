@@ -73,9 +73,7 @@ Level1::Level1(Window* pW) :
     {
         for (j = 0; j < 75; j++)
         {
-            if (testTileMap[i * BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
-                createFlyingObstacle({ j, i });
-            else if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+            if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
             {
                 if (rand1 == 0)
                     createMudObstacle({ j, i });
@@ -89,6 +87,15 @@ Level1::Level1(Window* pW) :
                 else
                     createFireObstacle({ j, i });
             }
+        }
+    }
+    
+    for (i = 0; i < 50; i++)
+    {
+        for (j = 0; j < 75; j++)
+        {
+            if (testTileMap[i * BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
+                createFlyingObstacle({ j, i });
         }
     }
 
@@ -109,8 +116,10 @@ Level1::Level1(Window* pW) :
     {
         j = 5 + rand() % 55;
         std::cout << "Criando inimigo" << std::endl;
-        createMushroom({ j, 45 });
+        //createMushroom({ j, 45 });
     }
+    //std::cout << "Recovering mushrooms " << std::endl;
+    //recoverMushroom();
 
     for (i = 0; i < amountOfPlants; i++) 
         createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });

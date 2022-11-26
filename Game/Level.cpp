@@ -113,6 +113,10 @@ void Level::execute()
 	}
 }
 
+void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath)
+{
+}
+
 void Level::createPlayer(Coordinate<float> position, int id)
 {
 	player = new Player(id);
@@ -132,7 +136,7 @@ void Level::createFlyingObstacle(Coordinate<int> position)
 {
 	pFlyingBlock = NULL;
 	pFlyingBlock = new Obstacles::FlyingBlock;
-	pFlyingBlock->setSize({ 16.0, 16.0 });
+	pFlyingBlock->setSize({ 16.0f, 16.0f });
 	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
 	pFlyingBlock->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 1 * BLOCK_SIZE}, { BLOCK_SIZE,  BLOCK_SIZE });
@@ -144,7 +148,7 @@ void Level::createMudObstacle(Coordinate<int> position)
 {
 	pMud = NULL;
 	pMud = new Obstacles::Mud;
-	pMud->setSize({ 16.0, 16.0 });
+	pMud->setSize({ 16.0f, 16.0f });
 	pMud->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	pMud->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 5 , BLOCK_SIZE * 0}, { BLOCK_SIZE,  BLOCK_SIZE });
 	colMan.obstacles.push_back((Obstacle*)pMud);
@@ -155,9 +159,8 @@ void Level::createFireObstacle(Coordinate<int> position)
 {
 	pFireBlock = NULL;
 	pFireBlock = new Obstacles::FireBlock;
-	pFireBlock->setSize({ 16.0, 16.0 });
+	pFireBlock->setSize({ 16.0f, 16.0f });
 	pFireBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-	pFireBlock->rectangle.setFillColor(sf::Color::Yellow);
 	pFireBlock->setTexture("Traps/Fire/On (16x32).png", { 0, 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
 	colMan.obstacles.push_back((Obstacle*)pFireBlock);
 	entities.addEntity(pFireBlock);
@@ -176,11 +179,28 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	}
 	colMan.enemies.push_back((Enemy*)mushroom);
 	mushroom->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-	mushroom->setSize({ 32.0, 32.0 });
+	mushroom->setSize({ 32.0f, 32.0f });
 	float speedx = (-200.0f + 40 * (rand() % 3));
 	mushroom->speed = { speedx, 0.0f };
 	//aleatoriza modulo e direcao da velocidade
 	mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE*2,  BLOCK_SIZE*2 });
 	entities.addEntity(mushroom);
 	std::cout << "Mushroom " << mushroom->acceleration.y << std::endl;
+}
+
+void Level::recoverMushroom()
+{
+	std::fstream mushroomFile("../data/Mushroom.txt", std::ios::in);
+	if (mushroomFile.is_open())
+	{
+		std::string line;
+		while (std::getline(mushroomFile, line)) 
+		{
+			mushroom = new Enemies::Mushroom(line);
+			mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE * 2,  BLOCK_SIZE * 2 });
+			std::cout << "Mushroom " << mushroom->alive << std::endl;
+			entities.addEntity(mushroom);
+			colMan.enemies.push_back((Enemy*)mushroom);
+		}
+	}
 }

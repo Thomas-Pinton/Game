@@ -3,6 +3,7 @@
 #include "Being.hpp"
 #include "Coordinate.hpp"
 #include "Constants.hpp"
+#include <sstream>
 
 
 class Entity : public Being
@@ -48,4 +49,6 @@ public:
 	virtual void execute();
 
 	virtual void save();
+
+	void recoverEntity(std::string data);
 };

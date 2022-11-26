@@ -71,8 +71,6 @@ Level2::Level2(Window* pW) :
     {
         for (int j = 0; j < BLOCK_WIDTH; j++)
         {
-            if (testTileMap[i*BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
-                createFlyingObstacle({j, i});
             if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
             {
                 if (rand1 == 0)
@@ -87,6 +85,15 @@ Level2::Level2(Window* pW) :
                 else
                     createFireObstacle({ j, i });
             }
+        }
+    }
+    
+    for (int i = 0; i < BLOCK_HEIGHT; i++)
+    {
+        for (int j = 0; j < BLOCK_WIDTH; j++)
+        {
+            if (testTileMap[i*BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
+                createFlyingObstacle({j, i});
         }
     }
 
