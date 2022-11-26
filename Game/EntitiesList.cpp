@@ -44,6 +44,16 @@ void EntitiesList::addEntity(Entity* pE)
 
 void EntitiesList::saveEntities()
 {
+	// limpando todos os arquivos
+	remove("../data/Player.txt");
+	remove("../data/Mushroom.txt");
+	remove("../data/Pig.txt");
+	remove("../data/Plant.txt");
+	remove("../data/FlyingBlock.txt");
+	remove("../data/FireBlock.txt");
+	remove("../data/Mud.txt");
+	remove("../data/Projectile.txt");
+
 	int size = list.getSize();
 	Lista<Entity>::Element<Entity>* pElEntidade = list.getPrimeiro();
 

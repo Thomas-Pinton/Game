@@ -54,9 +54,9 @@ Level2::Level2(Window* pW) :
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 24, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 46, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+        0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
+        0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
         7, 8, 8, 298, 298, 298, 298, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 32, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 247, 248, 248, 248, 248, 248, 248, 248, 248, 248, 248, 249, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 298, 298, 298, 298, 298, 298, 298, 298, 298, 298, 9,
         29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31,
         51, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 53
@@ -76,14 +76,14 @@ Level2::Level2(Window* pW) :
             if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
             {
                 if (rand1 == 0)
-                    createMudObstacle({j, i});
+                    createIceObstacle({j, i});
                 else
                     createFireObstacle({j, i});
             }
             if (testTileMap[i * BLOCK_WIDTH + j] == 298)
             {
                 if (rand1 == 1)
-                    createMudObstacle({ j, i });
+                    createIceObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
             }
@@ -92,16 +92,18 @@ Level2::Level2(Window* pW) :
 
     // creating enemies 
     
-    int mushroomFloorAmout = 2 + rand() % 2;
+    int mushroomFloorAmout = 3 + rand() % 2;
     int mushroomFloorPosition = 21 + rand() % 50;
     int pigUpAmount = 1 + rand() % 2;
 
     for (int i = 0; i < mushroomFloorAmout; i++) //1120
-        createMushroom({ 21 + rand() % 50, 15});
+        createMushroom({ 21 + rand() % 50, 15 });
+
+    createMushroom({ 21 + rand() % 20, 30 });
  
     for (int i = 0; i < 1; i++)
         createPig({ 50 + rand() % 21, 13 }, 2.0f);
-        //createMushroom({ mushroomUpPosition, 14 }, 1.5f + rand() % 1);
+    //createMushroom({ mushroomUpPosition, 14 }, 1.5f + rand() % 1);
     
 
 }
@@ -126,3 +128,26 @@ void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
     entities.addEntity(pPig);
     colMan.enemies.push_back(pPig);
 }
+
+void Level2::createSandObstacle(Coordinate<int> position)
+{
+    pSand = NULL;
+    pSand = new Obstacles::Sand;
+    pSand->setSize({ 16.0, 16.0 });
+    pSand->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pSand->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 1 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+    colMan.obstacles.push_back((Obstacle*)pSand);
+    entities.addEntity(pSand);
+}
+
+void Level2::createIceObstacle(Coordinate<int> position)
+{
+    pIce = NULL;
+    pIce = new Obstacles::Ice;
+    pIce->setSize({ 16.0, 16.0 });
+    pIce->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pIce->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 9 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+    colMan.obstacles.push_back((Obstacle*)pIce);
+    entities.addEntity(pIce);
+}
+

@@ -12,7 +12,7 @@ namespace Enemies
 
 	void Mushroom::execute()
 	{
-
+		checkIce();
 		timeElapsed += pGraMan->getDeltaTime();
 		if (timeElapsed > changeDirectionTime)
 		{

@@ -42,6 +42,9 @@ public:
 	void execute();
 	void print();
 	void manageColisions();
+	void loadFromSave();
+
+	void loadFireBlock();
 
 	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);

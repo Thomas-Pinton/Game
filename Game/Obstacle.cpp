@@ -10,6 +10,10 @@ void Obstacle::affectPlayer(Player* pP)
 {
 }
 
+void Obstacle::affectEnemy(Enemy* pE)
+{
+}
+
 void Obstacle::execute()
 {
 	acceleration.y = GRAVITY - counterForce;

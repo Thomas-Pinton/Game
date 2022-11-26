@@ -46,7 +46,7 @@ namespace Manager
 				{
 					Coordinate<float> ajuste = checkColision(*player, *enemy);
 
-					if (ajuste.y < -0.1f && (*player)->speed.y > 0.1f)
+					if (ajuste.y < -0.01f && (*player)->speed.y > 0.1f)
 						// se bateu na cabe�a do inimgo ele morreu
 					{
 						std::cout << "Dei dano" << std::endl;
@@ -64,8 +64,8 @@ namespace Manager
 						std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
 
 					}
-					else if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-						ajuste.y > 0.1f) // houve colis�o, checando tanto para positivos como negativos
+					else if (ajuste.x > 0.01f || ajuste.x < -0.01f ||
+						ajuste.y > 0.01f) // houve colis�o, checando tanto para positivos como negativos
 					{
 						std::cout << "Morri" << std::endl;
 						// perdeu
@@ -94,10 +94,10 @@ namespace Manager
 			{
 				Coordinate<float> ajuste = checkColision(*player, *obstacle);
 
-				if (ajuste.x > 0.1 || ajuste.x < -0.1 ||
-					ajuste.y > 0.1 || ajuste.y < -0.1) // houve colis�o, checando tanto para positivos como negativos
+				if (ajuste.x > 0.01 || ajuste.x < -0.01 ||
+					ajuste.y > 0.01 || ajuste.y < -0.01) // houve colis�o, checando tanto para positivos como negativos
 				{
-					if (ajuste.y > 0.1 || ajuste.y < -0.1)
+					if (ajuste.y > 0.01 || ajuste.y < -0.01)
 						(*player)->speed.y = 0.0f;
 					if (ajuste.y < -0.01f) // colis�o com o ch�o
 					{
@@ -168,10 +168,12 @@ namespace Manager
 
 					Coordinate<float> ajuste = checkColision(*enemy, *obstacle);
 
-					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-						ajuste.y > 0.1f || ajuste.y < -0.1f)
+					if (ajuste.x > 0.01f || ajuste.x < -0.01f ||
+						ajuste.y > 0.01f || ajuste.y < -0.01f)
 					{
 						(*enemy)->updatePosition(ajuste);
+
+						(*obstacle)->affectEnemy(*enemy);
 
 						if (ajuste.y < -0.01f)
 						{
@@ -200,8 +202,8 @@ namespace Manager
 
 					Coordinate<float> ajuste = checkColision(*projectile, *obstacle);
 
-					if (ajuste.x > 0.1f || ajuste.x < -0.1f ||
-						ajuste.y > 0.1f || ajuste.y < -0.1f)
+					if (ajuste.x > 0.1f || ajuste.x < -0.01f ||
+						ajuste.y > 0.001f || ajuste.y < -0.01f)
 					{
 
 						(*projectile)->updatePosition(ajuste);
