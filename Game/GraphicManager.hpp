@@ -17,6 +17,7 @@ namespace Manager
 		static GraphicManager* instance;
 
 		std::map<std::string, sf::Texture*> textureMap;
+		std::map<std::string, sf::Font*> fontMap;
 
 	public:
 
@@ -37,6 +38,7 @@ namespace Manager
 		void printText(sf::Text* pT);
 
 		sf::Texture* loadTexture(std::string filePath);
+		sf::Font* loadFont(std::string filePath);
 
 		void clear();
 		void display();

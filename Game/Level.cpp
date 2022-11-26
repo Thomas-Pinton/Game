@@ -70,48 +70,46 @@ void Level::manageColisions()
 void Level::execute()
 {
 	srand((unsigned int)time(NULL));
-
-	//while (pGraMan->getWindow()->config.isOpen()) // game loop
-	//{
-		while (pGraMan->getWindow()->config.pollEvent(e))
+	
+	while (pGraMan->getWindow()->config.pollEvent(e))
+	{
+		if (e.type == sf::Event::Closed)
+			pGraMan->getWindow()->config.close();
+		if (e.type == sf::Event::KeyPressed)
 		{
-			if (e.type == sf::Event::Closed)
-				pGraMan->getWindow()->config.close();
-			if (e.type == sf::Event::KeyPressed)
+			// pausing and returning logic
+			if (e.key.code == sf::Keyboard::Escape)
 			{
-				// pausing and returning logic
-				if (e.key.code == sf::Keyboard::Escape)
+				if (!paused)
+					paused = true;
+				else
 				{
-					if (!paused)
-						paused = true;
-					else
-					{
-						entities.saveEntities();
-						std::cout << "Saving entities " << std::endl;
-						std::cout << "Leaving level " << std::endl;
-						Manager::StateManager::getInstance()->pop();
-					}
-						
+					entities.saveEntities();
+					std::cout << "Saving entities " << std::endl;
+					std::cout << "Leaving level " << std::endl;
+					//always go back to main menu
+					Manager::StateManager::getInstance()->popUntil(1);
 				}
-				if (e.key.code == sf::Keyboard::Enter && paused)
-					paused = false;
-					
+						
 			}
+			if (e.key.code == sf::Keyboard::Enter && paused)
+				paused = false;
+					
 		}
-		if (!paused)
-		{
-			entities.executeEntities();
+	}
+	if (!paused)
+	{
+		entities.executeEntities();
 
-			colMan.checkColisions();
+		colMan.checkColisions();
 
-			print();
-		}
-		else
-		{
-			pGraMan->updateDeltaTime();
-			// even if it's paused, update delta time
-		}
-	//}
+		print();
+	}
+	else
+	{
+		pGraMan->updateDeltaTime();
+		// even if it's paused, update delta time
+	}
 }
 
 void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath)

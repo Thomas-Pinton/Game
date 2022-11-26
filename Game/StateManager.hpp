@@ -11,7 +11,8 @@ enum States {
 	level1,
 	level2,
 	menu,
-	leaderboard
+	leaderboard,
+	endLevelScreen
 };
 
 namespace Manager 
@@ -31,6 +32,7 @@ namespace Manager
 		void setPlayersAmount(int amount);
 		// when the state is a level
 		void pop();
+		void popUntil(int amount);
 		void execute();
 	};
 }

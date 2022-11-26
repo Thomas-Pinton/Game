@@ -21,6 +21,7 @@ window(800, 1200)
 Game::~Game()
 {
 	delete grapMan->getInstance();
+	delete pStateMan;
 }
 
 void Game::execute()
@@ -28,7 +29,5 @@ void Game::execute()
 	while (window.config.isOpen())
 	{
 		pStateMan->execute();
-		// execute eh um loop, entao quando ele para de executar signifca que o estado parou
-	}
-		
+	}		
 }

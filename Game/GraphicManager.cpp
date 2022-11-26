@@ -103,4 +103,30 @@ namespace Manager {
 		return text;
 			
 	}
+
+	sf::Font* GraphicManager::loadFont(std::string filePath)
+	{
+		for (std::map<std::string, sf::Font*>::iterator paths = fontMap.begin(); paths != fontMap.end(); paths++)
+		{
+			if ((*paths).first == filePath)
+			{
+				return (*paths).second;
+			}
+		}
+
+		std::cout << "Font in " << filePath << "Not loaded yet." << std::endl;
+
+
+		sf::Font* font = new sf::Font();
+		if (!font->loadFromFile("../Assets/" + filePath))
+		//if (!text->loadFromFile(filePath))
+			std::cout << "Error loading new texture " << std::endl;
+
+		fontMap.insert({ filePath, font });
+
+		std::cout << "Texture loaded" << std::endl;
+
+		return font;
+			
+	}
 }

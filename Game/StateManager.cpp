@@ -1,5 +1,6 @@
 #include "StateManager.hpp"
 #include "Menu.hpp"
+#include "EndLevelScreen.hpp"
 #include "Level1.hpp"
 #include "Level2.hpp"
 
@@ -35,6 +36,11 @@ namespace Manager
 		case level2:
 			push(new Level2(GraphicManager::getInstance()->getWindow(), playersAmount));
 			break;
+		case endLevelScreen:
+			int* points = new int[2];
+			points[0] = 10; points[1] = 20;
+			push(new EndLevelScreen(playersAmount, points));
+			break;
 		}
 	}
 
@@ -47,6 +53,13 @@ namespace Manager
 			return;
 		}
 		std::cout << "Not possible to pop, stack is empty" << std::endl;
+	}
+	void StateManager::popUntil(int amount)
+	{
+		while (getStackSize() > amount)
+		{
+			pop();
+		}
 	}
 
 	int StateManager::getStackSize()

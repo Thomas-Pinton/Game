@@ -106,9 +106,9 @@ Level2::Level2(Window* pW, int playersAmount) :
     for (int i = 0; i < mushroomFloorAmout; i++) //1120
         createMushroom({ 21 + rand() % 50, 15 });
 
-    createMushroom({ 21 + rand() % 20, 30 });
+    //createMushroom({ 21 + rand() % 20, 30 });
  
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < pigUpAmount; i++)
         createPig({ 50 + rand() % 21, 13 }, 2.0f);
     //createMushroom({ mushroomUpPosition, 14 }, 1.5f + rand() % 1);
     

@@ -38,14 +38,18 @@ namespace Manager
 		std::list<Enemy*>::iterator enemy;
 		std::list<Player*>::iterator player;
 
+		bool noPlayersAlive = true;
 		for (player = players.begin(); player != players.end(); player++)
 		{
 			if ((*player)->alive)
 			{
+				noPlayersAlive = false;
+				bool noEnemiesAlive = true;
 				for (enemy = enemies.begin(); enemy != enemies.end(); enemy++)
 				{
 					if ((*enemy)->alive) // só chegar colisão se ele estiver vivo
 					{
+						noEnemiesAlive = false;
 						Coordinate<float> ajuste = checkColision(*player, *enemy);
 
 						if (ajuste.y < -0.01f && (*player)->speed.y > 0.1f)
@@ -78,8 +82,15 @@ namespace Manager
 						}
 					}
 				}
+				if (noEnemiesAlive)
+				{
+					StateManager::getInstance()->push((States)level2);
+				}
 			}
 		}
+		if (noPlayersAlive)
+			StateManager::getInstance()->push((States)endLevelScreen);
+
 	}
 
 	void ColisionManager::checkColisionsPlayerObstacles()
