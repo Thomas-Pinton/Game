@@ -8,7 +8,6 @@
 #define UNSELECTED_TEXT_COLOR sf::Color::White
 
 
-// Será que eu devo ou não chamar o construtor de Being?
 Menu::Menu()
 	: Being()
 {
@@ -16,6 +15,7 @@ Menu::Menu()
 
 	option = 0;
 	optionsAmount = 4;
+	playersAmount = 1;
 
 	Button* pB = NULL;
 
@@ -43,25 +43,24 @@ Menu::Menu()
 
 }
 
-int Menu::execute()
+void Menu::execute()
 {
-	sf::Event event;
 	print();
 
-	while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) || option == 2)
-	{
+	//while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) || option == 2)
+	//{
 		while (pGraMan->getWindow()->config.pollEvent(event))
 		{
 			if (event.type == sf::Event::KeyPressed)
 			{
 				if ((event.key.code == sf::Keyboard::S ||
-					event.key.code == sf::Keyboard::Down ) &&
-					option < optionsAmount -1)
+					event.key.code == sf::Keyboard::Down) &&
+					option < optionsAmount - 1)
 				{
 					option++;
 
 					buttons[option]->rectangle.setFillColor(SELECTED_COLOR);
-					buttons[option-1]->rectangle.setFillColor(UNSELECTED_COLOR);
+					buttons[option - 1]->rectangle.setFillColor(UNSELECTED_COLOR);
 
 					buttons[option]->text.setFillColor(SELECTED_TEXT_COLOR);
 					buttons[option - 1]->text.setFillColor(UNSELECTED_TEXT_COLOR);
@@ -82,7 +81,7 @@ int Menu::execute()
 					print(); // if there was an update, print it
 				}
 				else if (event.key.code == sf::Keyboard::Enter &&
-						option == 2) // caso queira trocar o numero de jogadores
+					option == 2) // caso queira trocar o numero de jogadores
 				{
 					std::cout << "Entrando aqui " << std::endl;
 					std::string s = buttons[option]->getString();
@@ -90,26 +89,30 @@ int Menu::execute()
 					{
 						s.pop_back();
 						s.push_back('2');
+						playersAmount = 2;
 					}
 					else
 					{
 						s.pop_back();
 						s.push_back('1');
+						playersAmount = 1;
 					}
 					buttons[option]->setString(s);
 					print();
 				}
+				else if (event.key.code == sf::Keyboard::Enter)
+				{
+					Manager::StateManager* pSM = StateManager::getInstance();
 
-			} 
+					pSM->setPlayersAmount(playersAmount);
+
+					Manager::StateManager::getInstance()->push((States)option);
+				}
+
+			}
 		}
-	}
-
-	if (option == 2 && buttons[option]->getString().back() == '1')
-		return 4;
-	else if (option == 2 && buttons[option]->getString().back() == '2')
-		return 5;
-
-	return option;
+	//}
+	
 
 }
 

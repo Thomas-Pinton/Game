@@ -3,8 +3,8 @@
 #define BLOCK_HEIGHT 50
 #define BLOCK_WIDTH 75
 
-Level1::Level1(Window* pW) : 
-	Level(pW)
+Level1::Level1(Window* pW, int playersAmount) :
+	Level(pW, playersAmount)
 {
 
     pProjectile = NULL;

@@ -7,6 +7,7 @@
 #include "Level2.hpp"
 #include "Menu.hpp"
 #include "Plant.hpp"
+#include "StateManager.hpp"
 
 #include <iostream>
 
@@ -15,9 +16,7 @@ class Game
 private:
 	Window window;
 	GraphicManager* grapMan;
-	Level1 level1;
-	Level2 level2;
-	Menu menu;
+	StateManager* pStateMan;
 public:
 	Game();
 	~Game();

@@ -28,6 +28,9 @@ protected:
 	int* tileMap;
 	std::list<Player*> players;
 
+	sf::Event e;
+	bool paused;
+
 	Player* player;
 
 	Obstacles::FlyingBlock* pFlyingBlock;
@@ -36,7 +39,7 @@ protected:
 
 	Enemies::Mushroom* mushroom;
 public:
-	Level(Window* pW);
+	Level(Window* pW, int playersAmount = 1);
 	~Level();
 
 	void execute();

@@ -5,12 +5,13 @@
 #include <string>
 #include "SFML/Graphics.hpp"
 #include "Coordinate.hpp"
+#include "StateManager.hpp"
 
 namespace Manager {
 	class GraphicManager;
 }
 
-// Tudo aquilo que tem representa��o gr�fica
+// Tudo aquilo que tem representacao grafica
 // Ex.: Character, blocos, menu, backgrounds, etc
 
 enum classes {
@@ -35,6 +36,8 @@ public:
 	static Manager::GraphicManager* pGraMan;
 
 	Being();
+
+	virtual void execute() = 0;
 
 	virtual void print() = 0;
 

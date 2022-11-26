@@ -9,7 +9,7 @@ private:
     Enemies::Plant* pPlant;
     Projectile* pProjectile;
 public:
-    Level1(Window* pW);
+    Level1(Window* pW, int playersAmount);
     void createPlant(Coordinate<int> position);
     Projectile* createProjectile();
     ~Level1();

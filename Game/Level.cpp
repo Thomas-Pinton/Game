@@ -1,9 +1,10 @@
 #include "Level.hpp"
 
-Level::Level(Window* pW)
+Level::Level(Window* pW, int playersAmount)
 	: entities(),
 	colMan(pW),
-	tileMap(NULL)
+	tileMap(NULL),
+	paused(false)
 {
 	pGraMan = NULL;
 
@@ -23,8 +24,11 @@ Level::Level(Window* pW)
 		pPlayer = new Player()
 	}
 	*/
-	createPlayer({ 50, 50 }, 1);
-	createPlayer({ 100, 100 }, 2);
+	for (int i = 0; i < playersAmount; i++)
+	{
+		createPlayer({(float) 50 * (i+1),(float) 50 * (i + 1) }, i + 1);
+	}
+	
 	
 }
 
@@ -65,14 +69,10 @@ void Level::manageColisions()
 
 void Level::execute()
 {
-	sf::Event e;
+	srand((unsigned int)time(NULL));
 
-	bool paused = false;
-
-	srand((unsigned)time(NULL));
-
-	while (pGraMan->getWindow()->config.isOpen()) // game loop
-	{
+	//while (pGraMan->getWindow()->config.isOpen()) // game loop
+	//{
 		while (pGraMan->getWindow()->config.pollEvent(e))
 		{
 			if (e.type == sf::Event::Closed)
@@ -88,7 +88,8 @@ void Level::execute()
 					{
 						entities.saveEntities();
 						std::cout << "Saving entities " << std::endl;
-						return;
+						std::cout << "Leaving level " << std::endl;
+						Manager::StateManager::getInstance()->pop();
 					}
 						
 				}
@@ -110,7 +111,7 @@ void Level::execute()
 			pGraMan->updateDeltaTime();
 			// even if it's paused, update delta time
 		}
-	}
+	//}
 }
 
 void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath)

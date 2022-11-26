@@ -2,19 +2,20 @@
 
 GraphicManager* Being::pGraMan = NULL;
 GraphicManager* GraphicManager::instance = NULL;
+StateManager* Manager::StateManager::instance = NULL;
 
 Game::Game() :
 // criar elementos do jogo
 // window(800, 960), (old window size)
-window(800, 1200),
+window(800, 1200)
 // window poderia ser criada no graphic manager
-level1(&window),
-level2(&window),
-menu()
 {
 	grapMan = GraphicManager::getInstance();
 	grapMan->setWindow(&window);
 	Being::pGraMan = grapMan;
+	pStateMan = Manager::StateManager::getInstance();
+	pStateMan->push(new Menu());
+
 }
 
 Game::~Game()
@@ -24,27 +25,10 @@ Game::~Game()
 
 void Game::execute()
 {
-	std::cout << "Executando menu" << std::endl;
-	//int result;
-	while (grapMan->getWindow()->config.isOpen())
+	while (window.config.isOpen())
 	{
-		int result = menu.execute();
-
-		switch (result)
-		{
-		case 0:
-			level1.execute();
-			break;
-		case 1:
-			level2.execute();
-			break;
-		case 3:
-			std::cout << "Sem leaderboard ainda" << std::endl;
-			break;
-		default:
-			break;
-		}
+		pStateMan->execute();
+		// execute eh um loop, entao quando ele para de executar signifca que o estado parou
 	}
-	
-	//level1.execute();
+		
 }

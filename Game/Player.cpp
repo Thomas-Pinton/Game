@@ -52,7 +52,10 @@ void Player::checkKeys()
 		speed.x = movingSpeed;
 	if ((sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[2])) && canJump)
 		speed.y = jumpHeight; canJump = false;
-		// 2 * gravidade * altura do pulo
+	// 2 * gravidade * altura do pulo
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		Manager::StateManager::getInstance()->push(level2);
+		
 }
 
 void Player::checkForObstacles()

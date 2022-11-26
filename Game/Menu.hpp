@@ -11,10 +11,12 @@ class Menu :
 private:
     int option;
     int optionsAmount;
+    int playersAmount;
     std::vector<Button*> buttons;
+    sf::Event event;
 public:
     Menu();
-    int execute();
+    void execute();
     void print();
 };
 

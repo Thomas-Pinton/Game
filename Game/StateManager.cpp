@@ -1,0 +1,66 @@
+#include "StateManager.hpp"
+#include "Menu.hpp"
+#include "Level1.hpp"
+#include "Level2.hpp"
+
+namespace Manager
+{
+	StateManager::StateManager() :
+		stateStack(),
+		playersAmount(1)
+	{
+	}
+	StateManager* StateManager::getInstance()
+	{
+		if (instance == NULL)
+			instance = new StateManager();
+		return instance;
+	}
+
+	void StateManager::push(Being* state)
+	{
+		stateStack.push(state);
+	}
+	
+	void StateManager::push(States state)
+	{
+		switch (state)
+		{
+		case menu:
+			push(new Menu);
+			break;
+		case level1:
+			push(new Level1(GraphicManager::getInstance()->getWindow(), playersAmount));
+			break;
+		case level2:
+			push(new Level2(GraphicManager::getInstance()->getWindow(), playersAmount));
+			break;
+		}
+	}
+
+	void StateManager::pop()
+	{
+		if (stateStack.top())
+		{
+			delete (stateStack.top());
+			stateStack.pop();
+			return;
+		}
+		std::cout << "Not possible to pop, stack is empty" << std::endl;
+	}
+
+	int StateManager::getStackSize()
+	{
+		return stateStack.size();
+	}
+
+	void StateManager::execute()
+	{
+		stateStack.top()->execute();
+	}
+
+	void StateManager::setPlayersAmount(int amount)
+	{
+		playersAmount = amount;
+	}
+}
