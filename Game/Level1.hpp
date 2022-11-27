@@ -10,7 +10,11 @@ private:
     Projectile* pProjectile;
 public:
     Level1(int playersAmount);
+    ~Level1();
+
     void createPlant(Coordinate<int> position);
     Projectile* createProjectile();
-    ~Level1();
+
+    void recoverPlants();
+    Projectile* recoverProjectile(int projectilePosition);
 };

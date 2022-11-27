@@ -18,6 +18,7 @@ namespace Enemies
         std::list<Projectile*> projectiles;
         std::list<Projectile*>::iterator lastProjectileShooted;
         Plant();
+        Plant(std::string line);
         ~Plant();
         std::list<Player*> players;
         void shoot(Player* pPlayer);

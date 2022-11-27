@@ -8,6 +8,26 @@ Projectile::Projectile()
 	alive = false;
 }
 
+Projectile::Projectile(std::string data)
+	: Entity()
+{
+	id = classes(mushroom);
+	std::cout << "Recovering Projectile " << std::endl;
+
+	std::istringstream ss(data);
+
+	std::string word;
+	std::string entityString;
+	for (int i = 0; i < 9; i++)
+	{
+		ss >> word;
+		entityString += word + " ";
+	}
+	recoverEntity(entityString);
+
+	ss >> damage;
+}
+
 const int Projectile::getDamage() const
 {
 	return damage;
@@ -33,6 +53,7 @@ void Projectile::save()
 		<< size.x << " " << size.y << " "
 		<< speed.x << " " << speed.y << " "
 		<< acceleration.x << " " << acceleration.y << " "
+		<< damage << " "
 		<< std::endl;
 	projectileFile.close();
 }

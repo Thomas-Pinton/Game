@@ -18,7 +18,9 @@ public:
 	float sandCooldown;
 
 	Player(int pId = 1);
+	Player(std::string data);
 	void addPoints(int amount);
+	void assignKeys();
 	const int getPoints() const;
 	void checkKeys();
 	//void displayPoints();

@@ -51,7 +51,7 @@ void EndLevelScreen::execute()
 			{
 				if (name.size() == 0)
 				{
-					errorMessage.setString("Name too short");
+					Manager::StateManager::getInstance()->popUntil(1);
 					return;
 				}
 				else if (name.size() > 20)

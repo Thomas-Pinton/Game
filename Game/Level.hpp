@@ -32,11 +32,9 @@ protected:
 	bool paused;
 
 	Player* player;
-
 	Obstacles::FlyingBlock* pFlyingBlock;
 	Obstacles::Mud* pMud;
 	Obstacles::FireBlock* pFireBlock;
-
 	Enemies::Mushroom* mushroom;
 public:
 	Level(int playersAmount = 1);
@@ -57,6 +55,7 @@ public:
 	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
 	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
 
-	void recoverMushroom();
+	void recoverMushrooms();
+	void recoverPlayers();
 };
 

@@ -26,9 +26,11 @@ Level::Level(int playersAmount)
 	*/
 	for (int i = 0; i < playersAmount; i++)
 	{
-		createPlayer({(float) 50 * (i+1),(float) 50 * (i + 1) }, i + 1);
+		//createPlayer({(float) 50 * (i+1),(float) 50 * (i + 1) }, i + 1);
+		std::cout << "Not creating players " << std::endl;
 	}
 	
+	recoverPlayers();
 	
 }
 
@@ -188,7 +190,7 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	std::cout << "Mushroom " << mushroom->acceleration.y << std::endl;
 }
 
-void Level::recoverMushroom()
+void Level::recoverMushrooms()
 {
 	std::fstream mushroomFile("../data/Mushroom.txt", std::ios::in);
 	if (mushroomFile.is_open())
@@ -196,11 +198,33 @@ void Level::recoverMushroom()
 		std::string line;
 		while (std::getline(mushroomFile, line)) 
 		{
+			std::cout << "Line " << line << std::endl;
 			mushroom = new Enemies::Mushroom(line);
 			mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE * 2,  BLOCK_SIZE * 2 });
-			std::cout << "Mushroom " << mushroom->alive << std::endl;
 			entities.addEntity(mushroom);
 			colMan.enemies.push_back((Enemy*)mushroom);
 		}
 	}
+}
+
+void Level::recoverPlayers()
+{
+	std::fstream playerFile("../data/Player.txt", std::ios::in);
+	if (playerFile.is_open())
+	{
+		std::string line;
+		while (std::getline(playerFile, line))
+		{
+			player = new Player(line);
+
+			player->setTexture("Main Characters/Ninja Frog/Idle (32x32).png", { 0, 0 }, { 2 * BLOCK_SIZE, 2 * BLOCK_SIZE });
+
+			players.push_back(player);
+
+			entities.addEntity(player);
+			colMan.players.push_back(player);
+			Manager::StateManager::getInstance()->addPlayer(player);
+		}
+	}
+	
 }

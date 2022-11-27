@@ -17,7 +17,7 @@ namespace Enemies
 		std::cout << "Recovering Mushroom " << std::endl;
 
 		std::istringstream ss(data);
-
+		
 		std::string word;
 		std::string entityString;
 		for (int i = 0; i < 9; i++)
@@ -38,7 +38,6 @@ namespace Enemies
 
 	void Mushroom::execute()
 	{
-		std::cout << "Executing mushroom " << std::endl;
 		checkIce();
 		timeElapsed += pGraMan->getDeltaTime();
 		if (timeElapsed > changeDirectionTime)

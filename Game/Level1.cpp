@@ -118,12 +118,13 @@ Level1::Level1(int playersAmount) :
         std::cout << "Criando inimigo" << std::endl;
         //createMushroom({ j, 45 });
     }
-    //std::cout << "Recovering mushrooms " << std::endl;
-    //recoverMushroom();
+    std::cout << "Recovering mushrooms " << std::endl;
+    recoverMushrooms();
 
-    for (i = 0; i < amountOfPlants; i++) 
-        createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
-   
+    for (i = 0; i < amountOfPlants; i++)
+        //createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
+        std::cout << "Faz nada " << std::endl;
+    recoverPlants();
 }
 
 Level1::~Level1()
@@ -155,6 +156,33 @@ void Level1::createPlant(Coordinate<int> position)
     pPlant->lastProjectileShooted = pPlant->projectiles.begin();
     std::cout << "Plant created " << std::endl;
 }
+
+void Level1::recoverPlants()
+{
+    std::fstream plantFile("../data/Plant.txt", std::ios::in);
+    if (plantFile.is_open())
+    {
+        std::string line;
+        int plantCounter = 0;
+        while (std::getline(plantFile, line))
+        {
+            std::cout << "Line " << line << std::endl;
+            pPlant = new Enemies::Plant(line);
+            pPlant->players = players;
+            pPlant->setTexture("Enemies/Plant/Idle (44x42).png", { 0, 0 }, { 44, 42 });
+            entities.addEntity(pPlant);
+            colMan.enemies.push_back((Enemy*)pPlant);
+            std::cout << "Recovering projectiles " << std::endl;
+            for (int i = 0; i < 3; i++)
+            {
+                pPlant->addProjectile(recoverProjectile(plantCounter*3 + i));
+            }
+            pPlant->lastProjectileShooted = pPlant->projectiles.begin();
+            plantCounter++;
+        }
+    }
+}
+
 Projectile* Level1::createProjectile()
 {
     pProjectile = new Projectile;
@@ -164,4 +192,25 @@ Projectile* Level1::createProjectile()
     entities.addEntity(pProjectile);
     colMan.projectiles.push_back((Projectile*)pProjectile);
     return pProjectile;
+}
+
+Projectile* Level1::recoverProjectile(int projectilePosition)
+{
+    std::fstream projectileFile("../data/Projectile.txt", std::ios::in);
+    std::string line;
+    if (projectileFile.is_open())
+    {
+        int i = 0;
+        while (std::getline(projectileFile, line) && i < projectilePosition)
+        {
+            i++;
+        }
+        pProjectile = new Projectile(line);
+        pProjectile->setTexture("Enemies/Plant/Bullet.png", { 0, 0 }, { 16, 16 });
+        pProjectile->rectangle.scale(2.0f, 2.0f);
+        entities.addEntity(pProjectile);
+        colMan.projectiles.push_back((Projectile*)pProjectile);
+        return pProjectile;
+        
+    }
 }

@@ -10,6 +10,28 @@ namespace Enemies
 		shootCooldown = 1.0f;
 	}
 
+	Plant::Plant(std::string data)
+	{
+		id = classes(plant);
+		std::cout << "Recovering Mushroom " << std::endl;
+
+		std::istringstream ss(data);
+
+		std::string word;
+		std::string entityString;
+		for (int i = 0; i < 9; i++)
+		{
+			ss >> word;
+			entityString += word + " ";
+		}
+		recoverEntity(entityString);
+
+		ss >> hp;
+		ss >> damage;
+		ss >> shootInterval;
+		ss >> shootCooldown;
+	}
+
 	Plant::~Plant()
 	{
 		std::list<Projectile*>::iterator it;
@@ -45,8 +67,6 @@ namespace Enemies
 
 		shootInterval += pGraMan->getDeltaTime();
 
-
-
 		//float dy = pPlayer->getPosition().y - this->getPosition().y > 0 ? pPlayer->getPosition().y - this->getPosition().y : this->getPosition().y - pPlayer->getPosition().y;
 		
 		for (std::list<Player*>::iterator pPlayer = players.begin(); pPlayer != players.end(); pPlayer++)
@@ -70,6 +90,7 @@ namespace Enemies
 	void Plant::addProjectile(Projectile* pP)
 	{
 		projectiles.push_back(pP);
+		std::cout << "Projectile " << pP->getAlive() << std::endl;
 	}
 
 	void Plant::setAlive(bool status)
@@ -93,6 +114,7 @@ namespace Enemies
 			<< acceleration.x << " " << acceleration.y << " "
 			<< hp << " "
 			<< damage << " "
+			<< shootInterval << " "
 			<< shootCooldown << " "
 			<< std::endl;		
 		plantFile.close();

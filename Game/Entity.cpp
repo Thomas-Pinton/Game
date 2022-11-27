@@ -90,11 +90,13 @@ void Entity::recoverEntity(std::string data)
 
 	std::string word;
 
+	Coordinate<float> c;
+
 	ss >> alive;
-	ss >> position.x; ss >> position.y;
-	ss >> size.x; ss >> size.y;
+	ss >> c.x; ss >> c.y;
+	setPosition(c);
+	ss >> c.x; ss >> c.y;
+	setSize(c);
 	ss >> speed.x; ss >> speed.y;
 	ss >> acceleration.x; ss >> acceleration.y;
-
-	std::cout << "Alive " << alive << "position " << position << "Size " << size << std::endl;
 }

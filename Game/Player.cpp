@@ -16,19 +16,50 @@ Player::Player(int pId) :
 	mudCooldown = 0.0f;
 	sandCooldown = 0.0f;
 
-	if (pId == 1)
+	assignKeys();
+	// Posic�o inicial
+}
+
+Player::Player(std::string data)
+{
+	std::istringstream ss(data);
+
+	std::string word;
+	std::string entityString;
+	for (int i = 0; i < 9; i++)
+	{
+		ss >> word;
+		entityString += word + " ";
+	}
+	recoverEntity(entityString);
+
+	ss >> hp;
+	ss >> playerId;
+	ss >> canJump;
+	ss >> canWalk;
+	ss >> pontuation;
+	ss >> movingSpeed;
+	ss >> jumpHeight;
+	ss >> mudCooldown;
+	ss >> sandCooldown;
+
+	assignKeys();
+}
+
+void Player::assignKeys()
+{
+	if (playerId == 1)
 	{
 		keys[0] = sf::Keyboard::Key::A;
 		keys[1] = sf::Keyboard::Key::D;
 		keys[2] = sf::Keyboard::Key::W;
 	}
-	else if (pId == 2)
+	else if (playerId == 2)
 	{
 		keys[0] = sf::Keyboard::Key::Left;
 		keys[1] = sf::Keyboard::Key::Right;
 		keys[2] = sf::Keyboard::Key::Up;
 	}
-	// Posic�o inicial
 }
 
 void Player::addPoints(int amount)
@@ -114,8 +145,14 @@ void Player::save()
 				<< speed.x << " " << speed.y << " "
 				<< acceleration.x << " " << acceleration.y << " "
 				<< hp << " "
+				<< playerId << " "
 				<< canJump << " "
+				<< canWalk << " "
 				<< pontuation << " "
+				<< movingSpeed << " "
+				<< jumpHeight << " "
+				<< mudCooldown << " " 
+				<< sandCooldown << " "
 				<< std::endl;
 	playerFile.close();
 }
