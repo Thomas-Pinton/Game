@@ -1,8 +1,8 @@
 #include "Level.hpp"
 
-Level::Level(Window* pW, int playersAmount)
+Level::Level(int playersAmount)
 	: entities(),
-	colMan(pW),
+	colMan(),
 	tileMap(NULL),
 	paused(false)
 {

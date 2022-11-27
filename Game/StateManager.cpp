@@ -32,13 +32,13 @@ namespace Manager
 			push(new Menu);
 			break;
 		case level1:
-			push(new Level1(GraphicManager::getInstance()->getWindow(), playersAmount));
+			push(new Level1(playersAmount));
 			break;
 		case level2:
-			push(new Level2(GraphicManager::getInstance()->getWindow(), playersAmount));
+			push(new Level2(playersAmount));
 			break;
 		case leaderboard:
-			push(new Leaderboard);
+			push(new Leaderboard());
 			break;
 		case endLevelScreen:
 			int* points = new int[2];

@@ -39,7 +39,7 @@ protected:
 
 	Enemies::Mushroom* mushroom;
 public:
-	Level(Window* pW, int playersAmount = 1);
+	Level(int playersAmount = 1);
 	~Level();
 
 	void execute();

@@ -3,8 +3,8 @@
 #define BLOCK_HEIGHT 50
 #define BLOCK_WIDTH 75
 
-Level2::Level2(Window* pW, int playersAmount) :
-	Level(pW, playersAmount)
+Level2::Level2(int playersAmount) :
+	Level(playersAmount)
 {
 
     pPig = NULL;

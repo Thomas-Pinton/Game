@@ -11,14 +11,8 @@ se os objetos dentro de cada espa�o est�o colidindo
 namespace Manager
 {
 
-	ColisionManager::ColisionManager(Window* pW)
+	ColisionManager::ColisionManager()
 	{
-		if (pW == NULL)
-		{
-			std::cout << "Error while opening window" << std::endl;
-			exit(1);
-		}
-		pWindow = pW;
 	}
 
 	void ColisionManager::checkColisions()
@@ -237,7 +231,7 @@ namespace Manager
 
 	void ColisionManager::checkColisionsPlayerWall()
 	{
-		const int WIDTH = pWindow->getWIDTH();
+		const int WIDTH = GraphicManager::getInstance()->getWindow()->getWIDTH();
 		std::list<Player*>::iterator player;
 
 		for (player = players.begin(); player != players.end(); player++)

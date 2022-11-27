@@ -29,9 +29,8 @@ namespace Manager
 		std::list<Player*> players;
 		std::list<Enemy*> enemies;
 		std::list<Projectile*> projectiles;
-		Window* pWindow;
 	public:
-		ColisionManager(Window* pW);
+		ColisionManager();
 
 		// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
 
