@@ -62,7 +62,7 @@ namespace Enemies
 
 	void Plant::execute()
 	{
-
+		checkIce();
 		updatePosition();
 
 		shootInterval += pGraMan->getDeltaTime();

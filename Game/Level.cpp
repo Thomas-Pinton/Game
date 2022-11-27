@@ -29,11 +29,22 @@ Level::Level(int playersAmount, bool loadFromSave)
 	*/
 
 	if(loadFromSave)
-		recoverPlayers("Level1");
-	else
+		recoverPlayers("Level" + std::to_string(id));
+
+	for (int i = 0; i < playersAmount; i++)
 	{
-		for (int i = 0; i < playersAmount; i++)
+		player = StateManager::getInstance()->getPlayer(i);
+		if (player)
 		{
+			std::cout << "Player already exists " << std::endl;
+			player->setLevel(this);
+			players.push_back(player);
+			entities.addEntity(player);
+			colMan.players.push_back(player);
+		}
+		else
+		{
+			std::cout << "Creating player " << std::endl;
 			createPlayer({ (float)50 * (i + 1),(float)50 * (i + 1) }, i + 1);
 		}
 	}
@@ -115,12 +126,14 @@ void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, 
 void Level::decreasePlayerAmount()
 {
 	playerAmount -= 1;
+	std::cout << "Player amount " << playerAmount << std::endl;
 	if (playerAmount == 0)
 		StateManager::getInstance()->push((States)endLevelScreen);
 }
 void Level::decreaseEnemyAmount()
 {
 	enemyAmount -= 1;
+	std::cout << "Enemy amount " << enemyAmount << std::endl;
 	if (enemyAmount == 0)
 		StateManager::getInstance()->push((States)level2);
 }
@@ -232,7 +245,12 @@ void Level::recoverPlayers(std::string level)
 
 void Level::recoverFireBlocks(std::string level)
 {
-	std::fstream fireBlockFile("../data/" + level + "/FireBlock.txt", std::ios::in);
+	std::fstream fireBlockFile;
+	if (level == "Level2")
+		fireBlockFile.open("../data/Level2/FireBlock.txt", std::ios::in);
+	else 
+		fireBlockFile.open("../data/Level1/FireBlock.txt", std::ios::in);
+	//std::fstream fireBlockFile("../data/" + level + "/FireBlock.txt", std::ios::in);
 	if (fireBlockFile.is_open())
 	{
 		std::string line;

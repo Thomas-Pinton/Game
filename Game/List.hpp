@@ -26,7 +26,7 @@ public:
             ~Element() {
 
             }
-            const void setProximo(Element* pN) const {
+            void setProximo(Element* pN) {
                 pNext = pN;
             }
             const void setData(TIPO* pDataE) {
@@ -85,6 +85,10 @@ public:
 
     Element<TIPO>* getPrimeiro() {
         return pFirst;
+    }
+
+    void setPrimeiro(Element<TIPO>* pF) {
+        pFirst = pF;
     }
 
     Element<TIPO>* getUltimo() {

@@ -41,6 +41,7 @@ namespace Manager
 		void checkColisionsEnemyObstacles();
 		void checkColisionsProjectilesObstacles();
 		void checkColisionsPlayerWall();
+		void checkColisionsEnemyWall();
 
 		Coordinate<float> checkColision(Entity* e1, Entity* e2);
 	};

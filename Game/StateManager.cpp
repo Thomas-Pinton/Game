@@ -10,9 +10,16 @@ namespace Manager
 {
 	StateManager::StateManager() :
 		stateStack(),
-		players(),
+		players(2, NULL),
 		loadFromSave(false)
 	{
+	}
+
+	StateManager::~StateManager()
+	{
+		int playersSize = players.size();
+		for (int i = 0; i < playersSize; i++)
+			delete players[i];
 	}
 	StateManager* StateManager::getInstance()
 	{
@@ -43,9 +50,16 @@ namespace Manager
 			push(new Leaderboard());
 			break;
 		case endLevelScreen:
+			std::cout << "Trying to create end level screen " << std::endl;
+			std::cout << "Players amount " << playersAmount << std::endl;
 			int* points = new int[playersAmount];
 			for (int i = 0; i < playersAmount; i++)
 			{
+				if (players[i] == NULL)
+				{
+					std::cout << "Null " << std::endl; 
+					break;
+				}
 				points[i] = players[i]->getPoints();
 				std::cout << "Points [i] " << points[i] << std::endl;
 				std::cout << "players[i]->getPoints() " << players[i]->getPoints() << std::endl;
@@ -88,7 +102,11 @@ namespace Manager
 	{
 		if (pP == NULL)
 			return;
-		players.push_back(pP);
+		int i = 0;
+		while (players[i] != NULL)
+			i++;
+		players[i] = pP;
+
 	}
 
 	void StateManager::setPlayersAmount(int amount)
@@ -99,5 +117,20 @@ namespace Manager
 	void StateManager::setLoadFromSave(bool s)
 	{
 		loadFromSave = s;
+	}
+
+	Player* StateManager::getPlayer(int position)
+	{
+		return players[position];
+	}
+
+	void StateManager::deletePlayers()
+	{
+		int playersSize = players.size();
+		for (int i = 0; i < playersSize; i++)
+		{
+			delete players[i];
+			players[i] = NULL;
+		}
 	}
 }

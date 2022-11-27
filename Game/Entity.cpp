@@ -11,6 +11,7 @@ Entity::Entity()
 {
 	speed.x = 0; speed.y = 0;
 	acceleration.x = 0; acceleration.y = GRAVITY;
+	// All entities suffer from gravity effect
 	pLevel = NULL;
 	//temporario
 	//rectangle.setOutlineColor(sf::Color::Red);

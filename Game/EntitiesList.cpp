@@ -6,7 +6,29 @@ EntitiesList::EntitiesList()
 }
 EntitiesList::~EntitiesList()
 {
+	// removing players, in order not to delete them
+	int size = list.getSize();
+	Lista<Entity>::Element<Entity>* pElEntidade = list.getPrimeiro();
+	Lista<Entity>::Element<Entity>* pElEntidadeProx = list.getPrimeiro()->getProximo();
+
+	while (pElEntidade->getData()->getId() == player)
+	{
+		list.setPrimeiro(pElEntidadeProx);
+		pElEntidade = pElEntidadeProx;
+		pElEntidadeProx = pElEntidade->getProximo();
+	}
+
+	for (int i = 0; i < size  || pElEntidadeProx != NULL; i++)
+	{
+		if (pElEntidadeProx->getData()->getId() == player)
+		{
+			pElEntidade->setProximo(pElEntidadeProx->getProximo());
+		}
+		pElEntidade = pElEntidadeProx;
+		pElEntidadeProx = pElEntidade->getProximo();
+	}
 }
+
 
 void EntitiesList::setLevelId(int id)
 {
@@ -79,9 +101,7 @@ void EntitiesList::saveEntities()
 	for (int i = 0; i < size; i++)
 	{
 		//if (pElEntidade->getData()->alive)
-		std::cout << "Tentando salvar o primeiro " << std::endl;
 		pElEntidade->getData()->save();
-		std::cout << "Terminando de salvar o primeiro " << std::endl;
 		pElEntidade = pElEntidade->getProximo();
 	}
 }

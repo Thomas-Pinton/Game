@@ -139,6 +139,8 @@ void Player::executeJump(float height)
 
 void Player::setHp(int newHp)
 {
+	if (!alive)
+		return;
 	hp = newHp;
 	if (hp <= 0)
 	{
@@ -148,6 +150,8 @@ void Player::setHp(int newHp)
 }
 void Player::decreaseHp(int qtd)
 {
+	if (!alive)
+		return;
 	hp -= qtd;
 	if (hp <= 0)
 	{

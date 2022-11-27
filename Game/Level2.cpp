@@ -57,7 +57,7 @@ Level2::Level2(int playersAmount, bool loadFromSave) :
         0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
         0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
         0, 0, 0, 0, 0, 0, 0, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,
-        7, 8, 8, 298, 298, 298, 298, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 32, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 247, 248, 248, 248, 248, 248, 248, 248, 248, 248, 248, 249, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 298, 298, 298, 298, 298, 298, 298, 298, 298, 298, 9,
+        7, 8, 8, 298, 298, 298, 298, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 32, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 247, 248, 248, 248, 248, 248, 248, 248, 248, 248, 248, 249, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 298, 298, 298, 298, 298, 298, 298, 8, 8, 8, 9,
         29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31,
         51, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 52, 53
     };
@@ -70,27 +70,49 @@ Level2::Level2(int playersAmount, bool loadFromSave) :
     entities.setLevelId(l2);
     
     // creating obstacles
-    for (int i = 0; i < BLOCK_HEIGHT; i++)
+
+    if (!loadFromSave) // if not loading from save, then generate obstacles randomly
     {
-        for (int j = 0; j < BLOCK_WIDTH; j++)
+
+        for (int i = 0; i < BLOCK_HEIGHT; i++)
         {
-            if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+            for (int j = 0; j < BLOCK_WIDTH; j++)
             {
-                if (rand1 == 0)
-                    createMudObstacle({j, i});
-                else
-                    createFireObstacle({j, i});
-            }
-            if (testTileMap[i * BLOCK_WIDTH + j] == 298)
-            {
-                if (rand1 == 1)
-                    createMudObstacle({ j, i });
-                else
-                    createFireObstacle({ j, i });
+                if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+                {
+                    if (rand1 == 0)
+                        createMudObstacle({ j, i });
+                    else
+                        createFireObstacle({ j, i });
+                }
+                if (testTileMap[i * BLOCK_WIDTH + j] == 298)
+                {
+                    if (rand1 == 1)
+                        createMudObstacle({ j, i });
+                    else
+                        createFireObstacle({ j, i });
+                }
             }
         }
+        // creating enemies 
+
+        int mushroomAmout = 3 + rand() % 3;
+        int mushroomFloorPosition = 21 + rand() % 50;
+        int pigUpAmount = 2 + rand() % 2;
+
+        for (int i = 0; i < mushroomAmout; i++) //1120
+            createMushroom({ 21 + rand() % 30, 15 });
+
+        for (int i = 0; i < pigUpAmount; i++)
+            createPig({ 50 + rand() % 21, 13 }, 2.0f);
+        createPig({ 1, 45 }, 2.0f);
+        enemyAmount = mushroomAmout + pigUpAmount + 1;
+        std::cout << "Enemy amount " << enemyAmount << std::endl;
     }
-    
+    else {
+        loadObstacles();
+        loadEnemies();
+    }
     for (int i = 0; i < BLOCK_HEIGHT; i++)
     {
         for (int j = 0; j < BLOCK_WIDTH; j++)
@@ -100,26 +122,25 @@ Level2::Level2(int playersAmount, bool loadFromSave) :
         }
     }
 
-    // creating enemies 
     
-    int mushroomFloorAmout = 3 + rand() % 2;
-    int mushroomFloorPosition = 21 + rand() % 50;
-    int pigUpAmount = 1 + rand() % 2;
-
-    for (int i = 0; i < mushroomFloorAmout; i++) //1120
-        createMushroom({ 21 + rand() % 50, 15 });
-
-    //createMushroom({ 21 + rand() % 20, 30 });
- 
-    for (int i = 0; i < pigUpAmount; i++)
-        createPig({ 50 + rand() % 21, 13 }, 2.0f);
     //createMushroom({ mushroomUpPosition, 14 }, 1.5f + rand() % 1);
-    
 
 }
 
 Level2::~Level2()
 {
+}
+
+void Level2::loadObstacles()
+{
+    recoverFireBlocks("Level2");
+    recoverMuds();
+}
+
+void Level2::loadEnemies()
+{
+    recoverMushrooms("Level2");
+    recoverPigs();
 }
 
 void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
@@ -140,6 +161,25 @@ void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
     colMan.enemies.push_back(pPig);
 }
 
+void Level2::recoverPigs()
+{
+    std::fstream pigFile("../data/Level2/Pig.txt", std::ios::in);
+    if (pigFile.is_open())
+    {
+        std::string line;
+        while (std::getline(pigFile, line))
+        {
+            std::cout << "Line " << line << std::endl;
+            pPig = new Enemies::Pig(line);
+            pPig->setTexture("Enemies/AngryPig/Idle (36x30).png", { 0, 0 }, { 36, 30 });
+            entities.addEntity(pPig);
+            pPig->setLevel(this);
+            colMan.enemies.push_back((Enemy*)pPig);
+        }
+    }
+    pigFile.close();
+}
+
 void Level2::createMudObstacle(Coordinate<int> position)
 {
     pMud = NULL;
@@ -147,8 +187,30 @@ void Level2::createMudObstacle(Coordinate<int> position)
     pMud->setSize({ 16.0f, 16.0f });
     pMud->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
     pMud->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 5 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+    pMud->setLevel(this);
     colMan.obstacles.push_back((Obstacle*)pMud);
     entities.addEntity(pMud);
+}
+
+void Level2::recoverMuds()
+{
+    std::fstream mudFile("../data/Level2/Mud.txt", std::ios::in);
+    std::cout << "Recovering muds " << std::endl;
+    if (mudFile.is_open())
+    {
+        std::string line;
+        while (std::getline(mudFile, line))
+        {
+            std::cout << "New mud " << std::endl;
+            std::cout << "Line " << line << std::endl;
+            pMud = new Obstacles::Mud(line);
+            pMud->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 5 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+            pMud->setLevel(this);
+            entities.addEntity(pMud);
+            colMan.obstacles.push_back((Obstacle*)pMud);
+        }
+    }
+    mudFile.close();
 }
 
 

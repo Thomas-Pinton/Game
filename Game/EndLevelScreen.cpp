@@ -51,8 +51,7 @@ void EndLevelScreen::execute()
 			{
 				if (name.size() == 0)
 				{
-					Manager::StateManager::getInstance()->popUntil(1);
-					return;
+
 				}
 				else if (name.size() > 20)
 				{
@@ -65,6 +64,7 @@ void EndLevelScreen::execute()
 
 				if (playerSelected+1 == playersAmount)
 				{
+					Manager::StateManager::getInstance()->deletePlayers();
 					Manager::StateManager::getInstance()->popUntil(1);
 					// sair da tela, voltar para o menu principal
 					return;
@@ -91,6 +91,10 @@ void EndLevelScreen::print()
 
 void EndLevelScreen::writeData()
 {
+
+	if (name.size() == 0)
+		return;
+
 	std::fstream leaderboardFile;
 	leaderboardFile.open("../data/Leaderboard.txt", std::ios::in);
 

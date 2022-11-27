@@ -24,6 +24,7 @@ namespace Manager
 		checkColisionsPlayerWall();
 		checkColisionsEnemyObstacles();
 		checkColisionsProjectilesObstacles();
+		checkColisionsEnemyWall();
 	}
 
 
@@ -246,6 +247,32 @@ namespace Manager
 
 		}
 	}
+
+	void ColisionManager::checkColisionsEnemyWall()
+	{
+		const int WIDTH = GraphicManager::getInstance()->getWindow()->getWIDTH();
+		std::list<Enemy*>::iterator enemy;
+
+		for (enemy = enemies.begin(); enemy != enemies.end(); enemy++)
+		{
+			float tamanho = (*enemy)->getSize().x / 2, posicao = (*enemy)->getPosition().x;
+
+			//poderia criar uma fun��o setPosition, que colocaria a posicao exata (0 e WIDTH - tamanho, respectivamente)
+			if (tamanho > posicao) // se est� indo para fora pela esquerda
+			{
+				Coordinate<float> coord(tamanho - posicao, 0);
+				(*enemy)->updatePosition(coord);
+			}
+
+			if (posicao + tamanho > WIDTH) // se est� indo para fora pela direita
+			{
+				Coordinate<float> coord(-1 * (posicao + tamanho - WIDTH), 0);
+				(*enemy)->updatePosition(coord);
+			}
+
+		}
+	}
+
 
 	// checa colis�o e retorna o quanto deve ser ajustado
 	Coordinate<float> ColisionManager::checkColision(Entity* e1, Entity* e2)

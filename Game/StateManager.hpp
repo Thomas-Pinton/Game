@@ -29,6 +29,7 @@ namespace Manager
 		int playersAmount;
 		bool loadFromSave;
 	public:
+		~StateManager();
 		static StateManager* getInstance();
 		void push(Being* state);
 		void push(States state);
@@ -40,5 +41,7 @@ namespace Manager
 		void addPlayer(Player* pP = NULL);
 		void setPlayersAmount(int amount);
 		void setLoadFromSave(bool s);
+		Player* getPlayer(int position);
+		void deletePlayers();
 	};
 }

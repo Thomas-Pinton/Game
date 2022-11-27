@@ -38,8 +38,6 @@ namespace Obstacles
 
     void FireBlock::save()
     {
-        std::cout << "Test fire block " << std::endl;
-        std::cout << "Saving Fire Block " << pLevel->getId() << std::endl;
         std::ofstream FireBlockFile;
         if (pLevel->getId() == 1)
             FireBlockFile.open("../data/Level1/FireBlock.txt", std::ios_base::app);
