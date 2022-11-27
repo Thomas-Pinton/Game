@@ -147,6 +147,7 @@
     <ClCompile Include="FireBlock.cpp" />
     <ClCompile Include="FlyingBlock.cpp" />
     <ClCompile Include="Ice.cpp" />
+    <ClCompile Include="Leaderboard.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Menu.cpp" />

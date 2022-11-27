@@ -3,6 +3,7 @@
 #include "EndLevelScreen.hpp"
 #include "Level1.hpp"
 #include "Level2.hpp"
+#include "Leaderboard.hpp"
 
 namespace Manager
 {
@@ -35,6 +36,9 @@ namespace Manager
 			break;
 		case level2:
 			push(new Level2(GraphicManager::getInstance()->getWindow(), playersAmount));
+			break;
+		case leaderboard:
+			push(new Leaderboard);
 			break;
 		case endLevelScreen:
 			int* points = new int[2];
