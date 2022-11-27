@@ -16,6 +16,7 @@ namespace Enemies
 		float timeElapsed;
 	public:
 		Pig(float chDirTime = 4);
+		Pig(std::string data);
 		void changeState(int s);
 		void setHp(int newHp);
 		void decreaseHp(int qtd);

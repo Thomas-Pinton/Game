@@ -14,8 +14,9 @@ Menu::Menu()
 	Being::pGraMan = GraphicManager::getInstance();
 
 	option = 0;
-	optionsAmount = 4;
+	optionsAmount = 5;
 	playersAmount = 1;
+	loadFromSave = false;
 
 	Button* pB = NULL;
 
@@ -39,7 +40,8 @@ Menu::Menu()
 	buttons[0]->setString("Play level 1");
 	buttons[1]->setString("Play level 2");
 	buttons[2]->setString("Number of Players: 1");
-	buttons[3]->setString("Leaderboard");
+	buttons[3]->setString("Load from save: false");
+	buttons[4]->setString("Leaderboard");
 
 }
 
@@ -47,71 +49,87 @@ void Menu::execute()
 {
 	print();
 
-	//while (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) || option == 2)
-	//{
-		while (pGraMan->getWindow()->config.pollEvent(event))
+	while (pGraMan->getWindow()->config.pollEvent(event))
+	{
+		if (event.type == sf::Event::KeyPressed)
 		{
-			if (event.type == sf::Event::KeyPressed)
+			if ((event.key.code == sf::Keyboard::S ||
+				event.key.code == sf::Keyboard::Down) &&
+				option < optionsAmount - 1)
 			{
-				if ((event.key.code == sf::Keyboard::S ||
-					event.key.code == sf::Keyboard::Down) &&
-					option < optionsAmount - 1)
-				{
-					option++;
+				option++;
 
-					buttons[option]->rectangle.setFillColor(SELECTED_COLOR);
-					buttons[option - 1]->rectangle.setFillColor(UNSELECTED_COLOR);
+				buttons[option]->rectangle.setFillColor(SELECTED_COLOR);
+				buttons[option - 1]->rectangle.setFillColor(UNSELECTED_COLOR);
 
-					buttons[option]->text.setFillColor(SELECTED_TEXT_COLOR);
-					buttons[option - 1]->text.setFillColor(UNSELECTED_TEXT_COLOR);
-
-					print(); // if there was an update, print it
-				}
-				else if ((event.key.code == sf::Keyboard::W ||
-					event.key.code == sf::Keyboard::Up) &&
-					option > 0)
-				{
-					option--;
-					buttons[option]->rectangle.setFillColor(SELECTED_COLOR);
-					buttons[option + 1]->rectangle.setFillColor(UNSELECTED_COLOR);
-
-					buttons[option]->text.setFillColor(SELECTED_TEXT_COLOR);
-					buttons[option + 1]->text.setFillColor(UNSELECTED_TEXT_COLOR);
-
-					print(); // if there was an update, print it
-				}
-				else if (event.key.code == sf::Keyboard::Enter &&
-					option == 2) // caso queira trocar o numero de jogadores
-				{
-					std::cout << "Entrando aqui " << std::endl;
-					std::string s = buttons[option]->getString();
-					if (buttons[option]->getString().back() == '1')
-					{
-						s.pop_back();
-						s.push_back('2');
-						playersAmount = 2;
-					}
-					else
-					{
-						s.pop_back();
-						s.push_back('1');
-						playersAmount = 1;
-					}
-					buttons[option]->setString(s);
-					print();
-				}
-				else if (event.key.code == sf::Keyboard::Enter)
-				{
-					Manager::StateManager* pSM = StateManager::getInstance();
-
-					pSM->setPlayersAmount(playersAmount);
-
-					Manager::StateManager::getInstance()->push((States)option);
-				}
+				buttons[option]->text.setFillColor(SELECTED_TEXT_COLOR);
+				buttons[option - 1]->text.setFillColor(UNSELECTED_TEXT_COLOR);
 
 			}
+			else if ((event.key.code == sf::Keyboard::W ||
+				event.key.code == sf::Keyboard::Up) &&
+				option > 0)
+			{
+				option--;
+				buttons[option]->rectangle.setFillColor(SELECTED_COLOR);
+				buttons[option + 1]->rectangle.setFillColor(UNSELECTED_COLOR);
+
+				buttons[option]->text.setFillColor(SELECTED_TEXT_COLOR);
+				buttons[option + 1]->text.setFillColor(UNSELECTED_TEXT_COLOR);
+
+			}
+			else if (event.key.code == sf::Keyboard::Enter &&
+				option == 2) // caso queira trocar o numero de jogadores
+			{
+				std::cout << "Entrando aqui " << std::endl;
+				std::string s = buttons[option]->getString();
+				if (buttons[option]->getString().back() == '1')
+				{
+					s.pop_back();
+					s.push_back('2');
+					playersAmount = 2;
+				}
+				else
+				{
+					s.pop_back();
+					s.push_back('1');
+					playersAmount = 1;
+				}
+				buttons[option]->setString(s);
+			}
+			else if (event.key.code == sf::Keyboard::Enter &&
+				option == 3) // caso queira trocar a opcao de salvamento
+			{
+				std::cout << "Entrando aqui " << std::endl;
+				std::string s = buttons[option]->getString();
+				if (loadFromSave == false)
+				{
+					for (int j = 0; j < 5; j++)
+						s.pop_back();
+					s += "true";
+				}
+				else
+				{
+					for (int j = 0; j < 4; j++)
+						s.pop_back();
+					s += "false";
+				}
+				loadFromSave = !loadFromSave;
+				buttons[option]->setString(s);
+			}
+			else if (event.key.code == sf::Keyboard::Enter)
+			{
+				Manager::StateManager* pSM = StateManager::getInstance();
+
+				pSM->setPlayersAmount(playersAmount);
+
+				pSM->setLoadFromSave(loadFromSave);
+
+				Manager::StateManager::getInstance()->push((States)option);
+			}
+
 		}
-	//}
+	}
 	
 
 }

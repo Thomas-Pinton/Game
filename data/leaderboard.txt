@@ -30,6 +30,8 @@ teste
 50
 a
 50
+cinquenta
+50
 ddddd
 20
 bdfrgtgdtd
@@ -65,4 +67,10 @@ yyyy
 qwe
 0
 wer
+0
+thomas
+0
+abcdefg
+0
+maiorpontuacao
 0

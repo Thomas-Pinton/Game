@@ -13,8 +13,8 @@ enum States {
 	level1,
 	level2,
 	menu,
-	leaderboard,
-	endLevelScreen
+	endLevelScreen,
+	leaderboard
 };
 
 namespace Manager 
@@ -27,6 +27,7 @@ namespace Manager
 		std::stack<Being*> stateStack;
 		std::vector<Player*> players;
 		int playersAmount;
+		bool loadFromSave;
 	public:
 		static StateManager* getInstance();
 		void push(Being* state);
@@ -38,5 +39,6 @@ namespace Manager
 		void execute();
 		void addPlayer(Player* pP = NULL);
 		void setPlayersAmount(int amount);
+		void setLoadFromSave(bool s);
 	};
 }

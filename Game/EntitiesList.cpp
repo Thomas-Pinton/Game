@@ -7,6 +7,12 @@ EntitiesList::EntitiesList()
 EntitiesList::~EntitiesList()
 {
 }
+
+void EntitiesList::setLevelId(int id)
+{
+	levelId = id;
+}
+
 void EntitiesList::executeEntities()
 {
 	//GraphicManager* pGM = GraphicManager::getInstance();
@@ -45,22 +51,37 @@ void EntitiesList::addEntity(Entity* pE)
 void EntitiesList::saveEntities()
 {
 	// limpando todos os arquivos
-	remove("../data/Player.txt");
-	remove("../data/Mushroom.txt");
-	remove("../data/Pig.txt");
-	remove("../data/Plant.txt");
-	remove("../data/FlyingBlock.txt");
-	remove("../data/FireBlock.txt");
-	remove("../data/Mud.txt");
-	remove("../data/Projectile.txt");
+	if (levelId == 1)
+	{
+		remove("../data/Level1/Player.txt");
+		remove("../data/Level1/Mushroom.txt");
+		remove("../data/Level1/Plant.txt");
+		remove("../data/Level1/FireBlock.txt");
+		remove("../data/Level1/Ice.txt");
+		remove("../data/Level1/Projectile.txt");
+	}
+	else
+	{
+		remove("../data/Level2/Player.txt");
+		remove("../data/Level2/Mushroom.txt");
+		remove("../data/Level2/Pig.txt");
+		remove("../data/Level2/FireBlock.txt");
+		remove("../data/Level2/Mud.txt");
+	}	
+
+	std::cout << "Terminei de remover " << std::endl;
 
 	int size = list.getSize();
 	Lista<Entity>::Element<Entity>* pElEntidade = list.getPrimeiro();
 
+	std::cout << "list size " << size << std::endl;
+
 	for (int i = 0; i < size; i++)
 	{
 		//if (pElEntidade->getData()->alive)
+		std::cout << "Tentando salvar o primeiro " << std::endl;
 		pElEntidade->getData()->save();
+		std::cout << "Terminando de salvar o primeiro " << std::endl;
 		pElEntidade = pElEntidade->getProximo();
 	}
 }

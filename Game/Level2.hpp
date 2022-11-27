@@ -12,10 +12,9 @@ private:
     Obstacles::Sand* pSand;
     Obstacles::Ice* pIce;
 public:
-    Level2(int playersAmount);
+    Level2(int playersAmount, bool loadFromSave);
     void createPig(Coordinate<int> position, float changeDirectionTime = 1.5f + (rand() % 2) / 2);
-    void createSandObstacle(Coordinate<int> position);
-    void createIceObstacle(Coordinate<int> position);
+    void createMudObstacle(Coordinate<int> position);
     ~Level2();
 };
 

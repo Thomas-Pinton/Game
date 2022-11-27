@@ -6,6 +6,7 @@ Character::Character()
 	hp = 1;
 	// Todo personagem, por padr�o, sofre efeito da gravidade
 	acceleration.y = GRAVITY;
+	jumpHeight = 0;
 }
 
 const int Character::getHp()
@@ -30,4 +31,14 @@ void Character::decreaseHp(int qtd)
 void Character::increaseHp(int qtd)
 {
 	hp += qtd;
+}
+
+void Character::setJumpHeight(float jH)
+{
+	jumpHeight = jH;
+}
+
+float Character::getJumpHeight()
+{
+	return jumpHeight;
 }

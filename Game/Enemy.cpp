@@ -1,5 +1,6 @@
 #include "Enemy.hpp"
 #include "GraphicManager.hpp"
+#include "Level.hpp"
 
 
 Enemy::Enemy() :
@@ -18,11 +19,30 @@ void Enemy::setDamage(int d)
     damage = d;
 }
 
+void Enemy::setHp(int newHp)
+{
+    hp = newHp;
+    if (hp <= 0)
+    {
+        pLevel->decreaseEnemyAmount();
+        setAlive(false);
+    }
+}
+void Enemy::decreaseHp(int qtd)
+{
+    hp -= qtd;
+    if (hp <= 0)
+    {
+        pLevel->decreaseEnemyAmount();
+        setAlive(false);
+    }
+}
+
 void Enemy::checkIce()
 {
     if (jump > 0.2f)
     {
-        speed.y = -sqrtf(2 * GRAVITY * 130);
+        speed.y = jumpHeight;
         jump -= 0.2f;
     } 
 }

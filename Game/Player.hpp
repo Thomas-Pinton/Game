@@ -13,7 +13,6 @@ private:
 	int keys[3];
 public:
 	float movingSpeed;
-	float jumpHeight;
 	float mudCooldown;
 	float sandCooldown;
 
@@ -29,6 +28,8 @@ public:
 	void setJump(bool p);
 	void setWalk(bool w);
 	void executeJump(float height);
+	void setHp(int newHp);
+	void decreaseHp(int qtd);
 	void save();
 
 };

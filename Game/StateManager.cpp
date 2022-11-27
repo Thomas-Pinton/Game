@@ -10,7 +10,8 @@ namespace Manager
 {
 	StateManager::StateManager() :
 		stateStack(),
-		players()
+		players(),
+		loadFromSave(false)
 	{
 	}
 	StateManager* StateManager::getInstance()
@@ -33,10 +34,10 @@ namespace Manager
 			push(new Menu);
 			break;
 		case level1:
-			push(new Level1(playersAmount));
+			push(new Level1(playersAmount, loadFromSave));
 			break;
 		case level2:
-			push(new Level2(playersAmount));
+			push(new Level2(playersAmount, loadFromSave));
 			break;
 		case leaderboard:
 			push(new Leaderboard());
@@ -93,5 +94,10 @@ namespace Manager
 	void StateManager::setPlayersAmount(int amount)
 	{
 		playersAmount = amount;
+	}
+
+	void StateManager::setLoadFromSave(bool s)
+	{
+		loadFromSave = s;
 	}
 }

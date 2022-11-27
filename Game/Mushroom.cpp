@@ -1,17 +1,20 @@
 #include "Mushroom.hpp"
 #include "GraphicManager.hpp"
+#include "Level.hpp"
 #include <sstream>
 
 namespace Enemies
 {
-	Mushroom::Mushroom(float chDirTime)
+	Mushroom::Mushroom(float chDirTime) :
+		Enemy()
 	{
 		id = classes(mushroom);
 		changeDirectionTime = chDirTime;
 		timeElapsed = 0;
 	}
 
-	Mushroom::Mushroom(std::string data)
+	Mushroom::Mushroom(std::string data) :
+		Enemy()
 	{
 		id = classes(mushroom);
 		std::cout << "Recovering Mushroom " << std::endl;
@@ -50,7 +53,8 @@ namespace Enemies
 
 	void Mushroom::save()
 	{
-		std::ofstream mushroomFile("../data/Mushroom.txt", std::ios_base::app);
+		std::cout << "Saving mushroom " << pLevel->getId() << std::endl;
+		std::ofstream mushroomFile("../data/Level" + std::to_string(pLevel->getId()) + "/Mushroom.txt", std::ios_base::app);
 		mushroomFile << alive << " "
 			<< position.x << " " << position.y << " "
 			<< size.x << " " << size.y << " "

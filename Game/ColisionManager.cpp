@@ -76,15 +76,8 @@ namespace Manager
 						}
 					}
 				}
-				if (noEnemiesAlive)
-				{
-					StateManager::getInstance()->push((States)level2);
-				}
 			}
 		}
-		if (noPlayersAlive)
-			StateManager::getInstance()->push((States)endLevelScreen);
-
 	}
 
 	void ColisionManager::checkColisionsPlayerObstacles()

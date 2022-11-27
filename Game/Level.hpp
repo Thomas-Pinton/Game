@@ -31,31 +31,34 @@ protected:
 	sf::Event e;
 	bool paused;
 
+	int enemyAmount;
+	int playerAmount;
+
 	Player* player;
 	Obstacles::FlyingBlock* pFlyingBlock;
 	Obstacles::Mud* pMud;
 	Obstacles::FireBlock* pFireBlock;
 	Enemies::Mushroom* mushroom;
 public:
-	Level(int playersAmount = 1);
+	Level(int playersAmount, bool loadFromSave);
 	~Level();
 
 	void execute();
 	void print();
 	void manageColisions();
-	void loadFromSave();
 
-	void loadFireBlock();
+	void decreasePlayerAmount();
+	void decreaseEnemyAmount();
 
 	void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath);
 	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);
-	void createMudObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);
 	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
 	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
 
-	void recoverMushrooms();
-	void recoverPlayers();
+	void recoverMushrooms(std::string level);
+	void recoverPlayers(std::string level);
+	void recoverFireBlocks(std::string level);
 };
 

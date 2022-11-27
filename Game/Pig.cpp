@@ -13,6 +13,28 @@ namespace Enemies
 		timeElapsed = 0;
 	}
 
+	Pig::Pig(std::string data)
+	{
+		id = classes(pig);
+
+		std::istringstream ss(data);
+
+		std::string word;
+		std::string entityString;
+		for (int i = 0; i < 9; i++)
+		{
+			ss >> word;
+			entityString += word + " ";
+		}
+		recoverEntity(entityString);
+
+		ss >> hp;
+		ss >> damage;
+		ss >> state;
+		ss >> changeDirectionTime;
+		ss >> timeElapsed;
+	}
+
 	void Pig::changeState(int s)
 	{
 		if (s == state)
@@ -67,7 +89,7 @@ namespace Enemies
 
 	void Pig::save()
 	{
-		std::ofstream pigFile("../data/Pig.txt", std::ios_base::app);
+		std::ofstream pigFile("../data/Level2/Pig.txt", std::ios_base::app);
 		pigFile << alive << " "
 			<< position.x << " " << position.y << " "
 			<< size.x << " " << size.y << " "

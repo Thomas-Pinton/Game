@@ -9,6 +9,26 @@ namespace Obstacles
 		slowdown = 0.2f;
 	}
 
+	Mud::Mud(std::string data) :
+		Obstacle()
+	{
+		id = classes(mud);
+
+		std::istringstream ss(data);
+
+		std::string word;
+		std::string entityString;
+		for (int i = 0; i < 9; i++)
+		{
+			ss >> word;
+			entityString += word + " ";
+		}
+		recoverEntity(entityString);
+
+		ss >> counterForce;
+		ss >> slowdown;
+	}
+
 	void Mud::execute()
 	{
 	}
@@ -24,7 +44,7 @@ namespace Obstacles
 	
 	void Mud::save()
 	{
-		std::ofstream MudFile("../data/Mud.txt", std::ios_base::app);
+		std::ofstream MudFile("../data/Level2/Mud.txt", std::ios_base::app);
 		MudFile << alive << " "
 			<< position.x << " " << position.y << " "
 			<< size.x << " " << size.y << " "

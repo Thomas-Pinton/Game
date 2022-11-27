@@ -11,6 +11,7 @@ namespace Obstacles
         float slowdown;
     public:
         Mud();
+        Mud(std::string data);
         void execute();
         void affectPlayer(Player* pP);
         void save();

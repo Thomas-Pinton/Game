@@ -13,6 +13,7 @@ namespace Obstacles
 
 	void FlyingBlock::save()
 	{
+		/*
 		std::ofstream FlyingBlock("../data/FlyingBlock.txt", std::ios_base::app);
 		FlyingBlock << alive << " "
 			<< position.x << " " << position.y << " "
@@ -22,5 +23,7 @@ namespace Obstacles
 			<< counterForce << " "
 			<< std::endl;
 		FlyingBlock.close();
+		*/
+		// not saving flying block
 	}
 }

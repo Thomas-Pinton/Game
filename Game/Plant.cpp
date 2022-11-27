@@ -55,9 +55,9 @@ namespace Enemies
 		pP->reset(this->getPosition());
 		//pP->updatePosition({ this->getSize().x / 2, 0 });
 		if (this->getPosition().x > pPlayer->getPosition().x)
-			pP->speed.x = -500.0f;
+			pP->speed.x = -400.0f;
 		else
-			pP->speed.x = 500.0f;
+			pP->speed.x = 400.0f;
 	}
 
 	void Plant::execute()
@@ -106,7 +106,8 @@ namespace Enemies
 	
 	void Plant::save()
 	{
-		std::ofstream plantFile("../data/Plant.txt", std::ios_base::app);
+		std::cout << "Saving plant " << std::endl;
+		std::ofstream plantFile("../data/Level1/Plant.txt", std::ios_base::app);
 		plantFile << alive << " "
 			<< position.x << " " << position.y << " "
 			<< size.x << " " << size.y << " "

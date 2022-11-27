@@ -8,10 +8,12 @@ namespace Obstacles
         public Obstacle
     {
     private:
-        float enemySpeedBoost;
+        float enemyJumpHeight;
     public:
         Ice();
+        Ice(std::string data);
         void affectEnemy(Enemy* pE);
+        void save();
     };
 }
 

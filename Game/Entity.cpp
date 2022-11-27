@@ -1,5 +1,6 @@
 #include "Entity.hpp"
 #include "GraphicManager.hpp"
+#include "Level.hpp"
 #include <iostream>
 
 using namespace Manager;
@@ -10,6 +11,7 @@ Entity::Entity()
 {
 	speed.x = 0; speed.y = 0;
 	acceleration.x = 0; acceleration.y = GRAVITY;
+	pLevel = NULL;
 	//temporario
 	//rectangle.setOutlineColor(sf::Color::Red);
 	//rectangle.setOutlineThickness(1);
@@ -83,7 +85,6 @@ void Entity::execute()
 void Entity::save()
 {
 }
-
 void Entity::recoverEntity(std::string data)
 {
 	std::istringstream ss(data);
@@ -99,4 +100,9 @@ void Entity::recoverEntity(std::string data)
 	setSize(c);
 	ss >> speed.x; ss >> speed.y;
 	ss >> acceleration.x; ss >> acceleration.y;
+}
+
+void Entity::setLevel(Level* pL)
+{
+	pLevel = pL;
 }

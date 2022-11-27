@@ -15,7 +15,6 @@ window(800, 1200)
 	Being::pGraMan = grapMan;
 	pStateMan = Manager::StateManager::getInstance();
 	pStateMan->push(new Menu());
-
 }
 
 Game::~Game()

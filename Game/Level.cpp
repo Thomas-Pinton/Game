@@ -1,6 +1,6 @@
 #include "Level.hpp"
 
-Level::Level(int playersAmount)
+Level::Level(int playersAmount, bool loadFromSave)
 	: entities(),
 	colMan(),
 	tileMap(NULL),
@@ -10,6 +10,9 @@ Level::Level(int playersAmount)
 
 	pGraMan = GraphicManager::getInstance();
 	Being::pGraMan = GraphicManager::getInstance();
+
+	enemyAmount = 0;
+	playerAmount = playersAmount;
 
 	/*
 	ifstream playerFile("../data/Player.txt");
@@ -24,13 +27,18 @@ Level::Level(int playersAmount)
 		pPlayer = new Player()
 	}
 	*/
-	for (int i = 0; i < playersAmount; i++)
+
+	if(loadFromSave)
+		recoverPlayers("Level1");
+	else
 	{
-		//createPlayer({(float) 50 * (i+1),(float) 50 * (i + 1) }, i + 1);
-		std::cout << "Not creating players " << std::endl;
+		for (int i = 0; i < playersAmount; i++)
+		{
+			createPlayer({ (float)50 * (i + 1),(float)50 * (i + 1) }, i + 1);
+		}
 	}
 	
-	recoverPlayers();
+	
 	
 }
 
@@ -38,20 +46,6 @@ Level::~Level()
 {
 }
 
-void Level::loadFromSave()
-{
-	loadFireBlock();
-}
-
-void Level::loadFireBlock()
-{
-	std::ifstream fireBlockFile("../data/FireBlock.txt");
-	if (fireBlockFile.is_open())
-	{
-		std::string line;
-
-	}
-}
 
 void Level::print()
 {
@@ -118,6 +112,19 @@ void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, 
 {
 }
 
+void Level::decreasePlayerAmount()
+{
+	playerAmount -= 1;
+	if (playerAmount == 0)
+		StateManager::getInstance()->push((States)endLevelScreen);
+}
+void Level::decreaseEnemyAmount()
+{
+	enemyAmount -= 1;
+	if (enemyAmount == 0)
+		StateManager::getInstance()->push((States)level2);
+}
+
 void Level::createPlayer(Coordinate<float> position, int id)
 {
 	player = new Player(id);
@@ -126,7 +133,7 @@ void Level::createPlayer(Coordinate<float> position, int id)
 	player->setPosition(position);
 
 	player->setTexture("Main Characters/Ninja Frog/Idle (32x32).png", { 0, 0 }, { 2 * BLOCK_SIZE, 2 * BLOCK_SIZE });
-
+	player->setLevel(this);
 	players.push_back(player);
 
 	entities.addEntity(player);
@@ -146,17 +153,6 @@ void Level::createFlyingObstacle(Coordinate<int> position)
 	entities.addEntity(pFlyingBlock);
 }
 
-void Level::createMudObstacle(Coordinate<int> position)
-{
-	pMud = NULL;
-	pMud = new Obstacles::Mud;
-	pMud->setSize({ 16.0f, 16.0f });
-	pMud->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-	pMud->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 5 , BLOCK_SIZE * 0}, { BLOCK_SIZE,  BLOCK_SIZE });
-	colMan.obstacles.push_back((Obstacle*)pMud);
-	entities.addEntity(pMud);
-}
-
 void Level::createFireObstacle(Coordinate<int> position)
 {
 	pFireBlock = NULL;
@@ -164,6 +160,7 @@ void Level::createFireObstacle(Coordinate<int> position)
 	pFireBlock->setSize({ 16.0f, 16.0f });
 	pFireBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	pFireBlock->setTexture("Traps/Fire/On (16x32).png", { 0, 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+	pFireBlock->setLevel(this);
 	colMan.obstacles.push_back((Obstacle*)pFireBlock);
 	entities.addEntity(pFireBlock);
 }
@@ -187,12 +184,13 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	//aleatoriza modulo e direcao da velocidade
 	mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE*2,  BLOCK_SIZE*2 });
 	entities.addEntity(mushroom);
+	mushroom->setLevel(this);
 	std::cout << "Mushroom " << mushroom->acceleration.y << std::endl;
 }
 
-void Level::recoverMushrooms()
+void Level::recoverMushrooms(std::string level)
 {
-	std::fstream mushroomFile("../data/Mushroom.txt", std::ios::in);
+	std::fstream mushroomFile("../data/" + level + "/Mushroom.txt", std::ios::in);
 	if (mushroomFile.is_open())
 	{
 		std::string line;
@@ -202,14 +200,16 @@ void Level::recoverMushrooms()
 			mushroom = new Enemies::Mushroom(line);
 			mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE * 2,  BLOCK_SIZE * 2 });
 			entities.addEntity(mushroom);
+			mushroom->setLevel(this);
 			colMan.enemies.push_back((Enemy*)mushroom);
 		}
 	}
+	mushroomFile.close();
 }
 
-void Level::recoverPlayers()
+void Level::recoverPlayers(std::string level)
 {
-	std::fstream playerFile("../data/Player.txt", std::ios::in);
+	std::fstream playerFile("../data/" + level + "/Player.txt", std::ios::in);
 	if (playerFile.is_open())
 	{
 		std::string line;
@@ -220,11 +220,31 @@ void Level::recoverPlayers()
 			player->setTexture("Main Characters/Ninja Frog/Idle (32x32).png", { 0, 0 }, { 2 * BLOCK_SIZE, 2 * BLOCK_SIZE });
 
 			players.push_back(player);
+			player->setLevel(this);
 
 			entities.addEntity(player);
 			colMan.players.push_back(player);
 			Manager::StateManager::getInstance()->addPlayer(player);
 		}
 	}
-	
+	playerFile.close();
+}
+
+void Level::recoverFireBlocks(std::string level)
+{
+	std::fstream fireBlockFile("../data/" + level + "/FireBlock.txt", std::ios::in);
+	if (fireBlockFile.is_open())
+	{
+		std::string line;
+		while (std::getline(fireBlockFile, line))
+		{
+			std::cout << "Line " << line << std::endl;
+			pFireBlock = new Obstacles::FireBlock(line);
+			pFireBlock->setTexture("Traps/Fire/On (16x32).png", { 0, 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+			pFireBlock->setLevel(this);
+			entities.addEntity(pFireBlock);
+			colMan.obstacles.push_back((Obstacle*)pFireBlock);
+		}
+	}
+	fireBlockFile.close();
 }

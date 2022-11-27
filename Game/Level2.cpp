@@ -3,8 +3,8 @@
 #define BLOCK_HEIGHT 50
 #define BLOCK_WIDTH 75
 
-Level2::Level2(int playersAmount) :
-	Level(playersAmount)
+Level2::Level2(int playersAmount, bool loadFromSave) :
+	Level(playersAmount, loadFromSave)
 {
 
     pPig = NULL;
@@ -65,6 +65,9 @@ Level2::Level2(int playersAmount) :
     srand(time(0));
 
     int rand1 = rand() % 2;
+
+    id = l2;
+    entities.setLevelId(l2);
     
     // creating obstacles
     for (int i = 0; i < BLOCK_HEIGHT; i++)
@@ -74,14 +77,14 @@ Level2::Level2(int playersAmount) :
             if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
             {
                 if (rand1 == 0)
-                    createIceObstacle({j, i});
+                    createMudObstacle({j, i});
                 else
                     createFireObstacle({j, i});
             }
             if (testTileMap[i * BLOCK_WIDTH + j] == 298)
             {
                 if (rand1 == 1)
-                    createIceObstacle({ j, i });
+                    createMudObstacle({ j, i });
                 else
                     createFireObstacle({ j, i });
             }
@@ -132,29 +135,21 @@ void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
     pPig->speed = { (-200.0f + 20 * (rand() % 3)), 0.0f };
     //aleatoriza modulo e direcao da velocidade
     pPig->setTexture("Enemies/AngryPig/Idle (36x30).png", {0, 0}, {36, 30});
+    pPig->setLevel(this);
     entities.addEntity(pPig);
     colMan.enemies.push_back(pPig);
 }
 
-void Level2::createSandObstacle(Coordinate<int> position)
+void Level2::createMudObstacle(Coordinate<int> position)
 {
-    pSand = NULL;
-    pSand = new Obstacles::Sand;
-    pSand->setSize({ 16.0, 16.0 });
-    pSand->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-    pSand->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 1 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
-    colMan.obstacles.push_back((Obstacle*)pSand);
-    entities.addEntity(pSand);
+    pMud = NULL;
+    pMud = new Obstacles::Mud;
+    pMud->setSize({ 16.0f, 16.0f });
+    pMud->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pMud->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 5 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+    colMan.obstacles.push_back((Obstacle*)pMud);
+    entities.addEntity(pMud);
 }
 
-void Level2::createIceObstacle(Coordinate<int> position)
-{
-    pIce = NULL;
-    pIce = new Obstacles::Ice;
-    pIce->setSize({ 16.0, 16.0 });
-    pIce->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
-    pIce->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 9 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
-    colMan.obstacles.push_back((Obstacle*)pIce);
-    entities.addEntity(pIce);
-}
+
 

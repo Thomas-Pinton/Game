@@ -12,6 +12,7 @@ private:
     int option;
     int optionsAmount;
     int playersAmount;
+    bool loadFromSave;
     std::vector<Button*> buttons;
     sf::Event event;
 public:

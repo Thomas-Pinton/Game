@@ -11,6 +11,7 @@ namespace Obstacles
         int damage;
     public:
         FireBlock();
+        FireBlock(std::string data);
         void affectPlayer(Player* pP);
         void save();
     };

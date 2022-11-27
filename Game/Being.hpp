@@ -16,6 +16,8 @@ namespace Manager {
 
 enum classes {
 	notSaved = -1,
+	l1 = 1,
+	l2 = 2,
 	player,
 	projectile,
 	fireBlock,

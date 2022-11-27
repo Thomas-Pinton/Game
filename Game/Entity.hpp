@@ -5,6 +5,7 @@
 #include "Constants.hpp"
 #include <sstream>
 
+class Level;
 
 class Entity : public Being
 {
@@ -12,6 +13,7 @@ protected:
 	Coordinate<float> position;
 	Coordinate<float> size;
 	sf::Texture* texture;
+	Level* pLevel;
 	//std::stringstream saveInfo;
 public:
 	bool alive;
@@ -51,4 +53,6 @@ public:
 	virtual void save();
 
 	void recoverEntity(std::string data);
+
+	void setLevel(Level* pL);
 };

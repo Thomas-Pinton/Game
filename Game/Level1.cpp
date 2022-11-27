@@ -3,8 +3,8 @@
 #define BLOCK_HEIGHT 50
 #define BLOCK_WIDTH 75
 
-Level1::Level1(int playersAmount) :
-	Level(playersAmount)
+Level1::Level1(int playersAmount, bool loadFromSave) :
+	Level(playersAmount, loadFromSave)
 {
 
     pProjectile = NULL;
@@ -69,26 +69,38 @@ Level1::Level1(int playersAmount) :
 
     int rand1 = rand() % 2;
 
-    for (i = 0; i < 50; i++)
+    id = l1;
+    entities.setLevelId(l1);
+
+    if (!loadFromSave) // if not loading from save, then generate obstacles randomly
     {
-        for (j = 0; j < 75; j++)
+        for (i = 0; i < 50; i++)
         {
-            if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+            for (j = 0; j < 75; j++)
             {
-                if (rand1 == 0)
-                    createMudObstacle({ j, i });
-                else
-                    createFireObstacle({ j, i });
-            }
-            else if (testTileMap[i * BLOCK_WIDTH + j] == 298)
-            {
-                if (rand1 == 1)
-                    createMudObstacle({ j, i });
-                else
-                    createFireObstacle({ j, i });
+                if (testTileMap[i * BLOCK_WIDTH + j] >= 247 && testTileMap[i * BLOCK_WIDTH + j] <= 249)
+                {
+                    if (rand1 == 0)
+                        createIceObstacle({ j, i });
+                    else
+                        createFireObstacle({ j, i });
+                }
+                else if (testTileMap[i * BLOCK_WIDTH + j] == 298)
+                {
+                    if (rand1 == 1)
+                        createIceObstacle({ j, i });
+                    else
+                        createFireObstacle({ j, i });
+                }
             }
         }
+        createEnemies();
     }
+    else {
+        loadObstacles();
+        loadEnemies();
+    }
+    
     
     for (i = 0; i < 50; i++)
     {
@@ -98,10 +110,20 @@ Level1::Level1(int playersAmount) :
                 createFlyingObstacle({ j, i });
         }
     }
+}
 
+Level1::~Level1()
+{
+}
+
+void Level1::createEnemies()
+{
+    int i, j;
     int amountOfEnemies = 3 + rand() % 2;
     int amountOfPlants = 3 + rand() % 2;
-    
+
+    enemyAmount = amountOfEnemies + amountOfPlants;
+
     int plantSpawns[10] = {
         33, 25,
         9, 25,
@@ -116,19 +138,35 @@ Level1::Level1(int playersAmount) :
     {
         j = 5 + rand() % 55;
         std::cout << "Criando inimigo" << std::endl;
-        //createMushroom({ j, 45 });
+        createMushroom({ j, 45 });
     }
-    std::cout << "Recovering mushrooms " << std::endl;
-    recoverMushrooms();
+
 
     for (i = 0; i < amountOfPlants; i++)
-        //createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
-        std::cout << "Faz nada " << std::endl;
+        createPlant({ plantSpawns[i * 2], plantSpawns[i * 2 + 1] });
+}
+
+void Level1::loadEnemies()
+{
+    recoverMushrooms("Level1");
     recoverPlants();
 }
 
-Level1::~Level1()
+void Level1::loadObstacles()
 {
+    recoverFireBlocks("Level1");
+    recoverIce();
+}
+
+void Level1::createIceObstacle(Coordinate<int> position)
+{
+    pIce = NULL;
+    pIce = new Obstacles::Ice;
+    pIce->setSize({ 16.0, 16.0 });
+    pIce->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+    pIce->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 9 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+    colMan.obstacles.push_back((Obstacle*)pIce);
+    entities.addEntity(pIce);
 }
 
 void Level1::createPlant(Coordinate<int> position)
@@ -146,6 +184,7 @@ void Level1::createPlant(Coordinate<int> position)
     entities.addEntity(pPlant);
 
     pPlant->players = players;
+    pPlant->setLevel(this);
 
     std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
 
@@ -159,7 +198,7 @@ void Level1::createPlant(Coordinate<int> position)
 
 void Level1::recoverPlants()
 {
-    std::fstream plantFile("../data/Plant.txt", std::ios::in);
+    std::fstream plantFile("../data/Level1/Plant.txt", std::ios::in);
     if (plantFile.is_open())
     {
         std::string line;
@@ -170,6 +209,7 @@ void Level1::recoverPlants()
             pPlant = new Enemies::Plant(line);
             pPlant->players = players;
             pPlant->setTexture("Enemies/Plant/Idle (44x42).png", { 0, 0 }, { 44, 42 });
+            pPlant->setLevel(this);
             entities.addEntity(pPlant);
             colMan.enemies.push_back((Enemy*)pPlant);
             std::cout << "Recovering projectiles " << std::endl;
@@ -181,6 +221,7 @@ void Level1::recoverPlants()
             plantCounter++;
         }
     }
+    plantFile.close();
 }
 
 Projectile* Level1::createProjectile()
@@ -196,7 +237,7 @@ Projectile* Level1::createProjectile()
 
 Projectile* Level1::recoverProjectile(int projectilePosition)
 {
-    std::fstream projectileFile("../data/Projectile.txt", std::ios::in);
+    std::fstream projectileFile("../data/Level1/Projectile.txt", std::ios::in);
     std::string line;
     if (projectileFile.is_open())
     {
@@ -213,4 +254,23 @@ Projectile* Level1::recoverProjectile(int projectilePosition)
         return pProjectile;
         
     }
+    projectileFile.close();
+}
+
+void Level1::recoverIce() 
+{
+    std::fstream iceFile("../data/Level1/Ice.txt", std::ios::in);
+    if (iceFile.is_open())
+    {
+        std::string line;
+        while (std::getline(iceFile, line))
+        {
+            std::cout << "Line " << line << std::endl;
+            pIce = new Obstacles::Ice(line);
+            pIce->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 9 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
+            entities.addEntity(pIce);
+            colMan.obstacles.push_back((Obstacle*)pIce);
+        }
+    }
+    iceFile.close();
 }

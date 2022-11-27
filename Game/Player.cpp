@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "GraphicManager.hpp"
+#include "Level.hpp"
 
 Player::Player(int pId) : 
 	Character(),
@@ -136,9 +137,29 @@ void Player::executeJump(float height)
 	canJump = false;
 }
 
+void Player::setHp(int newHp)
+{
+	hp = newHp;
+	if (hp <= 0)
+	{
+		pLevel->decreasePlayerAmount();
+		setAlive(false);
+	}
+}
+void Player::decreaseHp(int qtd)
+{
+	hp -= qtd;
+	if (hp <= 0)
+	{
+		pLevel->decreasePlayerAmount();
+		setAlive(false);
+	}
+}
+
 void Player::save()
 {
-	std::ofstream playerFile("../data/Player.txt", std::ofstream::out);
+	std::cout << "Saving player " << pLevel->getId() << std::endl;
+	std::ofstream playerFile("../data/Level" + std::to_string(pLevel->getId()) + "/Player.txt", std::ofstream::out);
 	playerFile  << alive << " " 
 				<< position.x << " " << position.y << " " 
 				<< size.x << " " << size.y << " "

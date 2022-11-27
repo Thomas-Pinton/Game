@@ -47,7 +47,8 @@ void Projectile::reset(Coordinate<float> pos)
 
 void Projectile::save()
 {
-	std::ofstream projectileFile("../data/Projectile.txt", std::ios_base::app);
+	std::cout << "Saving projectile " << std::endl;
+	std::ofstream projectileFile("../data/Level1/Projectile.txt", std::ios_base::app);
 	projectileFile << alive << " "
 		<< position.x << " " << position.y << " "
 		<< size.x << " " << size.y << " "

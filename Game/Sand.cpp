@@ -14,7 +14,7 @@ namespace Obstacles
         std::cout << "Affecting player with mud " << pP->sandCooldown << std::endl;
         if (pP->sandCooldown < 0.05f)
         {
-            pP->jumpHeight *= jumpHeightDecrease;
+            pP->setJumpHeight(pP->getJumpHeight() * jumpHeightDecrease);
             pP->setWalk(false);
         }
         pP->sandCooldown = 0.2f;

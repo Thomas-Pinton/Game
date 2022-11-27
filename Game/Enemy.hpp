@@ -12,6 +12,8 @@ public:
     Enemy();
     const int getDamage() const;
     void setDamage(int d);
+    void setHp(int newHp);
+    void decreaseHp(int qtd);
     void checkIce();
 };
 
