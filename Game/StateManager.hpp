@@ -4,8 +4,10 @@
 // State design pattern
 
 #include <stack>
+#include <vector>
 
 class Being;
+class Player;
 
 enum States {
 	level1,
@@ -23,16 +25,18 @@ namespace Manager
 		StateManager();
 		static StateManager* instance;
 		std::stack<Being*> stateStack;
+		std::vector<Player*> players;
 		int playersAmount;
 	public:
 		static StateManager* getInstance();
 		void push(Being* state);
 		void push(States state);
 		int getStackSize();
-		void setPlayersAmount(int amount);
 		// when the state is a level
 		void pop();
 		void popUntil(int amount);
 		void execute();
+		void addPlayer(Player* pP = NULL);
+		void setPlayersAmount(int amount);
 	};
 }

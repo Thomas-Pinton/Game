@@ -129,6 +129,7 @@ void Level::createPlayer(Coordinate<float> position, int id)
 
 	entities.addEntity(player);
 	colMan.players.push_back(player);
+	Manager::StateManager::getInstance()->addPlayer(player);
 }
 
 void Level::createFlyingObstacle(Coordinate<int> position)

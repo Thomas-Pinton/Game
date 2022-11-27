@@ -4,12 +4,13 @@
 #include "Level1.hpp"
 #include "Level2.hpp"
 #include "Leaderboard.hpp"
+#include "Player.hpp"
 
 namespace Manager
 {
 	StateManager::StateManager() :
 		stateStack(),
-		playersAmount(1)
+		players()
 	{
 	}
 	StateManager* StateManager::getInstance()
@@ -41,9 +42,15 @@ namespace Manager
 			push(new Leaderboard());
 			break;
 		case endLevelScreen:
-			int* points = new int[2];
-			points[0] = 10; points[1] = 20;
-			push(new EndLevelScreen(playersAmount, points));
+			int* points = new int[playersAmount];
+			for (int i = 0; i < playersAmount; i++)
+			{
+				points[i] = players[i]->getPoints();
+				std::cout << "Points [i] " << points[i] << std::endl;
+				std::cout << "players[i]->getPoints() " << players[i]->getPoints() << std::endl;
+			}
+
+			push(new EndLevelScreen(points, playersAmount));
 			break;
 		}
 	}
@@ -74,6 +81,13 @@ namespace Manager
 	void StateManager::execute()
 	{
 		stateStack.top()->execute();
+	}
+
+	void StateManager::addPlayer(Player* pP)
+	{
+		if (pP == NULL)
+			return;
+		players.push_back(pP);
 	}
 
 	void StateManager::setPlayersAmount(int amount)

@@ -1,7 +1,7 @@
 #include "EndLevelScreen.hpp"
 #include "GraphicManager.hpp"
 
-EndLevelScreen::EndLevelScreen(int pAmount, int* p) :
+EndLevelScreen::EndLevelScreen(int* p, int pAmount) :
 	playerSelected(0),
 	playersAmount(pAmount),
 	pontuation (p)
@@ -23,7 +23,6 @@ EndLevelScreen::EndLevelScreen(int pAmount, int* p) :
 		text->setFont(*font);
 		playersInput.push_back(text);
 	}
-	
 }
 
 EndLevelScreen::~EndLevelScreen()
@@ -66,7 +65,6 @@ void EndLevelScreen::execute()
 
 				if (playerSelected+1 == playersAmount)
 				{
-					delete pontuation;
 					Manager::StateManager::getInstance()->popUntil(1);
 					// sair da tela, voltar para o menu principal
 					return;

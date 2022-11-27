@@ -8,16 +8,20 @@ class EndLevelScreen :
 {
 private:
     sf::Event event;
+
     std::string name;
     sf::Text screenMessage;
     sf::Text errorMessage;
     std::vector<sf::Text*> playersInput;
+    sf::Font* font;
+
+
     int playerSelected;
     int playersAmount;
     int* pontuation;
-    sf::Font* font;
+
 public:
-    EndLevelScreen(int playersAmount, int* p);
+    EndLevelScreen(int* p, int pAmount);
     ~EndLevelScreen();
 
     void execute();
