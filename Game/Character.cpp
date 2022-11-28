@@ -9,6 +9,10 @@ Character::Character()
 	jumpHeight = 0;
 }
 
+Character::~Character()
+{
+}
+
 const int Character::getHp() const
 {
 	return hp;

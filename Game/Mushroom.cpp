@@ -39,6 +39,10 @@ namespace Enemies
 
 	}
 
+	Mushroom::~Mushroom()
+	{
+	}
+
 	void Mushroom::execute()
 	{
 		checkIce();

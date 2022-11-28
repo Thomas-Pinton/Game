@@ -14,6 +14,7 @@ EntitiesList::~EntitiesList()
 	while (pElEntidade->getData()->getId() == player)
 	{
 		list.setPrimeiro(pElEntidadeProx);
+		delete pElEntidade;
 		pElEntidade = pElEntidadeProx;
 		pElEntidadeProx = pElEntidade->getProximo();
 	}

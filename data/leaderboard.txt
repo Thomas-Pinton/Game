@@ -1,3 +1,7 @@
+oitocentosecinquenta
+850
+setcentosecinquenta
+750
 quinehntos
 500
 playerum
@@ -9,6 +13,8 @@ ttttt
 trezendoecinquenta
 350
 playerdois
+350
+trezentosecinquenta
 350
 trezentospontos
 300

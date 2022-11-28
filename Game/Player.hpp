@@ -18,6 +18,7 @@ public:
 
 	Player(int pId = 1);
 	Player(std::string data);
+	~Player();
 	void addPoints(int amount);
 	void assignKeys();
 	const int getPoints() const;

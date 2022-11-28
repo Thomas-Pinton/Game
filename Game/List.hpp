@@ -25,7 +25,7 @@ public:
             pData = pDataE;
         }
         ~Element() {
-
+            delete pData;
         }
         void setProximo(Element* pN) {
             pNext = pN;

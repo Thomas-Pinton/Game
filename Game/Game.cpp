@@ -19,7 +19,7 @@ window(800, 1200)
 
 Game::~Game()
 {
-	delete grapMan->getInstance();
+	delete grapMan;
 	delete pStateMan;
 }
 

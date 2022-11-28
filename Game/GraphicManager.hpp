@@ -33,7 +33,6 @@ namespace Manager
 
 		const float getDeltaTime() const;
 
-		//void print();
 		void printEntity(Entity* pE);
 		void printText(sf::Text* pT);
 

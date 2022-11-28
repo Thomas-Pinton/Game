@@ -12,6 +12,7 @@ namespace Characters
 		float jumpHeight;
 	public:
 		Character();
+		virtual ~Character();
 		const int getHp() const;
 		virtual void setHp(const int newHp);
 		virtual void decreaseHp(const int qtd);

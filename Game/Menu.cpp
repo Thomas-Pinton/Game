@@ -45,6 +45,13 @@ Menu::Menu()
 
 }
 
+Menu::~Menu()
+{
+	int buttonsSize = buttons.size();
+	for (int i = 0; i < buttonsSize; i++)
+		delete buttons[i];
+}
+
 void Menu::execute()
 {
 	print();

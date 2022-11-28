@@ -17,6 +17,7 @@ private:
     sf::Event event;
 public:
     Menu();
+    ~Menu();
     void execute();
     void print();
 };

@@ -10,6 +10,11 @@ Enemy::Enemy() :
 	jump = 0.0f;
 }
 
+Enemy::~Enemy()
+{
+
+}
+
 const int Enemy::getDamage() const
 {
     return damage;

@@ -47,6 +47,11 @@ Player::Player(std::string data)
 	assignKeys();
 }
 
+Player::~Player()
+{
+
+}
+
 void Player::assignKeys()
 {
 	if (playerId == 1)

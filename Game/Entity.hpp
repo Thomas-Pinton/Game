@@ -26,7 +26,7 @@ public:
 	
 	Entity();
 
-	~Entity();
+	virtual ~Entity();
 
 	void setTexture(std::string filePath, Coordinate<int> start = {0, 0}, Coordinate<int> size = { 0, 0 });
 

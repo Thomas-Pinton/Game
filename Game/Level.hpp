@@ -26,7 +26,6 @@ protected:
 	EntitiesList entities;
 	ColisionManager colMan;
 	Manager::GraphicManager* pGraMan;
-	int* tileMap;
 	std::list<Player*> players;
 
 	sf::Event e;
@@ -36,7 +35,7 @@ protected:
 	int playerAmount;
 
 	Player* player;
-	Obstacle* pFlyingBlock;
+	Obstacle* pObstacle;
 	Obstacles::Mud* pMud;
 	Obstacles::FireBlock* pFireBlock;
 	Enemies::Mushroom* mushroom;
@@ -51,7 +50,6 @@ public:
 	void decreasePlayerAmount();
 	void decreaseEnemyAmount();
 
-	void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath);
 	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);

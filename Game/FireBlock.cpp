@@ -30,6 +30,11 @@ namespace Obstacles
         ss >> damage;
     }
 
+    FireBlock::~FireBlock()
+    {
+
+    }
+
     void FireBlock::affectPlayer(Player* pP)
     {
         std::cout << "Jogador Morreu" << std::endl;

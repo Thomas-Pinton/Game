@@ -20,6 +20,10 @@ namespace Manager {
 		{
 			delete (*paths).second;
 		}
+		for (std::map<std::string, sf::Font*>::iterator paths = fontMap.begin(); paths != fontMap.end(); paths++)
+		{
+			delete (*paths).second;
+		}
 	}
 
 	GraphicManager* GraphicManager::getInstance()

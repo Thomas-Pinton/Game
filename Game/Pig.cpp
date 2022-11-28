@@ -35,6 +35,11 @@ namespace Enemies
 		ss >> timeElapsed;
 	}
 
+	Pig::~Pig()
+	{
+
+	}
+
 	void Pig::changeState(int s)
 	{
 		if (s == state)

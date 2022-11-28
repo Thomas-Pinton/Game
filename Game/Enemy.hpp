@@ -10,6 +10,7 @@ protected:
 public:
     float jump;
     Enemy();
+    virtual ~Enemy();
     const int getDamage() const;
     void setDamage(int d);
     void setHp(int newHp);

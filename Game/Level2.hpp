@@ -14,6 +14,7 @@ private:
     Obstacles::Ice* pIce;
 public:
     Level2(int playersAmount, bool loadFromSave);
+    ~Level2();
 
     void loadEnemies();
     void loadObstacles();
@@ -23,7 +24,6 @@ public:
 
     void createMudObstacle(Coordinate<int> position);
     void recoverMuds();
-    ~Level2();
 };
 
 

@@ -3,7 +3,6 @@
 Level::Level(int playersAmount, bool loadFromSave)
 	: entities(),
 	colMan(),
-	tileMap(NULL),
 	paused(false)
 {
 	pGraMan = NULL;
@@ -108,10 +107,6 @@ void Level::execute()
 	}
 }
 
-void createEntity(Entity* pE, Coordinate<int> size, Coordinate<float> position, std::string texturePath)
-{
-}
-
 void Level::decreasePlayerAmount()
 {
 	playerAmount -= 1;
@@ -145,26 +140,26 @@ void Level::createPlayer(Coordinate<float> position, int id)
 
 void Level::createFlyingObstacle(Coordinate<int> position)
 {
-	pFlyingBlock = NULL;
-	pFlyingBlock = new Obstacle;
-	pFlyingBlock->setSize({ 16.0f, 16.0f });
-	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+	pObstacle = NULL;
+	pObstacle = new Obstacle;
+	pObstacle->setSize({ 16.0f, 16.0f });
+	pObstacle->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
-	pFlyingBlock->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 1 * BLOCK_SIZE }, { BLOCK_SIZE,  BLOCK_SIZE });
-	colMan.obstacles.push_back((Obstacle*)pFlyingBlock);
-	entities.addEntity(pFlyingBlock);
+	pObstacle->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 1 * BLOCK_SIZE }, { BLOCK_SIZE,  BLOCK_SIZE });
+	colMan.obstacles.push_back((Obstacle*)pObstacle);
+	entities.addEntity(pObstacle);
 }
 
 void Level::createFlyingObstacleDifferentTexture(Coordinate<int> position)
 {
-	pFlyingBlock = NULL;
-	pFlyingBlock = new Obstacle;
-	pFlyingBlock->setSize({ 16.0f, 16.0f });
-	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+	pObstacle = NULL;
+	pObstacle = new Obstacle;
+	pObstacle->setSize({ 16.0f, 16.0f });
+	pObstacle->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
-	pFlyingBlock->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 5 * BLOCK_SIZE }, { BLOCK_SIZE,  BLOCK_SIZE });
-	colMan.obstacles.push_back((Obstacle*)pFlyingBlock);
-	entities.addEntity(pFlyingBlock);
+	pObstacle->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 5 * BLOCK_SIZE }, { BLOCK_SIZE,  BLOCK_SIZE });
+	colMan.obstacles.push_back((Obstacle*)pObstacle);
+	entities.addEntity(pObstacle);
 }
 
 void Level::createFireObstacle(Coordinate<int> position)
