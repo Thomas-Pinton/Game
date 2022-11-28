@@ -40,7 +40,7 @@ void Entity::setPosition(Coordinate<float> p)
 	// mudar para sprite
 }
 
-void Entity::setAlive(bool status)
+void Entity::setAlive(const bool status)
 {
 	alive = status;
 }

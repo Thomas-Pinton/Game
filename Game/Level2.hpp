@@ -4,6 +4,7 @@
 #include "Ice.hpp"
 #include "Level.hpp"
 
+
 class Level2 :
     public Level
 {
@@ -24,4 +25,5 @@ public:
     void recoverMuds();
     ~Level2();
 };
+
 

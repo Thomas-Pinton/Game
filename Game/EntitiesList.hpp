@@ -3,17 +3,25 @@
 #include "Entity.hpp"
 #include "Coordinate.hpp"
 
-class EntitiesList 
+
+namespace Lists
 {
-private:
-	Lista<Entity> list;
-	int levelId;
-public:
-	EntitiesList();
-	~EntitiesList();
-	void setLevelId(int id);
-	void executeEntities();
-	void printEntities();
-	void addEntity(Entity* pE);
-	void saveEntities();
-};
+	class EntitiesList
+	{
+	private:
+		Lista<Entity> list;
+		int levelId;
+	public:
+		EntitiesList();
+		~EntitiesList();
+		void setLevelId(int id);
+		void executeEntities();
+		void printEntities();
+		void addEntity(Entity* pE);
+		void saveEntities();
+	};
+}
+
+using namespace Lists;
+
+

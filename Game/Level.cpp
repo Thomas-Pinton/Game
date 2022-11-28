@@ -14,43 +14,28 @@ Level::Level(int playersAmount, bool loadFromSave)
 	enemyAmount = 0;
 	playerAmount = playersAmount;
 
-	/*
-	ifstream playerFile("../data/Player.txt");
-	if (!playerFile)
-		std::cout << "Error opening player file" << std::endl;
-
-	Player* pPlayer = NULL;
-	float values;
-	while (!playerFile.eof())
+	if (!loadFromSave)
 	{
-		playerFile >> values;
-		pPlayer = new Player()
-	}
-	*/
-
-	if(loadFromSave)
-		recoverPlayers("Level" + std::to_string(id));
-
-	for (int i = 0; i < playersAmount; i++)
-	{
-		player = StateManager::getInstance()->getPlayer(i);
-		if (player)
+		for (int i = 0; i < playersAmount; i++)
 		{
-			std::cout << "Player already exists " << std::endl;
-			player->setLevel(this);
-			players.push_back(player);
-			entities.addEntity(player);
-			colMan.players.push_back(player);
-		}
-		else
-		{
-			std::cout << "Creating player " << std::endl;
-			createPlayer({ (float)50 * (i + 1),(float)50 * (i + 1) }, i + 1);
+			player = StateManager::getInstance()->getPlayer(i);
+			if (player)
+			{
+				std::cout << "Player already exists " << std::endl;
+				player->setLevel(this);
+				player->setPosition({ (float)50 * (i + 1),(float)50 * (i + 1) });
+				player->setAlive(true);
+				players.push_back(player);
+				entities.addEntity(player);
+				colMan.players.push_back(player);
+			}
+			else
+			{
+				std::cout << "Creating player " << std::endl;
+				createPlayer({ (float)50 * (i + 1),(float)50 * (i + 1) }, i + 1);
+			}
 		}
 	}
-	
-	
-	
 }
 
 Level::~Level()
@@ -77,7 +62,7 @@ void Level::manageColisions()
 void Level::execute()
 {
 	srand((unsigned int)time(NULL));
-	
+
 	while (pGraMan->getWindow()->config.pollEvent(e))
 	{
 		if (e.type == sf::Event::Closed)
@@ -92,16 +77,20 @@ void Level::execute()
 				else
 				{
 					entities.saveEntities();
+					if (id == level1)
+						save("Level1");
+					else
+						save("Level2");
 					std::cout << "Saving entities " << std::endl;
 					std::cout << "Leaving level " << std::endl;
 					//always go back to main menu
 					Manager::StateManager::getInstance()->popUntil(1);
 				}
-						
+
 			}
 			if (e.key.code == sf::Keyboard::Enter && paused)
 				paused = false;
-					
+
 		}
 	}
 	if (!paused)
@@ -134,7 +123,7 @@ void Level::decreaseEnemyAmount()
 {
 	enemyAmount -= 1;
 	std::cout << "Enemy amount " << enemyAmount << std::endl;
-	if (enemyAmount == 0)
+	if (enemyAmount == 0 && id == l1)
 		StateManager::getInstance()->push((States)level2);
 }
 
@@ -161,7 +150,19 @@ void Level::createFlyingObstacle(Coordinate<int> position)
 	pFlyingBlock->setSize({ 16.0f, 16.0f });
 	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
-	pFlyingBlock->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 1 * BLOCK_SIZE}, { BLOCK_SIZE,  BLOCK_SIZE });
+	pFlyingBlock->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 1 * BLOCK_SIZE }, { BLOCK_SIZE,  BLOCK_SIZE });
+	colMan.obstacles.push_back((Obstacle*)pFlyingBlock);
+	entities.addEntity(pFlyingBlock);
+}
+
+void Level::createFlyingObstacleDifferentTexture(Coordinate<int> position)
+{
+	pFlyingBlock = NULL;
+	pFlyingBlock = new Obstacles::FlyingBlock;
+	pFlyingBlock->setSize({ 16.0f, 16.0f });
+	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
+	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
+	pFlyingBlock->setTexture("Terrain/Terrain (16x16).png", { BLOCK_SIZE * 7 , 5 * BLOCK_SIZE }, { BLOCK_SIZE,  BLOCK_SIZE });
 	colMan.obstacles.push_back((Obstacle*)pFlyingBlock);
 	entities.addEntity(pFlyingBlock);
 }
@@ -186,7 +187,7 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	mushroom = new Enemies::Mushroom(changeDirectionTime);
 	if (mushroom == NULL)
 	{
-		std::cout << "Error when trying to create mushroom" << std::endl; 
+		std::cout << "Error when trying to create mushroom" << std::endl;
 		return;
 	}
 	colMan.enemies.push_back((Enemy*)mushroom);
@@ -195,7 +196,7 @@ void Level::createMushroom(Coordinate<int> position, float changeDirectionTime)
 	float speedx = (-200.0f + 40 * (rand() % 3));
 	mushroom->speed = { speedx, 0.0f };
 	//aleatoriza modulo e direcao da velocidade
-	mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE*2,  BLOCK_SIZE*2 });
+	mushroom->setTexture("Enemies/Mushroom/Idle (32x32).png", { 0, 0 }, { BLOCK_SIZE * 2,  BLOCK_SIZE * 2 });
 	entities.addEntity(mushroom);
 	mushroom->setLevel(this);
 	std::cout << "Mushroom " << mushroom->acceleration.y << std::endl;
@@ -207,7 +208,7 @@ void Level::recoverMushrooms(std::string level)
 	if (mushroomFile.is_open())
 	{
 		std::string line;
-		while (std::getline(mushroomFile, line)) 
+		while (std::getline(mushroomFile, line))
 		{
 			std::cout << "Line " << line << std::endl;
 			mushroom = new Enemies::Mushroom(line);
@@ -215,6 +216,8 @@ void Level::recoverMushrooms(std::string level)
 			entities.addEntity(mushroom);
 			mushroom->setLevel(this);
 			colMan.enemies.push_back((Enemy*)mushroom);
+			if (mushroom->getAlive())
+				enemyAmount++;
 		}
 	}
 	mushroomFile.close();
@@ -222,6 +225,7 @@ void Level::recoverMushrooms(std::string level)
 
 void Level::recoverPlayers(std::string level)
 {
+	std::cout << "Level " << level << std::endl << std::endl;
 	std::fstream playerFile("../data/" + level + "/Player.txt", std::ios::in);
 	if (playerFile.is_open())
 	{
@@ -235,9 +239,14 @@ void Level::recoverPlayers(std::string level)
 			players.push_back(player);
 			player->setLevel(this);
 
+			std::cout << "Loading player " << std::endl;
+			std::cout << "alive " << player->getAlive() << std::endl;
+
 			entities.addEntity(player);
 			colMan.players.push_back(player);
 			Manager::StateManager::getInstance()->addPlayer(player);
+			if (player->getAlive())
+				playerAmount++;
 		}
 	}
 	playerFile.close();
@@ -248,7 +257,7 @@ void Level::recoverFireBlocks(std::string level)
 	std::fstream fireBlockFile;
 	if (level == "Level2")
 		fireBlockFile.open("../data/Level2/FireBlock.txt", std::ios::in);
-	else 
+	else
 		fireBlockFile.open("../data/Level1/FireBlock.txt", std::ios::in);
 	//std::fstream fireBlockFile("../data/" + level + "/FireBlock.txt", std::ios::in);
 	if (fireBlockFile.is_open())
@@ -265,4 +274,36 @@ void Level::recoverFireBlocks(std::string level)
 		}
 	}
 	fireBlockFile.close();
+}
+
+void Level::loadLevel(std::string level)
+{
+	std::fstream levelFile("../data/" + level + "/" + level + ".txt", std::ofstream::in);
+	if (levelFile.is_open())
+	{
+		std::string line;
+		while (std::getline(levelFile, line))
+		{
+			std::istringstream ss(line);
+			ss >> enemyAmount;
+			ss >> playerAmount;
+		}
+	}
+}
+
+void Level::save(std::string level)
+{
+	if (level == "Level1")
+		remove("../data/Level1/Level1");
+	else
+		remove("../data/Level2/Level2");
+
+	std::ofstream levelFile("../data/" + level + "/" + level + ".txt", std::ofstream::trunc);
+	if (levelFile.is_open())
+	{
+		levelFile << enemyAmount << " "
+			<< playerAmount << " "
+			<< std::endl;
+		levelFile.close();
+	}
 }

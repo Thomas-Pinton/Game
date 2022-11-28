@@ -3,18 +3,22 @@
 #include "Entity.hpp"
 #include "Constants.hpp"
 
-
-class Character : public Entity
+namespace Characters
 {
-protected:
-	int hp;
-	float jumpHeight;
-public:
-	Character();
-	const int getHp();
-	virtual void setHp(int newHp);
-	virtual void decreaseHp(int qtd);
-	virtual void increaseHp(int qtd);
-	void setJumpHeight(float jH);
-	float getJumpHeight();
-};
+	class Character : public Entity
+	{
+	protected:
+		int hp;
+		float jumpHeight;
+	public:
+		Character();
+		const int getHp() const;
+		virtual void setHp(const int newHp);
+		virtual void decreaseHp(const int qtd);
+		virtual void increaseHp(int qtd);
+		void setJumpHeight(float jH);
+		float getJumpHeight();
+	};
+}
+
+using namespace Characters;

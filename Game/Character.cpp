@@ -9,19 +9,19 @@ Character::Character()
 	jumpHeight = 0;
 }
 
-const int Character::getHp()
+const int Character::getHp() const
 {
 	return hp;
 }
 
-void Character::setHp(int newHp)
+void Character::setHp(const int newHp)
 {
 	hp = newHp;
 	if (hp <= 0)
 		setAlive(false);
 }
 
-void Character::decreaseHp(int qtd)
+void Character::decreaseHp(const int qtd)
 {
 	hp -= qtd;
 	if (hp <= 0)

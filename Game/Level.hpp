@@ -19,6 +19,7 @@
 
 using namespace Manager;
 
+
 class Level : public Being
 {
 protected:
@@ -54,11 +55,15 @@ public:
 	void createPlayer(Coordinate<float> position, int id);
 	void createFlyingObstacle(Coordinate<int> position);
 	void createFireObstacle(Coordinate<int> position);
+	void createFlyingObstacleDifferentTexture(Coordinate<int> position);
 	void createMushroom(Coordinate<int> position, float changeDirectionTime = 2.5f + rand() % 2);
 	// Posso criar uma funcao create entity, que preenche os valores que voce quiser de velocidade, posicao, tamanho etc
 
 	void recoverMushrooms(std::string level);
 	void recoverPlayers(std::string level);
 	void recoverFireBlocks(std::string level);
+
+	void loadLevel(std::string level);
+	void save(std::string level);
 };
 

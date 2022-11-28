@@ -4,7 +4,7 @@
 #define BLOCK_WIDTH 75
 
 Level1::Level1(int playersAmount, bool loadFromSave) :
-	Level(playersAmount, loadFromSave)
+	Level(playersAmount, loadFromSave) 
 {
 
     pProjectile = NULL;
@@ -97,8 +97,14 @@ Level1::Level1(int playersAmount, bool loadFromSave) :
         createEnemies();
     }
     else {
+        playerAmount = 0;
+        if (id == l1)
+            recoverPlayers("Level1");
+        else
+            recoverPlayers("Level2");
         loadObstacles();
         loadEnemies();
+        
     }
     
     
@@ -155,6 +161,7 @@ void Level1::loadEnemies()
 {
     recoverMushrooms("Level1");
     recoverPlants();
+    std::cout << "Enemy amount " << enemyAmount << std::endl;
 }
 
 void Level1::loadObstacles()
@@ -224,6 +231,8 @@ void Level1::recoverPlants()
             }
             pPlant->lastProjectileShooted = pPlant->projectiles.begin();
             plantCounter++;
+            if (pPlant->getAlive())
+                enemyAmount++;
         }
     }
     plantFile.close();

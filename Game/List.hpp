@@ -3,6 +3,7 @@
 //#include "Element.hpp"
 #include <iostream>
 
+
 template <class TIPO>
 
 class Lista
@@ -11,33 +12,33 @@ public:
     template <class TIPO>
     class Element
     {
-        private:
-            TIPO* pData;
-        public:
-            Element<TIPO>* pNext;
-            Element() {
-                pNext = NULL;
-                pData = NULL;
-            }
-            Element(Element* pNextE, TIPO* pDataE) {
-                pNext = pNextE;
-                pData = pDataE;
-            }
-            ~Element() {
+    private:
+        TIPO* pData;
+    public:
+        Element<TIPO>* pNext;
+        Element() {
+            pNext = NULL;
+            pData = NULL;
+        }
+        Element(Element* pNextE, TIPO* pDataE) {
+            pNext = pNextE;
+            pData = pDataE;
+        }
+        ~Element() {
 
-            }
-            void setProximo(Element* pN) {
-                pNext = pN;
-            }
-            const void setData(TIPO* pDataE) {
-                pData = pDataE;
-            }
-            Element* getProximo() const {
-                return pNext;
-            }
-            TIPO* getData() const {
-                return pData;
-            }
+        }
+        void setProximo(Element* pN) {
+            pNext = pN;
+        }
+        const void setData(TIPO* pDataE) {
+            pData = pDataE;
+        }
+        Element* getProximo() const {
+            return pNext;
+        }
+        TIPO* getData() const {
+            return pData;
+        }
     };
 
 private:
@@ -56,9 +57,9 @@ public:
         // Destrutora da lista desaloca todos os elementos
         Element<TIPO>* pCurrent = pFirst;
         Element<TIPO>* pNext = pFirst->pNext;
-        while(pCurrent != NULL) 
+        while (pCurrent != NULL)
         {
-            
+
             delete pCurrent;
             pCurrent = pNext;
             pNext = pCurrent->pNext;
@@ -107,7 +108,8 @@ public:
         {
             pFirst = elem;
             pLast = elem;
-        } else 
+        }
+        else
         {
             pLast->pNext = elem;
             pLast = elem;
@@ -128,10 +130,14 @@ public:
         {
             pFirst = elType;
             pLast = elType;
-        } else 
+        }
+        else
         {
             pLast->pNext = elType;
             pLast = elType;
         }
     }
 };
+
+
+

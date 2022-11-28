@@ -110,6 +110,10 @@ Level2::Level2(int playersAmount, bool loadFromSave) :
         std::cout << "Enemy amount " << enemyAmount << std::endl;
     }
     else {
+        if (id == l1)
+            recoverPlayers("Level1");
+        else
+            recoverPlayers("Level2");
         loadObstacles();
         loadEnemies();
     }
@@ -118,7 +122,7 @@ Level2::Level2(int playersAmount, bool loadFromSave) :
         for (int j = 0; j < BLOCK_WIDTH; j++)
         {
             if (testTileMap[i*BLOCK_WIDTH + j] > 0 && testTileMap[i * BLOCK_WIDTH + j] < 200)
-                createFlyingObstacle({j, i});
+                createFlyingObstacleDifferentTexture({j, i});
         }
     }
 
@@ -175,6 +179,8 @@ void Level2::recoverPigs()
             entities.addEntity(pPig);
             pPig->setLevel(this);
             colMan.enemies.push_back((Enemy*)pPig);
+            if (pPig->getAlive())
+                enemyAmount++;
         }
     }
     pigFile.close();

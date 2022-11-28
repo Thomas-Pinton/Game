@@ -34,7 +34,7 @@ public:
 
 	void setPosition(Coordinate<float> p);
 
-	virtual void setAlive(bool status);
+	virtual void setAlive(const bool status);
 
 	void updatePosition();
 

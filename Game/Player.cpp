@@ -163,7 +163,11 @@ void Player::decreaseHp(int qtd)
 void Player::save()
 {
 	std::cout << "Saving player " << pLevel->getId() << std::endl;
-	std::ofstream playerFile("../data/Level" + std::to_string(pLevel->getId()) + "/Player.txt", std::ofstream::out);
+	std::ofstream playerFile;
+	if (pLevel->getId() == 1)
+		playerFile.open("../data/Level1/Player.txt", std::ios_base::app);
+	else
+		playerFile.open("../data/Level2/Player.txt", std::ios_base::app);
 	playerFile  << alive << " " 
 				<< position.x << " " << position.y << " " 
 				<< size.x << " " << size.y << " "

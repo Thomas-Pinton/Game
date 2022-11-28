@@ -107,24 +107,32 @@ namespace Enemies
 	void Plant::save()
 	{
 		std::cout << "Saving plant " << std::endl;
-		std::ofstream plantFile("../data/Level1/Plant.txt", std::ios_base::app);
-		plantFile << alive << " "
-			<< position.x << " " << position.y << " "
-			<< size.x << " " << size.y << " "
-			<< speed.x << " " << speed.y << " "
-			<< acceleration.x << " " << acceleration.y << " "
-			<< hp << " "
-			<< damage << " "
-			<< shootInterval << " "
-			<< shootCooldown << " "
-			<< std::endl;		
-		plantFile.close();
-		std::list<Projectile*>::iterator projectile;
-		for (projectile = lastProjectileShooted; projectile != lastProjectileShooted; projectile++)
-		{
-			(*projectile)->save();
-			if (projectile == projectiles.end())
-				projectile = projectiles.begin();
+		try {
+			std::ofstream plantFile("../data/Level1/Plant.txt", std::ios_base::app);
+			plantFile << alive << " "
+				<< position.x << " " << position.y << " "
+				<< size.x << " " << size.y << " "
+				<< speed.x << " " << speed.y << " "
+				<< acceleration.x << " " << acceleration.y << " "
+				<< hp << " "
+				<< damage << " "
+				<< shootInterval << " "
+				<< shootCooldown << " "
+				<< std::endl;
+			plantFile.close();
+			std::list<Projectile*>::iterator projectile;
+			for (projectile = lastProjectileShooted; projectile != lastProjectileShooted; projectile++)
+			{
+				(*projectile)->save();
+				if (projectile == projectiles.end())
+					projectile = projectiles.begin();
+			}
 		}
+		catch (const std::exception& ex) {
+			std::cout << "Error saving plant " << std::endl;
+			std::cout << ex.what() << std::endl;
+		}
+		
+		
 	}
 }
