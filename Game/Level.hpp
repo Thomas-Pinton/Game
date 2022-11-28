@@ -36,7 +36,7 @@ protected:
 	int playerAmount;
 
 	Player* player;
-	Obstacles::FlyingBlock* pFlyingBlock;
+	Obstacle* pFlyingBlock;
 	Obstacles::Mud* pMud;
 	Obstacles::FireBlock* pFireBlock;
 	Enemies::Mushroom* mushroom;

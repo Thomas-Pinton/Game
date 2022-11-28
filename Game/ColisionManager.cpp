@@ -14,6 +14,10 @@ namespace Manager
 	ColisionManager::ColisionManager()
 	{
 	}
+	
+	ColisionManager::~ColisionManager()
+	{
+	}
 
 	void ColisionManager::checkColisions()
 	{

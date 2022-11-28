@@ -38,6 +38,8 @@ public:
 	static Manager::GraphicManager* pGraMan;
 
 	Being();
+	
+	~Being();
 
 	virtual void execute() = 0;
 

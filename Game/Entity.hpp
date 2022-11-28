@@ -14,7 +14,7 @@ protected:
 	Coordinate<float> size;
 	sf::Texture* texture;
 	Level* pLevel;
-	//std::stringstream saveInfo;
+
 public:
 	bool alive;
 
@@ -22,11 +22,11 @@ public:
 
 	Coordinate<float> speed;
 
-	sf::RectangleShape rectangle; // temporario
+	sf::RectangleShape rectangle;
 	
-	sf::Sprite sprite;
-
 	Entity();
+
+	~Entity();
 
 	void setTexture(std::string filePath, Coordinate<int> start = {0, 0}, Coordinate<int> size = { 0, 0 });
 

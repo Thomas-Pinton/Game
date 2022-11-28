@@ -72,10 +72,12 @@ namespace Manager
 
 	void StateManager::pop()
 	{
+		std::cout << "Stack size " << stateStack.size() << std::endl;
 		if (stateStack.top())
 		{
 			delete (stateStack.top());
 			stateStack.pop();
+			std::cout << stateStack.top()->getId() << std::endl;
 			return;
 		}
 		std::cout << "Not possible to pop, stack is empty" << std::endl;

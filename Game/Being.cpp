@@ -6,7 +6,10 @@ using namespace Manager;
 Being::Being()
 {
 	id = -1;
-	// id n�o imprementado ainda
+}
+
+Being::~Being()
+{
 }
 
 const int Being::getId() const {

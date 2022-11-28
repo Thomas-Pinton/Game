@@ -18,6 +18,10 @@ Entity::Entity()
 	//rectangle.setOutlineThickness(1);
 }
 
+Entity::~Entity()
+{
+}
+
 
 void Entity::setTexture(std::string filePath, Coordinate<int> start, Coordinate<int> size)
 {

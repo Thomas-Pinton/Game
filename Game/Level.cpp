@@ -146,7 +146,7 @@ void Level::createPlayer(Coordinate<float> position, int id)
 void Level::createFlyingObstacle(Coordinate<int> position)
 {
 	pFlyingBlock = NULL;
-	pFlyingBlock = new Obstacles::FlyingBlock;
+	pFlyingBlock = new Obstacle;
 	pFlyingBlock->setSize({ 16.0f, 16.0f });
 	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));
@@ -158,7 +158,7 @@ void Level::createFlyingObstacle(Coordinate<int> position)
 void Level::createFlyingObstacleDifferentTexture(Coordinate<int> position)
 {
 	pFlyingBlock = NULL;
-	pFlyingBlock = new Obstacles::FlyingBlock;
+	pFlyingBlock = new Obstacle;
 	pFlyingBlock->setSize({ 16.0f, 16.0f });
 	pFlyingBlock->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
 	//pFlyingBlock->rectangle.setFillColor(sf::Color(200, 0, 0));

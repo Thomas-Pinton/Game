@@ -4,6 +4,8 @@ playerum
 450
 quatrocentos
 400
+ttttt
+400
 trezendoecinquenta
 350
 playerdois

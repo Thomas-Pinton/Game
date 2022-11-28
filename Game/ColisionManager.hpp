@@ -31,6 +31,7 @@ namespace Manager
 		std::list<Projectile*> projectiles;
 	public:
 		ColisionManager();
+		~ColisionManager();
 
 		// posso ter uma fun��o gen�rica addEntity que tem sobrecarga de par�metros (a depender do tipo de entidade)
 

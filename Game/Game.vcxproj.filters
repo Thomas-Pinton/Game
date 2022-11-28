@@ -128,9 +128,6 @@
     <ClInclude Include="ColisionManager.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Element.hpp">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
     <ClInclude Include="List.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>

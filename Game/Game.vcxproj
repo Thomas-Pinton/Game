@@ -172,7 +172,6 @@
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Constants.hpp" />
-    <ClInclude Include="Element.hpp" />
     <ClInclude Include="EntitiesList.hpp" />
     <ClInclude Include="ColisionManager.hpp" />
     <ClInclude Include="FireBlock.hpp" />

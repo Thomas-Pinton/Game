@@ -18,7 +18,7 @@ EntitiesList::~EntitiesList()
 		pElEntidadeProx = pElEntidade->getProximo();
 	}
 
-	for (int i = 0; i < size  || pElEntidadeProx != NULL; i++)
+	for (int i = 0; i < size || pElEntidadeProx != NULL; i++)
 	{
 		if (pElEntidadeProx->getData()->getId() == player)
 		{

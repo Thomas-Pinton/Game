@@ -7,7 +7,6 @@ class Button :
 {
 private:
     bool isSelected;
-    //sf::Text text;
 public:
     sf::Text text;
 
