@@ -17,7 +17,6 @@ namespace Enemies
 		Enemy()
 	{
 		id = classes(mushroom);
-		std::cout << "Recovering Mushroom " << std::endl;
 
 		std::istringstream ss(data);
 		
@@ -35,7 +34,6 @@ namespace Enemies
 		ss >> changeDirectionTime;
 		ss >> timeElapsed;
 
-		std::cout << "Hp " << hp << "damage " << damage << "time elapsed " << timeElapsed << std::endl;
 
 	}
 
@@ -57,7 +55,6 @@ namespace Enemies
 
 	void Mushroom::save()
 	{
-		std::cout << "Saving mushroom " << pLevel->getId() << std::endl;
 		std::ofstream mushroomFile("../data/Level" + std::to_string(pLevel->getId()) + "/Mushroom.txt", std::ios_base::app);
 		mushroomFile << alive << " "
 			<< position.x << " " << position.y << " "

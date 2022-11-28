@@ -54,8 +54,6 @@ namespace Manager
 						if (ajuste.y < -0.01f && (*player)->speed.y > 0.1f)
 							// se bateu na cabe�a do inimgo ele morreu
 						{
-							std::cout << "Dei dano" << std::endl;
-							std::cout << ajuste << std::endl;
 
 							(*player)->updatePosition(ajuste);
 
@@ -66,15 +64,12 @@ namespace Manager
 							(*player)->executeJump(-sqrtf(2 * GRAVITY * 70));
 							//jogador pula cada vez que bate na cabeca de um inimigo
 
-							std::cout << "Pontuacao: " << (*player)->getPoints() << std::endl;
 
 						}
 						else if (ajuste.x > 0.01f || ajuste.x < -0.01f ||
 							ajuste.y > 0.01f) // houve colis�o, checando tanto para positivos como negativos
 						{
-							std::cout << "Morri" << std::endl;
 							// perdeu
-							std::cout << "Damage " << (*enemy)->getDamage() << std::endl;
 							(*player)->decreaseHp((*enemy)->getDamage());
 							// diminuir hp pelo dano que o inimigo causa
 							return;
@@ -146,8 +141,6 @@ namespace Manager
 					if (ajuste.x > 0.1 || ajuste.x < -0.1 ||
 						ajuste.y > 0.1 || ajuste.y < -0.1)
 					{
-						std::cout << "Morri" << std::endl;
-						std::cout << "Coliding with projectile " << std::endl;
 						// perdeu
 						(*player)->decreaseHp((*projectile)->getDamage());
 						return;

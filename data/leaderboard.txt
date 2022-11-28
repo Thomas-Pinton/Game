@@ -2,6 +2,8 @@ oitocentosecinquenta
 850
 setcentosecinquenta
 750
+d
+600
 quinehntos
 500
 playerum

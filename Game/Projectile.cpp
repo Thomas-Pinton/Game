@@ -12,7 +12,6 @@ Projectile::Projectile(std::string data)
 	: Entity()
 {
 	id = classes(mushroom);
-	std::cout << "Recovering Projectile " << std::endl;
 
 	std::istringstream ss(data);
 
@@ -47,7 +46,6 @@ void Projectile::reset(Coordinate<float> pos)
 
 void Projectile::save()
 {
-	std::cout << "Saving projectile " << std::endl;
 	std::ofstream projectileFile("../data/Level1/Projectile.txt", std::ios_base::app);
 	projectileFile << alive << " "
 		<< position.x << " " << position.y << " "

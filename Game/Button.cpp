@@ -29,7 +29,6 @@ void Button::setFont(std::string filePath)
 
 	if (!pF->loadFromFile(filePath))
 	{
-		std::cout << "Error loading font" << std::endl;
 		delete pF;
 		return;
 	}

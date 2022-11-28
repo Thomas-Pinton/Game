@@ -92,12 +92,10 @@ void EntitiesList::saveEntities()
 		remove("../data/Level2/Mud.txt");
 	}	
 
-	std::cout << "Terminei de remover " << std::endl;
 
 	int size = list.getSize();
 	Lista<Entity>::Element<Entity>* pElEntidade = list.getPrimeiro();
 
-	std::cout << "list size " << size << std::endl;
 
 	for (int i = 0; i < size; i++)
 	{

@@ -37,7 +37,6 @@ namespace Obstacles
 
     void FireBlock::affectPlayer(Player* pP)
     {
-        std::cout << "Jogador Morreu" << std::endl;
         pP->decreaseHp(damage);
     }
 

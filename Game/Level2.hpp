@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Sand.hpp"
 #include "Ice.hpp"
 #include "Level.hpp"
 
@@ -10,8 +9,7 @@ class Level2 :
 {
 private:
     Enemies::Pig* pPig;
-    Obstacles::Sand* pSand;
-    Obstacles::Ice* pIce;
+    Obstacles::Mud* pMud;
 public:
     Level2(int playersAmount, bool loadFromSave);
     ~Level2();

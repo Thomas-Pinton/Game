@@ -4,7 +4,6 @@
 Leaderboard::Leaderboard()
 	: Being()
 {
-	std::cout << "Creating leaderboard " << std::endl;
 	loadData();
 }
 

@@ -107,7 +107,6 @@ Level2::Level2(int playersAmount, bool loadFromSave) :
             createPig({ 50 + rand() % 21, 13 }, 2.0f);
         createPig({ 1, 45 }, 2.0f);
         enemyAmount = mushroomAmout + pigUpAmount + 1;
-        std::cout << "Enemy amount " << enemyAmount << std::endl;
     }
     else {
         if (id == l1)
@@ -152,7 +151,6 @@ void Level2::createPig(Coordinate<int> position, float changeDirectionTime)
     pPig = new Enemies::Pig(changeDirectionTime);
     if (pPig == NULL)
     {
-        std::cout << "Error when trying to create Pig" << std::endl;
         return;
     }
     pPig->setPosition({ (float)(position.x * 16) + 8, (float)(position.y * 16) + 8 });
@@ -173,7 +171,6 @@ void Level2::recoverPigs()
         std::string line;
         while (std::getline(pigFile, line))
         {
-            std::cout << "Line " << line << std::endl;
             pPig = new Enemies::Pig(line);
             pPig->setTexture("Enemies/AngryPig/Idle (36x30).png", { 0, 0 }, { 36, 30 });
             entities.addEntity(pPig);
@@ -201,14 +198,11 @@ void Level2::createMudObstacle(Coordinate<int> position)
 void Level2::recoverMuds()
 {
     std::fstream mudFile("../data/Level2/Mud.txt", std::ios::in);
-    std::cout << "Recovering muds " << std::endl;
     if (mudFile.is_open())
     {
         std::string line;
         while (std::getline(mudFile, line))
         {
-            std::cout << "New mud " << std::endl;
-            std::cout << "Line " << line << std::endl;
             pMud = new Obstacles::Mud(line);
             pMud->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 5 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
             pMud->setLevel(this);

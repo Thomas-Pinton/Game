@@ -50,19 +50,14 @@ namespace Manager
 			push(new Leaderboard());
 			break;
 		case endLevelScreen:
-			std::cout << "Trying to create end level screen " << std::endl;
-			std::cout << "Players amount " << playersAmount << std::endl;
 			int* points = new int[playersAmount];
 			for (int i = 0; i < playersAmount; i++)
 			{
 				if (players[i] == NULL)
 				{
-					std::cout << "Null " << std::endl; 
 					break;
 				}
 				points[i] = players[i]->getPoints();
-				std::cout << "Points [i] " << points[i] << std::endl;
-				std::cout << "players[i]->getPoints() " << players[i]->getPoints() << std::endl;
 			}
 
 			push(new EndLevelScreen(points, playersAmount));
@@ -72,15 +67,12 @@ namespace Manager
 
 	void StateManager::pop()
 	{
-		std::cout << "Stack size " << stateStack.size() << std::endl;
 		if (stateStack.top())
 		{
 			delete (stateStack.top());
 			stateStack.pop();
-			std::cout << stateStack.top()->getId() << std::endl;
 			return;
 		}
-		std::cout << "Not possible to pop, stack is empty" << std::endl;
 	}
 	void StateManager::popUntil(int amount)
 	{

@@ -51,7 +51,6 @@ namespace Manager {
 
 		if (deltaTime > 0.05f)
 		{
-			std::cout << "Too big of a delta time " << std::endl;
 			deltaTime = 0.05f;
 		}
 		return deltaTime;
@@ -92,17 +91,14 @@ namespace Manager {
 			}
 		}
 
-		std::cout << "Texture in " << filePath << "Not loaded yet." << std::endl;
 
 
 		sf::Texture* text = new sf::Texture();
 		if (!text->loadFromFile("../Assets/" + filePath))
 		//if (!text->loadFromFile(filePath))
-			std::cout << "Error loading new texture " << std::endl;
 
 		textureMap.insert({ filePath, text });
 
-		std::cout << "Texture loaded" << std::endl;
 
 		return text;
 			
@@ -118,17 +114,14 @@ namespace Manager {
 			}
 		}
 
-		std::cout << "Font in " << filePath << "Not loaded yet." << std::endl;
 
 
 		sf::Font* font = new sf::Font();
 		if (!font->loadFromFile("../Assets/" + filePath))
 		//if (!text->loadFromFile(filePath))
-			std::cout << "Error loading new texture " << std::endl;
 
 		fontMap.insert({ filePath, font });
 
-		std::cout << "Texture loaded" << std::endl;
 
 		return font;
 			

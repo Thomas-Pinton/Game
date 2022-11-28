@@ -46,7 +46,6 @@ namespace Enemies
 			return;
 		if (s == ANGRY)
 		{
-			std::cout << "Angry " << std::endl;
 			speed.x *= 2.0f;
 			changeDirectionTime /= 2.0f;
 			state = ANGRY;
@@ -73,7 +72,6 @@ namespace Enemies
 
 	void Pig::decreaseHp(int qtd)
 	{
-		std::cout << "Decreasing pig hp" << hp << std::endl;
 		hp -= qtd;
 		if (hp <= 0)
 			alive = false;

@@ -13,7 +13,6 @@ namespace Enemies
 	Plant::Plant(std::string data)
 	{
 		id = classes(plant);
-		std::cout << "Recovering Mushroom " << std::endl;
 
 		std::istringstream ss(data);
 
@@ -41,7 +40,6 @@ namespace Enemies
 
 	void Plant::shoot(Player* pPlayer)
 	{
-		std::cout << "Shooting " << std::endl;
 		Projectile* pP;
 		if (lastProjectileShooted == projectiles.end())
 		{
@@ -79,7 +77,6 @@ namespace Enemies
 					if (shootInterval > shootCooldown)
 					{
 						shootInterval = 0;
-						std::cout << "2" << std::endl;
 						shoot((*pPlayer));
 					}
 				}
@@ -90,7 +87,6 @@ namespace Enemies
 	void Plant::addProjectile(Projectile* pP)
 	{
 		projectiles.push_back(pP);
-		std::cout << "Projectile " << pP->getAlive() << std::endl;
 	}
 
 	void Plant::setAlive(bool status)
@@ -106,7 +102,6 @@ namespace Enemies
 	
 	void Plant::save()
 	{
-		std::cout << "Saving plant " << std::endl;
 		try {
 			std::ofstream plantFile("../data/Level1/Plant.txt", std::ios_base::app);
 			plantFile << alive << " "

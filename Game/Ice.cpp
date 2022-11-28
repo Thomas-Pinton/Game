@@ -34,7 +34,6 @@ namespace Obstacles
 
     void Ice::save()
     {
-        std::cout << "Saving ice " << std::endl;
         std::ofstream iceFile("../data/Level1/Ice.txt", std::ios_base::app);
         iceFile << alive << " "
             << position.x << " " << position.y << " "

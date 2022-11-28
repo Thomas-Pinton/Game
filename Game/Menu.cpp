@@ -88,7 +88,6 @@ void Menu::execute()
 			else if (event.key.code == sf::Keyboard::Enter &&
 				option == 2) // caso queira trocar o numero de jogadores
 			{
-				std::cout << "Entrando aqui " << std::endl;
 				std::string s = buttons[option]->getString();
 				if (buttons[option]->getString().back() == '1')
 				{
@@ -107,7 +106,6 @@ void Menu::execute()
 			else if (event.key.code == sf::Keyboard::Enter &&
 				option == 3) // caso queira trocar a opcao de salvamento
 			{
-				std::cout << "Entrando aqui " << std::endl;
 				std::string s = buttons[option]->getString();
 				if (loadFromSave == false)
 				{
@@ -146,8 +144,6 @@ void Menu::print()
 	pGraMan->clear();
 	for (int i = 0; i < optionsAmount; i++)
 	{
-		//std::cout << "i " << i << std::endl;
-		//std::cout << "Id" << buttons[i]->getId() << std::endl;
 		buttons[i]->print();
 	}
 	pGraMan->display();

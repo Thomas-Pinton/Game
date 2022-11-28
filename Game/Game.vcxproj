@@ -157,7 +157,6 @@
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="EndLevelScreen.cpp" />
-    <ClCompile Include="Sand.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -189,7 +188,6 @@
     <ClInclude Include="Plant.hpp" />
     <ClInclude Include="Projectile.hpp" />
     <ClInclude Include="EndLevelScreen.hpp" />
-    <ClInclude Include="Sand.hpp" />
     <ClInclude Include="StateManager.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="Level.hpp" />

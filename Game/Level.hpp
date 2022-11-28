@@ -36,7 +36,6 @@ protected:
 
 	Player* player;
 	Obstacle* pObstacle;
-	Obstacles::Mud* pMud;
 	Obstacles::FireBlock* pFireBlock;
 	Enemies::Mushroom* mushroom;
 public:

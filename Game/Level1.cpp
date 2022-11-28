@@ -130,7 +130,6 @@ void Level1::createEnemies()
 
     enemyAmount = amountOfEnemies + amountOfPlants + 1;
 
-    std::cout << "Enemy amount "  << enemyAmount << std::endl;
     // criando um inimigo fora
 
     int plantSpawns[10] = {
@@ -141,12 +140,10 @@ void Level1::createEnemies()
         20, 45
     };
 
-    std::cout << "enemies " << amountOfEnemies << std::endl;
 
     for (i = 0; i < amountOfEnemies; i++)
     {
         j = 5 + rand() % 55;
-        std::cout << "Criando inimigo" << std::endl;
         createMushroom({ j, 45 });
     }
 
@@ -161,7 +158,6 @@ void Level1::loadEnemies()
 {
     recoverMushrooms("Level1");
     recoverPlants();
-    std::cout << "Enemy amount " << enemyAmount << std::endl;
 }
 
 void Level1::loadObstacles()
@@ -186,7 +182,6 @@ void Level1::createPlant(Coordinate<int> position)
     pPlant = new Enemies::Plant;
     if (pPlant == NULL)
     {
-        std::cout << "Erro ao criar planta" << std::endl;
         return;
     }
     pPlant->setSize({ 42, 44 });
@@ -198,14 +193,12 @@ void Level1::createPlant(Coordinate<int> position)
     pPlant->players = players;
     pPlant->setLevel(this);
 
-    std::cout << "pPlant " << pPlant->acceleration.y << std::endl;
 
     for (int i = 0; i < 3; i++)
     {
         pPlant->addProjectile(createProjectile());
     }
     pPlant->lastProjectileShooted = pPlant->projectiles.begin();
-    std::cout << "Plant created " << std::endl;
 }
 
 void Level1::recoverPlants()
@@ -217,14 +210,12 @@ void Level1::recoverPlants()
         int plantCounter = 0;
         while (std::getline(plantFile, line))
         {
-            std::cout << "Line " << line << std::endl;
             pPlant = new Enemies::Plant(line);
             pPlant->players = players;
             pPlant->setTexture("Enemies/Plant/Idle (44x42).png", { 0, 0 }, { 44, 42 });
             pPlant->setLevel(this);
             entities.addEntity(pPlant);
             colMan.enemies.push_back((Enemy*)pPlant);
-            std::cout << "Recovering projectiles " << std::endl;
             for (int i = 0; i < 3; i++)
             {
                 pPlant->addProjectile(recoverProjectile(plantCounter*3 + i));
@@ -279,7 +270,6 @@ void Level1::recoverIce()
         std::string line;
         while (std::getline(iceFile, line))
         {
-            std::cout << "Line " << line << std::endl;
             pIce = new Obstacles::Ice(line);
             pIce->setTexture("Traps/Sand Mud Ice/Sand Mud Ice (16x6).png", { BLOCK_SIZE * 9 , BLOCK_SIZE * 0 }, { BLOCK_SIZE,  BLOCK_SIZE });
             entities.addEntity(pIce);

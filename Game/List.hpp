@@ -74,7 +74,6 @@ public:
         }
         if (pCurrent == NULL)
         {
-            std::cout << "Erro: Acesso de posição indevida" << std::endl;
             return NULL;
         }
         return pCurrent->getData();
