@@ -13,4 +13,4 @@ Com relação aos inimigos, existem 3: o cogumelo, que anda para os lados com ve
 Quanto ao código, ele foi feito na linguagem C++ com o uso da biblioteca gráfica SFML. Nele foi utilizado o princípio de programação orientada a objetos com a utilização de diversos de seus conceitos, como Classe, Objeto, Gabaritos, Polimorfismo e Persistências de Objetos. Além disso, a construção desse jogo também foi amparada pela utilização dos conceitos de engenharia de software e do uso de diversos padrões de projeto, como por exemplo o Singleton. Esse jogo obteve nota 9 na avaliação do professor da disciplina citada acima.
 
 ## Como Executar
-Para executar o jogo, é necessário entrar na pasta "Release" e executar o arquivo "Game.exe".
+Para executar o jogo, é necessário estar no sistema operacional Windows. Entre na pasta "Release" e execute o arquivo "Game.exe".
