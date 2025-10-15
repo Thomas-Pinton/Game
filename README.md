@@ -1,5 +1,10 @@
 # Pixel Adventure - Jogo de plataforma 2d
 
+<img width="458" alt="imagemJogo1" src="https://github.com/user-attachments/assets/6143e5b5-729a-4be1-8d57-e5785e36b4b4" />
+
+<img width="458" alt="imagemJogo2" src="https://github.com/user-attachments/assets/84a9c985-d0a0-4c99-bfb1-921a924cff56" />
+
+
 ## Introdução
 Esse jogo foi desenvolvido, primariamente, como um trabalho para a disciplina de técnicas de programação. Apesar de existir outro usuário na parte dos contribuidores, ele não participou no desenvolvimento do jogo, pois desistiu da matéria, sendo que todo trabalho do jogo foi realizado inteiramente por mim. 
 
